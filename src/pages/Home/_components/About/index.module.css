@@ -1,0 +1,98 @@
+.wereNotA {
+  margin: 0;
+}
+.incredibleProduct {
+  color: var(--color-green-400);
+}
+.wereNotAContainer {
+  margin: 0;
+  flex: 1;
+  position: relative;
+  font-size: inherit;
+  line-height: 150%;
+  font-weight: 700;
+}
+.h1 {
+  align-self: stretch;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  text-align: left;
+  font-size: 50px;
+  color: var(--color-white);
+}
+.lineChild {
+  width: 297px;
+  position: relative;
+  background-color: var(--color-gray-400);
+  height: 2px;
+}
+.line {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 0 20px 0 0;
+}
+.atOurCoreContainer {
+  max-width: 520px;
+  width: 100%;
+  position: relative;
+  line-height: 210%;
+  display: inline-block;
+  flex-shrink: 0;
+}
+.atOurCoreWeAreCreatorsWrapper {
+  max-width: 606px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+}
+.text,
+.weBelieveInFullOwnershipWrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.text {
+  align-self: stretch;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  align-content: center;
+  gap: 30px 50px;
+  text-align: left;
+  font-size: 16px;
+  color: var(--color-white);
+}
+.data {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 57px;
+  line-height: normal;
+  z-index: 0;
+  letter-spacing: normal;
+}
+@media screen and (max-width: 750px) {
+  .wereNotAContainer {
+    font-size: 40px;
+    line-height: 60px;
+  }
+}
+@media screen and (max-width: 675px) {
+  .data {
+    gap: 28px;
+  }
+}
+@media screen and (max-width: 450px) {
+  .wereNotAContainer {
+    font-size: 30px;
+    line-height: 45px;
+  }
+}

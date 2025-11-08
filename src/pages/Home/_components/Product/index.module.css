@@ -1,0 +1,236 @@
+.designedForThe {
+  margin: 0;
+}
+.modernBusiness {
+  color: var(--color-green-400);
+}
+.designedForTheContainer {
+  margin: 0;
+  flex: 1;
+  position: relative;
+  font-size: inherit;
+  line-height: 150%;
+  font-weight: 700;
+  font-family: inherit;
+}
+.h1 {
+  align-self: stretch;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  text-align: left;
+  font-size: 50px;
+  color: var(--color-white);
+}
+.ourFlagshipSoftware {
+  align-self: stretch;
+  position: relative;
+  line-height: 210%;
+}
+.text {
+  width: 100%;
+  max-width: 708px;
+  align-self: stretch;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  font-size: 16px;
+  color: var(--color-white);
+}
+.blocks,
+.data,
+.text {
+  display: flex;
+  justify-content: flex-start;
+}
+.blocks {
+  align-self: stretch;
+  overflow: hidden;
+  flex-direction: row;
+  align-items: center;
+  align-content: center;
+  gap: 10px 94px;
+}
+.data {
+  max-width: 808px;
+  margin-left: auto;
+  width: 100%;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 57px;
+  z-index: 0;
+  line-height: normal;
+  letter-spacing: normal;
+}
+
+.image {
+  position: absolute;
+  left: 124px;
+  top: 50%;
+  transform: translateY(-48%);
+  max-width: 745px;
+  z-index: -1;
+}
+
+.frameChild {
+  flex: 1;
+  position: relative;
+  background-color: #303132;
+  height: 46px;
+}
+.rectangleWrapper {
+  width: 112px;
+  margin: 0 !important;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  z-index: 0;
+}
+.frameItem {
+  width: 6px;
+  position: relative;
+  border-radius: 50%;
+  background-color: var(--color-green-400);
+  height: 6px;
+}
+.realTimeCollaboration {
+  flex: 1;
+  position: relative;
+  line-height: 180%;
+  font-weight: 500;
+  display: inline-block;
+  overflow: hidden;
+  min-width: 140px;
+}
+.ellipseParent {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 13px;
+  min-width: 100px;
+  z-index: 1;
+}
+.frameGroup,
+.frameInner {
+  align-self: stretch;
+  position: relative;
+  height: 46px;
+}
+.frameGroup {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 10px 20px;
+  box-sizing: border-box;
+  gap: 10px;
+}
+.frameInner {
+  background-color: #303132;
+}
+.rectangleContainer {
+  width: 112px;
+  margin: 0 !important;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  z-index: 0;
+}
+.intelligentDataManagement {
+  width: 350px;
+  position: relative;
+  line-height: 180%;
+  font-weight: 500;
+  display: inline-block;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.frameContainer {
+  align-self: stretch;
+  height: 46px;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 10px 20px;
+  box-sizing: border-box;
+  position: relative;
+  gap: 10px;
+}
+.ellipseContainer,
+.frameContainer,
+.frameParent {
+  display: flex;
+  justify-content: flex-start;
+}
+.ellipseContainer {
+  flex-direction: row;
+  align-items: center;
+  gap: 13px;
+  z-index: 1;
+}
+.frameParent {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  text-align: left;
+  font-size: 14px;
+  color: var(--color-white);
+}
+
+@media screen and (max-width: 1440px) {
+  .image {
+    left: 64px;
+    max-width: 645px;
+  }
+}
+
+@media screen and (max-width: 1180px) {
+  .image {
+    display: none;
+  }
+}
+@media screen and (max-width: 992px) {
+  .blocks {
+    flex-wrap: wrap;
+  }
+}
+
+@media screen and (max-width: 366px) {
+  .blocks {
+    gap: 47px;
+  }
+  .data {
+    gap: 28px;
+  }
+}
+
+@media screen and (max-width: 750px) {
+  .designedForTheContainer {
+    font-size: 40px;
+    line-height: 60px;
+  }
+}
+@media screen and (max-width: 675px) {
+  .h1 {
+    gap: 28px;
+  }
+  .data {
+    gap: 28px;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .designedForTheContainer {
+    font-size: 30px;
+    line-height: 45px;
+  }
+}

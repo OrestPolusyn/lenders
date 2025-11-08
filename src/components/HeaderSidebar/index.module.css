@@ -1,0 +1,41 @@
+.headerSidebar {
+  position: relative;
+  width: 30px;
+  margin-inline-end: clamp(1rem, 1.5vw, 2rem);
+
+  &:before {
+    content: '';
+    position: absolute;
+    top: -100%;
+    left: -50%;
+    width: 1px;
+    height: 300%;
+    background-color: var(--color-blue-300);
+    z-index: -1;
+  }
+
+  span {
+    display: block;
+    width: 100%;
+    height: 2px;
+    background-color: var(--color-blue-300);
+    transition: all 0.3s ease-in-out;
+
+    &:not(:last-child) {
+      margin-bottom: 4px;
+    }
+
+    &:nth-child(1),
+    &:nth-child(3) {
+      width: 80%;
+      margin-left: auto;
+    }
+  }
+
+  &:hover {
+    span {
+      background-color: var(--color-blue-500);
+      width: 100%;
+    }
+  }
+}

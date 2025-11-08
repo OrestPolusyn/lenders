@@ -1,0 +1,200 @@
+.span {
+  font-weight: 300;
+}
+.span1 {
+  font-weight: 500;
+}
+
+.aboutUs,
+.home {
+  margin: 0;
+  align-self: stretch;
+  position: relative;
+  font-size: inherit;
+  line-height: 110%;
+}
+.menu {
+  position: fixed;
+  top: 53px;
+  padding-block: 30px;
+  left: 0;
+  bottom: 0;
+  padding-inline: 60px;
+  width: 100%;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: left;
+  font-size: 28px;
+  z-index: 5;
+  color: var(--color-gray-400);
+  background-color: var(--color-black);
+  translate: 100% 0;
+  transition: translate 0.3s ease;
+}
+
+.menuInner {
+  display: flex;
+  gap: 60px;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+  overflow-y: auto;
+}
+
+@media (orientation: landscape) {
+  .menuInner {
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 992px) {
+  .menu {
+    padding-inline: 20px;
+  }
+}
+
+.menu a {
+  font-weight: 700;
+}
+
+.burger {
+  --line-height: 2px;
+  --buger-size: 20px;
+  --move: calc(var(--buger-size) / 3);
+  --move-decrement: calc(var(--move) * -1);
+  --transition-time: 0.5s;
+  --lines-color: var(--color-white);
+
+  position: absolute;
+  right: 0;
+  top: 50%;
+  z-index: 2;
+  display: none;
+  width: calc(var(--buger-size) + 5px);
+  height: var(--buger-size);
+  background-color: #0000;
+  transform: translateY(-50%);
+  transition: opacity var(--transition-time) ease;
+
+  span {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    z-index: -1;
+    display: block;
+    width: 100%;
+    height: var(--line-height);
+    background-color: var(--lines-color);
+    transform: translateY(-50%);
+    transition: transform var(--transition-time) ease,
+      background-color var(--transition-time) ease 0.1s;
+
+    &::before,
+    &::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      width: 100%;
+      height: var(--line-height);
+      background-color: var(--lines-color);
+      animation-duration: 0.4s;
+      animation-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1);
+      animation-fill-mode: forwards;
+    }
+
+    &::before {
+      transform: translateY(var(--move-decrement)) rotate(0);
+    }
+
+    &::after {
+      transform: translateY(var(--move)) rotate(0);
+    }
+  }
+
+  &:hover {
+    opacity: 1;
+  }
+
+  @media (max-width: 992px) {
+    display: block;
+  }
+}
+
+.open + .menu {
+  translate: 0;
+}
+
+.open span {
+  background-color: rgba(0, 0, 0, 0);
+  transition: background-color 0.2s;
+}
+.open span::before,
+.open span::after {
+  animation-duration: 0.2s;
+  animation-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1);
+  animation-fill-mode: forwards;
+}
+
+.open span::before {
+  animation-name: toplinecross;
+}
+
+.open span::after {
+  animation-name: bottomlinecross;
+}
+
+@keyframes toplinecross {
+  0% {
+    transform: translateY(var(--move-decrement));
+  }
+
+  50% {
+    transform: translateY(0);
+  }
+
+  100% {
+    transform: rotate(45deg);
+  }
+}
+
+@keyframes bottomlinecross {
+  0% {
+    transform: translateY(var(--move));
+  }
+
+  50% {
+    transform: translateY(0);
+  }
+
+  100% {
+    transform: translateY(0) rotate(-45deg);
+  }
+}
+
+@keyframes toplineburger {
+  0% {
+    transform: rotate(45deg);
+  }
+
+  50% {
+    transform: rotate(0);
+  }
+
+  100% {
+    transform: translateY(var(--move-decrement)) rotate(0);
+  }
+}
+
+@keyframes bottomlineburger {
+  0% {
+    transform: translateY(0) rotate(-45deg);
+  }
+
+  50% {
+    transform: rotate(0);
+  }
+
+  100% {
+    transform: translateY(var(--move)) rotate(0);
+  }
+}
