@@ -6,7 +6,7 @@ html {
 
 input,
 select {
-  -webkit-appearance: none;
+  appearance: none;
 }
 
 button,
@@ -29,7 +29,6 @@ html {
   position: relative;
   line-height: 1.15;
   tab-size: 4;
-  -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
   -webkit-tap-highlight-color: #0000;
 }
@@ -58,6 +57,11 @@ body {
   text-rendering: optimizespeed;
 }
 
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
 a:not([class]) {
   text-decoration-skip-ink: auto;
 }
@@ -78,13 +82,12 @@ h5,
 h6,
 p {
   overflow-wrap: break-word;
-}
-
-a {
-  text-decoration: none;
   color: inherit;
 }
 
+[type='button'],
+[type='reset'],
+[type='submit'],
 button {
   margin: 0;
   border-color: #0000;
@@ -97,13 +100,6 @@ button {
 
 button:disabled {
   cursor: default;
-}
-
-[type='button'],
-[type='reset'],
-[type='submit'],
-button {
-  -webkit-appearance: button;
 }
 
 input {

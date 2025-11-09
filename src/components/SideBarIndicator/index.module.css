@@ -42,13 +42,13 @@
   visibility: visible;
 }
 
-@media (max-width: 1440px) {
+@media (width <= 1440px) {
   .sidebar-indicator {
     left: var(--container-offset);
   }
 }
 
-@media (max-width: 992px) {
+@media (width <= 992px) {
   .sidebar-indicator {
     display: none;
   }

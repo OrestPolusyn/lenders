@@ -1,19 +1,35 @@
+import { Link } from 'react-router-dom'
 import styles from './index.module.css'
 
 export const Hero = () => {
   return (
-    <div className={styles.hero}>
+    <section className={styles.hero + ' hero-section'}>
       <div className='container'>
-        <div>
-          <p>Smart Loans For Bright Future</p>
+        <div className={styles.heroContent}>
+          <div>
+            <p className='slogan'>Smart Loans For Bright Future</p>
+          </div>
+          <h1>Personal Loans To Fulfill Your Dreams</h1>
+          <div className={styles.heroActions}>
+            <Link className='button' to='/preapproved'>
+              <span>Get PreApproved</span>
+            </Link>
+            <Link className='button button--reverse' to='/about'>
+              <span>Learn More</span>
+            </Link>
+          </div>
         </div>
-        <h1>Personal Loans To Fulfill Your Dreams</h1>
-        <p>
-          We provide flexible loan solutions tailored to your needs. Whether
-          you're buying your first home or refinancing, we're here to help you
-          achieve your financial goals.
-        </p>
+
+        <div className={styles.heroImage}>
+          <img
+            src='/src/assets/images/home/hero-men.jpg'
+            alt='hero-men'
+            width={500}
+            height={500}
+            loading='lazy'
+          />
+        </div>
       </div>
-    </div>
+    </section>
   )
 }

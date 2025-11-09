@@ -5,12 +5,12 @@
   font-size: 400px;
   font-weight: 900;
   line-height: 1;
-  color: rgba(255, 255, 255, 0.01);
+  color: rgb(255 255 255 / 1%);
   letter-spacing: -0.02em;
   z-index: 0;
 }
 
-@media (max-width: 992px) {
+@media (width <= 992px) {
   .counter {
     font-size: 200px;
     top: 0;
@@ -18,7 +18,7 @@
   }
 }
 
-@media (max-width: 768px) {
+@media (width <= 768px) {
   .counter {
     right: 0;
     font-size: 120px;

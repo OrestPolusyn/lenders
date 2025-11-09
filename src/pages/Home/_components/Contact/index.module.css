@@ -1,6 +1,7 @@
 .withUs {
   color: var(--color-green-400);
 }
+
 .getInTouchContainer {
   margin: 0;
   flex: 1;
@@ -10,21 +11,25 @@
   font-weight: 700;
   max-width: 595px;
 }
+
 .h1,
 .lineChild {
   align-self: stretch;
 }
+
 .h1 {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
 }
+
 .lineChild {
   position: relative;
   background-color: var(--color-gray-400);
   height: 2px;
 }
+
 .line {
   width: 297px;
   display: flex;
@@ -32,26 +37,31 @@
   align-items: flex-start;
   justify-content: flex-start;
 }
+
 .scheduleADemo {
   margin: 0;
 }
+
 .scheduleADemoContainer {
   flex: 1;
   position: relative;
   line-height: 210%;
   max-width: 595px;
 }
+
 .text,
 .text1 {
   align-self: stretch;
   display: flex;
   justify-content: flex-start;
 }
+
 .text1 {
   flex-direction: row;
   align-items: center;
   font-size: 16px;
 }
+
 .text {
   overflow: hidden;
   flex-direction: column;
@@ -61,6 +71,7 @@
   font-size: 50px;
   color: var(--color-white);
 }
+
 .fullName1 {
   /* margin-bottom: 5px; */
   flex: 1;
@@ -70,6 +81,7 @@
   overflow: hidden;
   height: 20px;
 }
+
 .h2 {
   align-self: stretch;
   display: flex;
@@ -77,6 +89,7 @@
   align-items: center;
   justify-content: space-between;
 }
+
 .fullName,
 .input {
   display: flex;
@@ -93,6 +106,7 @@
   min-width: 251px;
   max-width: 391px;
 }
+
 .form1,
 .form2,
 .input4,
@@ -101,19 +115,21 @@
   display: flex;
   justify-content: flex-start;
 }
+
 .form2 {
-  flex-direction: row;
+  flex-flow: row wrap;
   align-items: center;
-  flex-wrap: wrap;
   align-content: center;
   gap: 30px 31px;
 }
+
 .form1,
 .input4,
 .yourQuestions {
   flex-direction: column;
   align-items: flex-start;
 }
+
 .input4 {
   border: 0;
   background-color: #303132;
@@ -127,12 +143,15 @@
   color: var(--color-gray-400);
   resize: none;
 }
+
 .yourQuestions {
   gap: 10px;
 }
+
 .form1 {
   gap: 30px;
 }
+
 .send {
   position: relative;
   font-size: 14px;
@@ -141,6 +160,7 @@
   color: var(--color-black);
   text-align: center;
 }
+
 .button {
   cursor: pointer;
   border: 0;
@@ -155,9 +175,11 @@
   justify-content: center;
   box-sizing: border-box;
 }
+
 .button:hover {
   background-color: #17b37a;
 }
+
 .data,
 .form {
   width: 100%;
@@ -166,6 +188,7 @@
   align-items: flex-end;
   justify-content: flex-start;
 }
+
 .form {
   gap: 30px;
   max-width: 813px;
@@ -174,6 +197,7 @@
   color: var(--color-white);
   z-index: 3;
 }
+
 .data {
   gap: 40px;
   line-height: normal;
@@ -193,6 +217,7 @@
   align-self: stretch;
   position: relative;
 }
+
 .ourEmail {
   margin: 0;
   font-size: inherit;
@@ -200,27 +225,32 @@
   font-weight: 700;
   font-family: inherit;
 }
+
 .solidShape {
   height: 2px;
   max-width: 297px;
   background-color: var(--color-gray-400);
 }
+
 .frameChild {
   height: 54px;
   width: 63px;
   border-radius: 3px;
   object-fit: cover;
 }
+
 .infonabutonet {
   position: relative;
   letter-spacing: 0.05em;
   line-height: 180%;
 }
+
 .frameParent,
 .ourEmailParent {
   display: flex;
   justify-content: flex-start;
 }
+
 .frameParent {
   flex-direction: row;
   align-items: center;
@@ -228,6 +258,7 @@
   gap: 29px;
   font-size: 22px;
 }
+
 .frameChildIcon {
   display: flex;
   align-items: center;
@@ -237,6 +268,7 @@
   border-radius: 3px;
   background-color: var(--color-green-400);
 }
+
 .ourEmailParent {
   padding-block: 84px;
   max-width: 540px;
@@ -250,7 +282,7 @@
   text-align: left;
   font-size: 30px;
   color: #fff;
-  font-family: Roboto;
+  font-family: Roboto, sans-serif;
 }
 
 .address {
@@ -261,51 +293,60 @@
   max-width: 330px;
 }
 
-@media screen and (max-width: 1440px) {
+@media screen and (width <= 1440px) {
   .image {
     left: 10%;
   }
 }
-@media screen and (max-width: 1280px) {
+
+@media screen and (width <= 1280px) {
   .image {
     display: none;
   }
+
   .ourEmailParent {
     padding-block: 50px;
   }
 }
 
-@media screen and (max-width: 1100px) {
+@media screen and (width <= 1100px) {
   .fullName {
     max-width: 100%;
   }
 }
-@media screen and (max-width: 1025px) {
+
+@media screen and (width <= 1025px) {
   .getInTouchContainer {
     font-size: 40px;
     line-height: 60px;
   }
+
   .form {
     max-width: 100%;
   }
 }
-@media screen and (max-width: 750px) {
+
+@media screen and (width <= 750px) {
   .getInTouchContainer,
   .scheduleADemoContainer {
     max-width: 100%;
   }
+
   .text {
     gap: 28px;
   }
+
   .data {
     gap: 20px;
   }
 }
-@media screen and (max-width: 450px) {
+
+@media screen and (width <= 450px) {
   .getInTouchContainer {
     font-size: 30px;
     line-height: 45px;
   }
+
   .fullName {
     max-width: 100%;
   }

@@ -1,11 +1,10 @@
 import { Link } from 'react-router-dom'
 // TODO: change to svg
-import logo from '../../assets/images/logo.png'
+import logo from '@/assets/images/logo.png'
 import { links } from '../../const/links'
-import { HeaderSidebar } from '../HeaderSidebar'
 import styles from './index.module.css'
 
-export const Header = () => {
+export const Header = ({ onSidebarOpen }: { onSidebarOpen: () => void }) => {
   return (
     <header className={`${styles.header} header`}>
       <nav className={styles.headerNav}>
@@ -37,7 +36,11 @@ export const Header = () => {
           </li>
         </ul>
 
-        <HeaderSidebar />
+        <button className={styles.headerSidebar} onClick={onSidebarOpen}>
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
       </nav>
     </header>
   )

@@ -1,12 +1,15 @@
 .builtWith {
   color: var(--color-white);
 }
+
 .purpose {
   color: var(--color-green-400);
 }
+
 .builtWithPurpose {
   margin: 0;
 }
+
 .builtWithPurposeContainer {
   margin: 0;
   flex: 1;
@@ -15,6 +18,7 @@
   line-height: 150%;
   font-weight: 700;
 }
+
 .h1 {
   align-self: stretch;
   display: flex;
@@ -22,12 +26,14 @@
   align-items: center;
   justify-content: center;
 }
+
 .lineChild {
   width: 297px;
   position: relative;
   background-color: var(--color-gray-400);
   height: 2px;
 }
+
 .line {
   display: flex;
   flex-direction: column;
@@ -35,11 +41,13 @@
   justify-content: center;
   min-width: 100px;
 }
+
 .weBuiltThis {
   flex: 1;
   position: relative;
   line-height: 210%;
 }
+
 .text1 {
   width: 100%;
   max-width: 470px;
@@ -50,11 +58,13 @@
   justify-content: center;
   font-size: 16px;
 }
+
 .text,
 .whyChooseOur {
   flex: 1;
   overflow: hidden;
 }
+
 .text {
   display: flex;
   flex-direction: column;
@@ -66,6 +76,7 @@
   font-size: 50px;
   color: var(--color-white);
 }
+
 .whyChooseOur {
   margin: 0;
   position: relative;
@@ -73,6 +84,7 @@
   line-height: 150%;
   font-weight: 700;
 }
+
 .featureItem {
   width: 410px;
   display: flex;
@@ -80,12 +92,14 @@
   align-items: center;
   justify-content: center;
 }
+
 .iconBackgroundsChild {
   align-self: stretch;
   position: relative;
   background-color: #303132;
   height: 46px;
 }
+
 .iconBackgrounds {
   width: 112px;
   margin: 0 !important;
@@ -98,6 +112,7 @@
   justify-content: flex-start;
   z-index: 0;
 }
+
 .featureDetailsChild {
   width: 6px;
   position: relative;
@@ -105,6 +120,7 @@
   background-color: var(--color-green-400);
   height: 6px;
 }
+
 .fullProductOwnership {
   width: 358px;
   position: relative;
@@ -114,17 +130,20 @@
   overflow: hidden;
   flex-shrink: 0;
 }
+
 .featureContainers,
 .featureDetails {
   display: flex;
   justify-content: flex-start;
 }
+
 .featureDetails {
   flex-direction: row;
   align-items: center;
   gap: 13px;
   z-index: 1;
 }
+
 .featureContainers {
   align-self: stretch;
   height: 46px;
@@ -135,12 +154,14 @@
   position: relative;
   gap: 10px;
 }
+
 .featuresOverview {
   width: 410px;
   flex-direction: column;
   gap: 15px;
   font-size: 14px;
 }
+
 .blocks,
 .data,
 .featuresOverview {
@@ -148,6 +169,7 @@
   align-items: flex-start;
   justify-content: flex-start;
 }
+
 .blocks {
   width: 100%;
   max-width: 540px;
@@ -158,6 +180,7 @@
   font-size: 30px;
   color: var(--color-white);
 }
+
 .data {
   width: 100%;
   flex-direction: row;
@@ -167,17 +190,19 @@
   z-index: 0;
 }
 
-@media screen and (max-width: 1180px) {
+@media screen and (width <= 1180px) {
   .blocks {
     flex: 1;
     max-width: 440px;
   }
 }
-@media screen and (max-width: 992px) {
+
+@media screen and (width <= 992px) {
   .builtWithPurposeContainer {
     font-size: 40px;
     line-height: 60px;
   }
+
   .whyChooseOur {
     font-size: 24px;
     line-height: 36px;
@@ -186,34 +211,42 @@
   .text1 {
     max-width: 80%;
   }
+
   .data {
     flex-direction: column;
   }
 }
-@media screen and (max-width: 700px) {
+
+@media screen and (width <= 700px) {
   .text {
     gap: 28px;
   }
+
   .data {
     gap: 116px;
   }
+
   .text1 {
     max-width: 100%;
   }
 }
-@media screen and (max-width: 450px) {
+
+@media screen and (width <= 450px) {
   .builtWithPurposeContainer {
     font-size: 30px;
     line-height: 45px;
   }
+
   .whyChooseOur {
     font-size: 18px;
     line-height: 27px;
   }
+
   .blocks {
     gap: 28px;
     min-width: 100%;
   }
+
   .data {
     gap: 58px;
   }

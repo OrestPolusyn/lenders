@@ -1,46 +1,98 @@
+import aboutImage from '@/assets/images/home/about-men.jpg'
+import calculateImage from '@/assets/images/home/calculate.jpg'
+
+import { Link } from 'react-router-dom'
 import styles from './index.module.css'
 
 export const About = () => {
   return (
-    <div className={styles.data}>
-      <section className={styles.h1}>
-        <h1 className={styles.wereNotAContainer}>
-          <p className={styles.wereNotA}>We Don’t Sell Services</p>
-          <p className={styles.wereNotA}>
-            <span>{`We Build Visionary `}</span>
-            <span className={styles.incredibleProduct}>Trading Solutions</span>
-          </p>
-        </h1>
-      </section>
-      <div className={styles.line}>
-        <div className={styles.lineChild} />
+    <section className={styles.homeAbout}>
+      <div className='container'>
+        <div className={styles.homeAboutWrapper + ' wrapper'}>
+          <div className={styles.homeAboutImages}>
+            <img
+              className={styles.homeAboutImageFirst}
+              src={aboutImage}
+              alt='About'
+              width={685}
+              height={717}
+              loading='lazy'
+            />
+            <img
+              className={styles.homeAboutImageSecond}
+              src={calculateImage}
+              alt='About'
+              width={220}
+              height={220}
+              loading='lazy'
+            />
+
+            <div className={styles.homeAboutInfo}>
+              <span className={styles.homeAboutExperience}>
+                years of <br />
+                experience
+              </span>
+
+              <span className={styles.homeAboutExperienceNumber}>15+</span>
+            </div>
+          </div>
+
+          <div className={styles.homeAboutContent}>
+            <div className='slogan slogan--reverse'>
+              <span>welcome to easiloan</span>
+            </div>
+
+            <h2>our loans will fill yourdreams come true</h2>
+
+            <p>
+              Lorem Ipsum Dolor Sit Amet, Consectetur Adipisicing Elit, Sed Do
+              Eiusmod Tempor Incididunt Ut Labore Et Dolore Magna Aliqua.
+            </p>
+
+            <ul className={styles.homeAboutList}>
+              <li
+                className={
+                  styles.homeAboutListItem + ' ' + styles.homeAboutListItemFirst
+                }
+              >
+                <p>Quick Loan Process</p>
+              </li>
+
+              <li
+                className={
+                  styles.homeAboutListItem +
+                  ' ' +
+                  styles.homeAboutListItemSecond
+                }
+              >
+                <p>Small Business Loan</p>
+              </li>
+
+              <li
+                className={
+                  styles.homeAboutListItem + ' ' + styles.homeAboutListItemThird
+                }
+              >
+                <p>Very Low Rates</p>
+              </li>
+
+              <li
+                className={
+                  styles.homeAboutListItem +
+                  ' ' +
+                  styles.homeAboutListItemFourth
+                }
+              >
+                <p>Studying Abroad Loan</p>
+              </li>
+            </ul>
+
+            <Link className='button' to='/loans'>
+              <span>Explore Loans</span>
+            </Link>
+          </div>
+        </div>
       </div>
-      <section className={styles.text}>
-        <div className={styles.atOurCoreWeAreCreatorsWrapper}>
-          <div className={styles.atOurCoreContainer}>
-            <p className={styles.wereNotA}>
-              We are product-first by nature. Our focus is on developing and
-              scaling comprehensive trading ecosystems—dynamic, adaptable, and
-              tailored precisely for financial markets. With a team grounded in
-              engineering excellence, strategic product thinking, and extensive
-              market knowledge, we craft intuitive solutions that address
-              real-world trading, account management, and risk management
-              challenges.
-            </p>
-          </div>
-        </div>
-        <div className={styles.weBelieveInFullOwnershipWrapper}>
-          <div className={styles.atOurCoreContainer}>
-            <p className={styles.wereNotA}>
-              We believe in complete ownership, enabling rapid delivery,
-              outstanding quality, and enduring commitment. Our goal? To create
-              powerful, scalable trading solutions—developed meticulously—and
-              deliver world-class software that evolves effortlessly with your
-              business.
-            </p>
-          </div>
-        </div>
-      </section>
-    </div>
+    </section>
   )
 }
