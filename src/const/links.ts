@@ -8,7 +8,7 @@ export const links = [
     href: '/about',
   },
   {
-    title: 'Our Programs',
+    title: 'Loan Programs',
     href: '/loan',
   },
   {
@@ -16,11 +16,11 @@ export const links = [
     href: '/calculator',
   },
   {
-    title: 'News',
+    title: 'Blog',
     href: '/news',
   },
   {
-    title: 'Contact Us',
+    title: 'Contact',
     href: '/contact',
   },
 ]
