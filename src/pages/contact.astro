@@ -1,0 +1,224 @@
+---
+import Footer from "../components/Footer/Footer.astro";
+import Header from "../components/Header/Header.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import contactImage from "/public/images/contact-bg.jpg";
+import styles from "../components/Home/Contact/Contact.module.css";
+import { BUSINESS_INFO, BUSINESS_HOURS } from "@/config/constants";
+import PageHeader from "../components/PageHeader/PageHeader.astro";
+---
+
+<BaseLayout
+  title="The Lenders - Contacts us"
+  description="Have questions about mortgage rates or home loans? Contact The Lenders and speak with our experts to find the right financing solution for your new home."
+>
+  <Header />
+
+  <main class="main">
+    <PageHeader title="Contact" />
+    <section class="contact contact--main">
+      <div class="container">
+        <div class="contactWrapper">
+          <div class="contactImageWrap">
+            <img
+              class="contactImage"
+              src={contactImage.src}
+              alt="contact"
+              width={contactImage.width}
+              height={contactImage.height}
+              loading="lazy"
+            />
+            <div class={styles.contactInfo}>
+              <div class={styles.contactCards}>
+                <div class={styles.contactCard}>
+                  <div class={styles.contactCardIcon}>
+                    <svg
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M6.62 10.79C8.06 13.62 10.38 15.93 13.21 17.38L15.41 15.18C15.68 14.91 16.08 14.82 16.43 14.94C17.55 15.31 18.76 15.51 20 15.51C20.55 15.51 21 15.96 21 16.51V20C21 20.55 20.55 21 20 21C10.61 21 3 13.39 3 4C3 3.45 3.45 3 4 3H7.5C8.05 3 8.5 3.45 8.5 4C8.5 5.25 8.7 6.45 9.07 7.57C9.18 7.92 9.1 8.31 8.82 8.59L6.62 10.79Z"
+                        fill="white"></path>
+                    </svg>
+                  </div>
+                  <div class={styles.contactCardContent}>
+                    <p>Call Us</p>
+                    <p>{BUSINESS_HOURS.weekdays}, {BUSINESS_HOURS.hours}</p>
+                    <a href={`tel:${BUSINESS_INFO.phone}`}
+                      >{BUSINESS_INFO.phoneFormatted}</a
+                    >
+                  </div>
+                </div>
+
+                <div class={styles.contactCard}>
+                  <div class={styles.contactCardIcon}>
+                    <svg
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M20 4H4C2.9 4 2.01 4.9 2.01 6L2 18C2 19.1 2.9 20 4 20H20C21.1 20 22 19.1 22 18V6C22 4.9 21.1 4 20 4ZM20 8L12 13L4 8V6L12 11L20 6V8Z"
+                        fill="white"></path>
+                    </svg>
+                  </div>
+                  <div class={styles.contactCardContent}>
+                    <p>Email Us</p>
+                    <p>We'll respond within 24 hours</p>
+                    <a href={`mailto:${BUSINESS_INFO.email}`}>
+                      {BUSINESS_INFO.email}
+                    </a>
+                  </div>
+                </div>
+
+                <div class={styles.contactCard}>
+                  <div class={styles.contactCardIcon}>
+                    <svg
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M12 2C8.13 2 5 5.13 5 9C5 14.25 12 22 12 22C12 22 19 14.25 19 9C19 5.13 15.87 2 12 2ZM12 11.5C10.62 11.5 9.5 10.38 9.5 9C9.5 7.62 10.62 6.5 12 6.5C13.38 6.5 14.5 7.62 14.5 9C14.5 10.38 13.38 11.5 12 11.5Z"
+                        fill="white"></path>
+                    </svg>
+                  </div>
+                  <div class={styles.contactCardContent}>
+                    <p>Visit Us</p>
+                    <p>{BUSINESS_INFO.address.street}</p>
+                    <p>
+                      {BUSINESS_INFO.address.city}, {
+                        BUSINESS_INFO.address.state
+                      }
+                      {BUSINESS_INFO.address.zip}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        
+            <div class={styles.contactForm}>
+              <div class={styles.formHeader}>
+                <h3>Contact Information</h3>
+                <p>Fill out the form and we'll be in touch soon.</p>
+              </div>
+
+              <form data-contact-form>
+                <div class={styles.formGroup}>
+                  <label for="fullName">Full Name *</label>
+                  <input
+                    type="text"
+                    id="fullName"
+                    name="fullName"
+                    placeholder="John Doe"
+                    required
+                  />
+                </div>
+
+                <div class={styles.formGroup}>
+                  <label for="email">Email Address *</label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    placeholder="john@example.com"
+                    required
+                  />
+                </div>
+
+                <div class={styles.formGroup}>
+                  <label for="phone">Phone Number *</label>
+                  <input
+                    type="tel"
+                    id="phone"
+                    name="phone"
+                    placeholder="(555) 123-4567"
+                    required
+                  />
+                </div>
+
+                <div class={styles.formGroup}>
+                  <label for="message">Message</label>
+                  <textarea
+                    id="message"
+                    name="message"
+                    placeholder="Tell us about your loan needs"
+                    rows={4}></textarea>
+                </div>
+
+                <button type="submit" class={styles.submitButton}>
+                  Submit Application
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 20 20"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M10.293 3.293L16 9L10.293 14.707L8.879 13.293L12.172 10L4 10L4 8L12.172 8L8.879 4.707L10.293 3.293Z"
+                      fill="currentColor"></path>
+                  </svg>
+                </button>
+
+                <p class={styles.formNote}>
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 16 16"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M8 0C3.6 0 0 3.6 0 8C0 12.4 3.6 16 8 16C12.4 16 16 12.4 16 8C16 3.6 12.4 0 8 0ZM9 12H7V7H9V12ZM9 6H7V4H9V6Z"
+                      fill="currentColor"></path>
+                  </svg>
+                  Text us to schedule an appointment.
+                </p>
+              </form>
+              <div data-toast class={styles.toast} style="display: none;"></div>
+            </div>
+
+            <!-- Right side - Contact Info & Map -->
+          </div>
+        </div>
+      </div>
+      <div class={styles.mapContainer}>
+        <a
+          class={styles.mapPlaceholder}
+          href={BUSINESS_INFO.mapsUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <svg
+            class={styles.mapIcon}
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M12 2C8.13 2 5 5.13 5 9C5 14.25 12 22 12 22C12 22 19 14.25 19 9C19 5.13 15.87 2 12 2ZM12 11.5C10.62 11.5 9.5 10.38 9.5 9C9.5 7.62 10.62 6.5 12 6.5C13.38 6.5 14.5 7.62 14.5 9C14.5 10.38 13.38 11.5 12 11.5Z"
+              fill="#00d3f2"></path>
+          </svg>
+          <div class={styles.buildingInfo}>
+            <p>{BUSINESS_INFO.address.full}</p>
+            <div class={styles.rating}>
+              <span>★★★★★</span>
+            </div>
+          </div>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</BaseLayout>

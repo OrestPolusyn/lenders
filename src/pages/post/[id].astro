@@ -12,6 +12,8 @@ interface NewsItem {
   date: string; // ISO
   category: string;
   image: string;
+  "image-second"?: string;
+  "image-third"?: string;
 }
 
 const news: NewsItem[] = newsData as NewsItem[];
@@ -48,8 +50,10 @@ const formattedDate = new Date(item.date).toLocaleDateString("en-US", {
   <main class="main main--singlepost">
     <div class="container">
       <article class="singlepost__article">
-        <a class="button button--back" href="/news"><span>Back to blog</span></a
-        >
+        <a class="button button--back" href="/news">
+          <span>Back to blog</span>
+        </a>
+
         <header class="singlepost__header">
           <div class="singlepost__media">
             <LazyImage
@@ -63,9 +67,9 @@ const formattedDate = new Date(item.date).toLocaleDateString("en-US", {
           </div>
 
           <div class="singlepost__meta">
-            <time class="singlepost__date" datetime={item.date}
-              >{formattedDate}</time
-            >
+            <time class="singlepost__date" datetime={item.date}>
+              {formattedDate}
+            </time>
           </div>
 
           <h1>{item.title}</h1>
@@ -95,15 +99,31 @@ const formattedDate = new Date(item.date).toLocaleDateString("en-US", {
             so crank this out you gotta smoke test your hypothesis.
           </p>
 
-          <div class="singlepost__wrapper">
-            <LazyImage
-              src={item.image}
-              alt={item.title}
-              width={600}
-              height={350}
-              class="singlepost__image"
-            />
-          </div>
+          {
+            (item["image-second"] || item["image-third"]) && (
+              <div class="singlepost__wrapper">
+                {item["image-second"] && (
+                  <LazyImage
+                    src={item["image-second"]}
+                    alt={item.title}
+                    width={600}
+                    height={350}
+                    class="singlepost__image"
+                  />
+                )}
+
+                {item["image-third"] && (
+                  <LazyImage
+                    src={item["image-third"]}
+                    alt={item.title}
+                    width={600}
+                    height={350}
+                    class="singlepost__image"
+                  />
+                )}
+              </div>
+            )
+          }
 
           <ul>
             <li>
