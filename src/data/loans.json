@@ -1,0 +1,201 @@
+[
+  {
+    "slug": "conventional",
+    "title": "Conventional Loans",
+    "tagline": "Flexible terms for borrowers with strong credit profiles.",
+    "overview": [
+      "Conventional mortgages give you predictable payments and the freedom to choose from fixed or adjustable-rate structures.",
+      "They work well when you have established credit history and the ability to make a down payment of at least 3%."
+    ],
+    "features": [
+      "Loan amounts up to conforming limits with competitive interest rates",
+      "Option to remove private mortgage insurance once the loan reaches 80% loan-to-value",
+      "Available in a variety of fixed and adjustable-rate terms",
+      "Use for primary residences, vacation homes, or investment properties"
+    ],
+    "idealFor": [
+      "Borrowers with credit scores of 620+",
+      "Homebuyers who have saved for a down payment",
+      "Clients who want predictable monthly payments"
+    ],
+    "ctaLabel": "Start a Conventional Loan",
+    "ctaLink": "/contact"
+  },
+  {
+    "slug": "fha",
+    "title": "FHA Loans",
+    "tagline": "Government-backed financing with low down payment options.",
+    "overview": [
+      "The FHA program opens the door to homeownership with flexible credit requirements and down payments as low as 3.5%.",
+      "Insurance premiums help protect the lender so you can qualify with a modest credit profile."
+    ],
+    "features": [
+      "Lower credit score requirements compared to conventional programs",
+      "Down payments starting at 3.5%",
+      "Streamlined refinance options for existing FHA borrowers",
+      "Gift funds and down payment assistance programs permitted"
+    ],
+    "idealFor": [
+      "First-time buyers building their credit history",
+      "Borrowers seeking flexible underwriting",
+      "Clients who plan to stay in their home long-term"
+    ],
+    "ctaLabel": "Check FHA Eligibility",
+    "ctaLink": "/contact"
+  },
+  {
+    "slug": "va",
+    "title": "VA Loans",
+    "tagline": "Zero-down home financing for eligible veterans and service members.",
+    "overview": [
+      "VA loans are backed by the Department of Veterans Affairs and offer unmatched benefits for those who have served.",
+      "Enjoy 0% down payment options and no private mortgage insurance requirements."
+    ],
+    "features": [
+      "100% financing available for eligible veterans and active-duty personnel",
+      "No monthly mortgage insurance premium",
+      "Flexible credit and debt-to-income guidelines",
+      "Assumable loan options for future buyers"
+    ],
+    "idealFor": [
+      "Active-duty service members and veterans",
+      "Military families relocating or purchasing their first home",
+      "Borrowers looking to refinance an existing VA loan"
+    ],
+    "ctaLabel": "Request Your VA Certificate",
+    "ctaLink": "/contact"
+  },
+  {
+    "slug": "usda",
+    "title": "USDA Loans",
+    "tagline": "Affordable financing for eligible rural and suburban properties.",
+    "overview": [
+      "The USDA Guaranteed Loan Program extends zero-down payment financing to qualifying rural areas.",
+      "Income limits and property eligibility ensure the program supports growing communities."
+    ],
+    "features": [
+      "0% down payment for approved properties",
+      "Competitive fixed interest rates",
+      "Flexible credit guidelines",
+      "Low monthly mortgage insurance premiums"
+    ],
+    "idealFor": [
+      "Borrowers looking outside major metropolitan areas",
+      "Low-to-moderate income households",
+      "Buyers seeking affordable monthly payments"
+    ],
+    "ctaLabel": "Check Property Eligibility",
+    "ctaLink": "/contact"
+  },
+  {
+    "slug": "jumbo",
+    "title": "Jumbo Loans",
+    "tagline": "High-balance mortgages tailored for luxury and high-cost markets.",
+    "overview": [
+      "When your purchase price exceeds conforming loan limits, a jumbo mortgage keeps your financing streamlined.",
+      "Competitive rates and flexible structures allow you to tailor payments for your portfolio."
+    ],
+    "features": [
+      "Loan amounts above conforming limits",
+      "Fixed or adjustable-rate options",
+      "Interest-only payment structures available for qualified borrowers",
+      "Financing available for primary, secondary, and investment properties"
+    ],
+    "idealFor": [
+      "High-net-worth borrowers purchasing premium properties",
+      "Homebuyers in competitive coastal or urban markets",
+      "Clients integrating multiple assets into their financing strategy"
+    ],
+    "ctaLabel": "Discuss Jumbo Financing",
+    "ctaLink": "/contact"
+  },
+  {
+    "slug": "heloc",
+    "title": "HELOC (Home Equity)",
+    "tagline": "Tap into your home equity with revolving credit when you need it.",
+    "overview": [
+      "A home equity line of credit lets you borrow, repay, and borrow again using the equity you have built.",
+      "Use funds for renovations, debt consolidation, or strategic investments."
+    ],
+    "features": [
+      "Interest-only payments during the draw period",
+      "Access only the funds you need, when you need them",
+      "Competitive variable rates tied to prime indices",
+      "Flexible repayment terms after the draw period"
+    ],
+    "idealFor": [
+      "Homeowners with significant equity",
+      "Borrowers planning renovations or upgrades",
+      "Clients who want a safety net for future expenses"
+    ],
+    "ctaLabel": "Open a HELOC",
+    "ctaLink": "/contact"
+  },
+  {
+    "slug": "rehab-investment",
+    "title": "Rehab & Investment Property Loans",
+    "tagline": "Short-term and long-term financing designed for property investors.",
+    "overview": [
+      "From renovation loans to long-term rental financing, we help investors close quickly and confidently.",
+      "Pair acquisition and rehab funds or lock in 30-year rental terms once the property is stabilized."
+    ],
+    "features": [
+      "Fix-and-flip financing with draws for renovation budgets",
+      "Bridge loans for fast closings and competitive markets",
+      "Rental DSCR programs with cash-flow-based underwriting",
+      "Financing options for single-family, multifamily, and mixed-use assets"
+    ],
+    "idealFor": [
+      "Investors renovating distressed properties",
+      "Landlords growing rental portfolios",
+      "Clients seeking to refinance into long-term debt after rehab"
+    ],
+    "ctaLabel": "Plan Your Investment Strategy",
+    "ctaLink": "/contact"
+  },
+  {
+    "slug": "zero-downpayment",
+    "title": "Zero Down Payment Options",
+    "tagline": "Pair lender programs with assistance funds to minimize upfront costs.",
+    "overview": [
+      "Down payment assistance programs combine grants, second mortgages, and lender credits to make buying easier.",
+      "We guide you through eligibility requirements and coordinate with approved partners."
+    ],
+    "features": [
+      "Access to state and local down payment assistance funds",
+      "Lender credits to offset closing costs",
+      "First-time buyer education to simplify the process",
+      "Works with FHA, VA, USDA, and conventional structures"
+    ],
+    "idealFor": [
+      "First-time buyers with strong income but limited savings",
+      "Borrowers leveraging community development programs",
+      "Clients planning to occupy their new home as a primary residence"
+    ],
+    "ctaLabel": "Explore Assistance Programs",
+    "ctaLink": "/contact"
+  },
+  {
+    "slug": "self-employed",
+    "title": "Self-Employed Borrower Programs",
+    "tagline": "Alternative documentation solutions for entrepreneurs and gig workers.",
+    "overview": [
+      "Traditional income verification can overlook true earning power. Our self-employed programs evaluate cash flow holistically.",
+      "Bank statement, CPA-prepared, and asset utilization options help you qualify without stress."
+    ],
+    "features": [
+      "12- or 24-month bank statement averaging for income calculations",
+      "CPA letters and profit-and-loss statements accepted",
+      "Higher debt-to-income ratios accommodated",
+      "Financing available for primary, second, and investment properties"
+    ],
+    "idealFor": [
+      "Business owners with variable monthly income",
+      "Freelancers and gig-economy professionals",
+      "Borrowers with significant liquid assets"
+    ],
+    "ctaLabel": "Qualify as a Business Owner",
+    "ctaLink": "/contact"
+  }
+]
+

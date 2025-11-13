@@ -1,0 +1,32 @@
+---
+import styles from './Hero.module.css'
+---
+
+<section class={`${styles.hero} hero-section`}>
+  <div class='container'>
+    <div class={styles.heroContent}>
+      <div>
+        <p class='slogan'>Smart Loans For Bright Future</p>
+      </div>
+      <h1>Personal Loans To Fulfill Your Dreams</h1>
+      <div class={styles.heroActions}>
+        <a class='button' href='/preapproved'>
+          <span>Get PreApproved</span>
+        </a>
+        <a class='button button--reverse' href='/about'>
+          <span>Learn More</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- <div class={styles.heroImage}>
+      <LazyImage
+        src='/public/images/home/hero-men.jpg'
+        alt='Professional businessman reviewing mortgage documents'
+        width={500}
+        height={500}
+        loading='eager'
+      />
+    </div> -->
+  </div>
+</section>

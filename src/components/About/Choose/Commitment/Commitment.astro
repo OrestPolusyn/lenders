@@ -1,0 +1,57 @@
+---
+import styles from "./Commitment.module.css";
+
+const commitmentList = [
+  {
+    text: "No hidden fees or surprise costs",
+  },
+  {
+    text: "Competitive rates with wholesale pricing",
+  },
+  {
+    text: "Personalized service, not automated responses",
+  },
+  {
+    text: "Support even after closing",
+  },
+  {
+    text: "Transparent communication at every step",
+  },
+  {
+    text: "Fast processing and closing times",
+  },
+  {
+    text: "Available evenings and weekends",
+  },
+  {
+    text: "Access to 11+ specialized loan programs",
+  },
+];
+---
+
+<section class={styles.Commitment}>
+  <div class="container">
+    <div class={styles.CommitmentContent}>
+      <div class="slogan slogan--double">
+        <span>commitment</span>
+      </div>
+
+      <h2>Our Commitment to You</h2>
+
+      <p>
+        When you choose The Leanders, you're choosing a partner who is invested
+        in your success.
+      </p>
+    </div>
+
+    <ul class={styles.CommitmentList}>
+      {
+        commitmentList.map((value) => (
+          <li>
+            <p>{value.text}</p>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>

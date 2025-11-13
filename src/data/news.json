@@ -1,0 +1,36 @@
+[
+  {
+    "id": 1,
+    "title": "New Loan Products Available",
+    "description": "We are excited to announce the launch of our new flexible loan products designed to meet diverse financial needs.",
+    "date": "2024-03-15",
+    "category": "Product Launch",
+    "image": "/images/news/news-1.jpg",
+    "image-second": "/images/news/news-2.jpg",
+    "image-third": "/images/news/news-3.jpg"
+  },
+  {
+    "id": 2,
+    "title": "Lower Interest Rates This Quarter",
+    "description": "Great news! We've reduced our interest rates to help you save more on your loans this quarter.",
+    "date": "2024-03-10",
+    "category": "Announcement",
+    "image": "/images/news/news-2.jpg"
+  },
+  {
+    "id": 3,
+    "title": "Customer Success Stories",
+    "description": "Read inspiring stories from our customers who achieved their financial goals with our lending solutions.",
+    "date": "2024-03-05",
+    "category": "Success Stories",
+    "image": "/images/news/news-3.jpg"
+  },
+  {
+    "id": 4,
+    "title": "New Loan Products Available",
+    "description": "We are excited to announce the launch of our new flexible loan products designed to meet diverse financial needs.",
+    "date": "2024-03-15",
+    "category": "Product Launch",
+    "image": "/images/news/news-1.jpg"
+  }
+]

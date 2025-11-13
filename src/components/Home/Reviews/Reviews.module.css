@@ -1,0 +1,154 @@
+.homeReviews {
+  position: relative;
+  padding-block: clamp(5rem, 5rem + 5vw, 10rem);
+  color: var(--color-blue-500);
+  background-color: var(--color-white);
+  clip-path: polygon(0 10%, 100% 0, 100% 90%, 0% 100%);
+}
+
+.homeReviews a {
+  margin-inline: auto;
+}
+
+.homeReviewsContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-block-end: clamp(1.5rem, 1.5rem + 5vw, 3.6rem);
+  text-align: center;
+
+  h2 {
+    margin-block-end: 20px;
+  }
+}
+
+.homeReviewsWrapper {
+  margin-bottom: 3rem;
+}
+
+.homeReviewsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.homeReviewsImage {
+  position: relative;
+  border-radius: var(--radius-main);
+  overflow: hidden;
+  grid-row: span 2;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.homeReviewsStatCard {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 40px 30px;
+  background: linear-gradient(135deg, #00d3f2 0%, #00b8db 100%);
+  border-radius: var(--radius-main);
+  overflow: hidden;
+  box-shadow: 0 10px 30px -10px rgb(0 0 0 / 20%);
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--color-white);
+    clip-path: polygon(0 0, 75% 0%, 100% 30%, 100% 100%, 25% 100%, 0 70%);
+  }
+
+  > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  span {
+    font-size: clamp(2.5rem, 2.5rem + 2vw, 3rem);
+    font-weight: var(--fw-900);
+    color: var(--color-blue-500);
+    line-height: 1;
+  }
+
+  p {
+    font-size: clamp(1rem, 1rem + 0.2vw, 1.2rem);
+    font-weight: var(--fw-600);
+    color: var(--color-blue-900);
+    margin: 0;
+  }
+}
+
+.homeReviewsImageBottom {
+  position: relative;
+  border-radius: var(--radius-main);
+  overflow: hidden;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .homeReviews {
+    clip-path: polygon(0 5%, 100% 0, 100% 95%, 0% 100%);
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .homeReviewsWrapper:global(.wrapper) {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .homeReviewsGrid {
+    margin-inline: auto;
+    max-width: 800px;
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .homeReviewsStatCard {
+    padding: 20px;
+
+    &:nth-child(4) {
+      grid-column: span 2;
+    }
+  }
+
+  .homeReviewsImageBottom,
+  .homeReviewsImage {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .homeReviews {
+    clip-path: polygon(0 3%, 100% 0, 100% 97%, 0% 100%);
+  }
+
+  .homeReviewsGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .homeReviewsStatCard {
+    max-width: 100%;
+
+    &:nth-child(4) {
+      grid-column: auto;
+    }
+  }
+}

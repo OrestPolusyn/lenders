@@ -1,0 +1,21 @@
+---
+import styles from './PageHeader.module.css'
+
+const { title } = Astro.props as { title: string }
+---
+
+<div class={styles.pageHeader}>
+  <div class='container'>
+    <div class={styles.pageHeaderContent}>
+      <h1>{title}</h1>
+
+      <div class={styles.pageHeaderLines}>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+  </div>
+</div>

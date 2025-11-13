@@ -1,0 +1,14 @@
+.lazy-image {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.lazy-image[loading='lazy'] {
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.lazy-image[loading='lazy'].loaded {
+  opacity: 1;
+}

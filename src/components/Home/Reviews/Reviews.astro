@@ -1,0 +1,273 @@
+---
+import avatar1 from '/public/images/home/avatar-1.jpg'
+import avatar2 from '/public/images/home/avatar-2.png'
+import avatar3 from '/public/images/home/avatar-3.png'
+import reviewsImage from '/public/images/home/happy-customers.jpg'
+import secondReviewsImage from '/public/images/home/total-funded.jpg'
+import styles from './Reviews.module.css'
+import sliderStyles from './ReviewsSlider.module.css'
+
+type Review = {
+  id: number
+  text: string
+  author: string
+  role: string
+  rating: number
+}
+
+const reviews: Review[] = [
+  {
+    id: 1,
+    text: 'Working with this team made our dream home a reality. The entire process was smooth, transparent, and faster than we expected. They found us the perfect loan program with an incredible rate!',
+    author: 'Sarah Johnson',
+    role: 'First-Time Homebuyer',
+    rating: 5,
+  },
+  {
+    id: 2,
+    text: 'The mortgage process can be overwhelming, but this team guided us every step of the way. Their expertise and personalized approach made all the difference. Highly recommend!',
+    author: 'Michael Chen',
+    role: 'Real Estate Investor',
+    rating: 5,
+  },
+  {
+    id: 3,
+    text: 'As a self-employed professional, I thought getting a mortgage would be impossible. This team found creative solutions and got us approved with great terms. Truly exceptional service!',
+    author: 'Emily Rodriguez',
+    role: 'Small Business Owner',
+    rating: 5,
+  },
+]
+
+const avatars = [avatar1, avatar2, avatar3]
+---
+
+<section class={styles.homeReviews}>
+  <div class='container'>
+    <div class={styles.homeReviewsContent}>
+      <div class='slogan slogan--double slogan--reverse'>
+        <span>our reviews</span>
+      </div>
+
+      <h2>What Our Clients Say</h2>
+
+      <p>
+        Don't just take our word for it. Hear from homeowners who trusted us
+        with their mortgage journey.
+      </p>
+    </div>
+
+    <div class={`${styles.homeReviewsWrapper} wrapper`}>
+      <div class={sliderStyles.reviewsSlider}>
+        <div class={sliderStyles.reviewsSliderCard} data-reviews-slider>
+          <div class={sliderStyles.reviewsSliderQuote}>"</div>
+
+          <div class={sliderStyles.reviewsSliderStars} data-stars>
+            {
+              Array.from({ length: 5 }).map((_, i) => (
+                <svg
+                  key={i}
+                  width='20'
+                  height='20'
+                  viewBox='0 0 20 20'
+                  fill='none'
+                  xmlns='http://www.w3.org/2000/svg'
+                >
+                  <path
+                    d='M10 0L12.2451 6.90983H19.5106L13.6327 11.1803L15.8779 18.0902L10 13.8197L4.12215 18.0902L6.36729 11.1803L0.489435 6.90983H7.75486L10 0Z'
+                    fill='#00d3f2'
+                  />
+                </svg>
+              ))
+            }
+          </div>
+
+          <p class={sliderStyles.reviewsSliderText} data-text>
+            {reviews[0].text}
+          </p>
+
+          <div class={sliderStyles.reviewsSliderAuthor}>
+            <p class={sliderStyles.reviewsSliderName} data-name>
+              {reviews[0].author}
+            </p>
+            <p class={sliderStyles.reviewsSliderRole} data-role>
+              {reviews[0].role}
+            </p>
+          </div>
+
+          <div class={sliderStyles.reviewsSliderSocial}>
+            <div class={sliderStyles.reviewsSliderAvatars}>
+              {
+                avatars.map((avatar, index) => (
+                  <div key={index} class={sliderStyles.reviewsSliderAvatar}>
+                    <img
+                      src={avatar.src}
+                      alt={`Customer ${index + 1}`}
+                      width={40}
+                      height={40}
+                    />
+                  </div>
+                ))
+              }
+            </div>
+            <p class={sliderStyles.reviewsSliderSocialText}>
+              Join 8,500+ happy homeowners
+            </p>
+          </div>
+
+          <div class={sliderStyles.reviewsSliderNavigation}>
+            <div class={sliderStyles.reviewsSliderDots} data-dots>
+              {
+                reviews.map((_, index) => (
+                  <button
+                    key={index}
+                    class={`${sliderStyles.reviewsSliderDot} ${index === 0 ? sliderStyles.reviewsSliderDotActive : ''}`}
+                    data-slide={index}
+                    aria-label={`Go to slide ${index + 1}`}
+                  />
+                ))
+              }
+            </div>
+
+            <div class={sliderStyles.reviewsSliderArrows}>
+              <button
+                class={sliderStyles.reviewsSliderArrow}
+                data-prev
+                aria-label='Previous slide'
+              >
+                <svg
+                  width='24'
+                  height='24'
+                  viewBox='0 0 24 24'
+                  fill='none'
+                  xmlns='http://www.w3.org/2000/svg'
+                >
+                  <path
+                    d='M15 18L9 12L15 6'
+                    stroke='currentColor'
+                    stroke-width='2'
+                    stroke-linecap='round'
+                    stroke-linejoin='round'></path>
+                </svg>
+              </button>
+              <button
+                class={sliderStyles.reviewsSliderArrow}
+                data-next
+                aria-label='Next slide'
+              >
+                <svg
+                  width='24'
+                  height='24'
+                  viewBox='0 0 24 24'
+                  fill='none'
+                  xmlns='http://www.w3.org/2000/svg'
+                >
+                  <path
+                    d='M9 18L15 12L9 6'
+                    stroke='currentColor'
+                    stroke-width='2'
+                    stroke-linecap='round'
+                    stroke-linejoin='round'></path>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class={styles.homeReviewsGrid}>
+        <div class={styles.homeReviewsImage}>
+          <img
+            src={reviewsImage.src}
+            alt='Business consultation'
+            width={400}
+            height={600}
+            loading='lazy'
+          />
+        </div>
+
+        <div class={styles.homeReviewsStatCard}>
+          <span>8.5K</span>
+          <p>Happy Customers</p>
+        </div>
+
+        <div class={styles.homeReviewsStatCard}>
+          <span>$95K</span>
+          <p>Daily Payments</p>
+        </div>
+
+        <div class={styles.homeReviewsStatCard}>
+          <span>99%</span>
+          <p>We Approve Loans</p>
+        </div>
+
+        <div class={styles.homeReviewsImageBottom}>
+          <img
+            src={secondReviewsImage.src}
+            alt='Team meeting'
+            width={400}
+            height={300}
+            loading='lazy'
+          />
+        </div>
+      </div>
+    </div>
+
+    <a class='button' href='/loans'>
+      <span>Explore Loans</span>
+    </a>
+  </div>
+</section>
+
+<script define:vars={{ reviews }}>
+  const slider = document.querySelector('[data-reviews-slider]')
+  const textEl = document.querySelector('[data-text]')
+  const nameEl = document.querySelector('[data-name]')
+  const roleEl = document.querySelector('[data-role]')
+  const dotsContainer = document.querySelector('[data-dots]')
+  const prevBtn = document.querySelector('[data-prev]')
+  const nextBtn = document.querySelector('[data-next]')
+
+  let currentSlide = 0
+
+  function updateSlide() {
+    const review = reviews[currentSlide]
+    if (textEl) textEl.textContent = review.text
+    if (nameEl) nameEl.textContent = review.author
+    if (roleEl) roleEl.textContent = review.role
+
+    // Update dots
+    const dots = dotsContainer?.querySelectorAll('button')
+    dots?.forEach((dot, index) => {
+      if (index === currentSlide) {
+        dot.classList.add('ReviewsSlider_reviewsSliderDotActive__9vwwY')
+      } else {
+        dot.classList.remove('ReviewsSlider_reviewsSliderDotActive__9vwwY')
+      }
+    })
+  }
+
+  function nextSlide() {
+    currentSlide = (currentSlide + 1) % reviews.length
+    updateSlide()
+  }
+
+  function prevSlide() {
+    currentSlide = (currentSlide - 1 + reviews.length) % reviews.length
+    updateSlide()
+  }
+
+  function goToSlide(index) {
+    currentSlide = index
+    updateSlide()
+  }
+
+  // Event listeners
+  prevBtn?.addEventListener('click', prevSlide)
+  nextBtn?.addEventListener('click', nextSlide)
+
+  const dots = dotsContainer?.querySelectorAll('button')
+  dots?.forEach((dot, index) => {
+    dot.addEventListener('click', () => goToSlide(index))
+  })
+</script>
