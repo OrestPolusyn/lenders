@@ -1,0 +1,46 @@
+---
+import LazyImage from '@/components/UI/LazyImage/LazyImage.astro'
+import styles from './History.module.css'
+---
+
+<section class={styles.history}>
+  <div class='container'>
+    <div class={styles.historyWrapper}>
+      <div class={styles.historyContent}>
+        <h2>About our company</h2>
+
+        <p>
+          The Leanders was founded with a simple mission: to make the mortgage
+          process transparent, accessible, and stress-free for every client.
+          What started as a small team of dedicated professionals has grown into
+          one of the most trusted mortgage companies in the nation.
+        </p>
+
+        <p>
+          We believe that everyone deserves a chance to own their dream home.
+          That's why we've built our business on the principles of integrity,
+          expertise, and personalized service. Our team works tirelessly to find
+          the best mortgage solutions tailored to each client's unique
+          situation.
+        </p>
+
+        <p>
+          Over the years, we've helped thousands of families secure their homes,
+          and we're proud to be a part of their journey. From first-time
+          homebuyers to seasoned investors, we treat every client with the same
+          level of care and attention.
+        </p>
+      </div>
+
+      <div class={styles.historyImage}>
+        <LazyImage
+          src='/images/history.jpg'
+          alt='Our team members'
+          width={500}
+          height={500}
+          loading='lazy'
+        />
+      </div>
+    </div>
+  </div>
+</section>

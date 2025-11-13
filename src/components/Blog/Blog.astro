@@ -1,0 +1,68 @@
+---
+import LazyImage from "@/components/UI/LazyImage/LazyImage.astro";
+import styles from "./Blog.module.css";
+import newsData from "@/data/news.json";
+interface NewsItem {
+  id: number;
+  title: string;
+  description: string;
+  date: string;
+  category: string;
+  image: string;
+}
+
+const news: NewsItem[] = newsData;
+
+const formatDate = (dateString: string) => {
+  const date = new Date(dateString);
+  return date.toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+};
+---
+
+<section class={styles.blog}>
+  <div class="container">
+    <h2 class="sr-only">Blog</h2>
+    <ul class={styles.blogList}>
+      {
+        news.map((item) => (
+          <li class={styles.newsItem}>
+            <article>
+              <div class={styles.newsItemImage}>
+                <img src={item.image} alt={item.title} />
+                <span class={styles.newsItemCategory}>{item.category}</span>
+              </div>
+
+              <div class={styles.newsItemContent}>
+                <time class={styles.newsItemDate}>{formatDate(item.date)}</time>
+                <h3>{item.title}</h3>
+                <p>{item.description}</p>
+                <a class={styles.newsItemButton} href={`/post/${item.id}`}>
+                  Read More
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 20 20"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M7.5 15L12.5 10L7.5 5"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </a>
+              </div>
+            </article>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>

@@ -1,0 +1,50 @@
+---
+interface Props {
+  src: string
+  alt: string
+  width?: number
+  height?: number
+  class?: string
+  loading?: 'lazy' | 'eager'
+}
+
+const {
+  src,
+  alt,
+  width,
+  height,
+  class: className,
+  loading = 'lazy',
+} = Astro.props
+
+import styles from './LazyImage.module.css'
+---
+
+<img
+  src={src}
+  alt={alt}
+  width={width}
+  height={height}
+  loading={loading}
+  decoding='async'
+  class:list={[styles.lazyImage, className]}
+/>
+
+<script>
+  // Intersection Observer для lazy loading
+  if ('IntersectionObserver' in window) {
+    const images = document.querySelectorAll('img[loading="lazy"]')
+
+    const imageObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const img = entry.target as HTMLImageElement
+          img.classList.add('loaded')
+          imageObserver.unobserve(img)
+        }
+      })
+    })
+
+    images.forEach(img => imageObserver.observe(img))
+  }
+</script>

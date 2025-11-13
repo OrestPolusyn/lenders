@@ -1,0 +1,94 @@
+---
+import LazyImage from '@/components/UI/LazyImage/LazyImage.astro'
+import styles from './Choose.module.css'
+---
+
+<section class={styles.choose}>
+  <div class='container'>
+    <div class={styles.chooseWrapper}>
+      <div class={styles.chooseContent}>
+        <span class='slogan slogan--double'>our benefits</span>
+
+        <h2>Why Choose Us</h2>
+
+        <p>
+          We’re more than a mortgage company — we’re your financial partner.
+          With a focus on clarity, education, and speed, we help you make
+          confident home-financing decisions.
+        </p>
+
+        <ul class={styles.chooseList}>
+          <li class={styles.chooseItem + ' ' + styles.chooseItemRates}>
+            <span></span>
+            <p>lower rates</p>
+          </li>
+          <li class={styles.chooseItem + ' ' + styles.chooseItemQuick}>
+            <span></span>
+            <p>quick and easy</p>
+          </li>
+        </ul>
+
+        <ul class={styles.chooseProgressLines}>
+          <li>
+            <p>loan process</p>
+            <span class={styles.chooseProgressLine} data-progress style='--percent: 90%'>
+              <span>90%</span>
+            </span>
+          </li>
+          <li>
+            <p>business consultancy</p>
+            <span class={styles.chooseProgressLine} data-progress style='--percent: 95%'>
+              <span>95%</span>
+            </span>
+          </li>
+          <li>
+            <p>payments benefits</p>
+            <span class={styles.chooseProgressLine} data-progress style='--percent: 90%'>
+              <span>90%</span>
+            </span>
+          </li>
+        </ul>
+      </div>
+
+      <div class={styles.chooseImage}>
+        <LazyImage
+          src='/images/why-choose-mens.jpg'
+          alt='Our team members'
+          width={340}
+          height={510}
+          loading='lazy'
+        />
+        <LazyImage
+          src='/images/calculate.jpg'
+          alt='Our team members'
+          width={340}
+          height={510}
+          loading='lazy'
+        />
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const progressLines = document.querySelectorAll('[data-progress]')
+
+  if (progressLines.length > 0) {
+    const observer = new IntersectionObserver(
+      entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const line = entry.target as HTMLElement
+            line.classList.add('animate')
+            observer.unobserve(line)
+          }
+        })
+      },
+      {
+        threshold: 0.5,
+      }
+    )
+
+    progressLines.forEach(line => observer.observe(line))
+  }
+</script>

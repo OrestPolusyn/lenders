@@ -1,0 +1,98 @@
+---
+import { BUSINESS_INFO, SEO_CONFIG } from '@/config/constants'
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
+import '../styles/global.css'
+import '../styles/normalize.css'
+
+interface Props {
+  title?: string
+  description?: string
+  canonical?: string
+  ogImage?: string
+}
+
+const {
+  title = SEO_CONFIG.defaultTitle,
+  description = SEO_CONFIG.defaultDescription,
+  canonical = Astro.url.pathname,
+  ogImage = SEO_CONFIG.ogImage,
+} = Astro.props
+
+const canonicalURL = new URL(canonical, SEO_CONFIG.siteUrl).href
+const ogImageURL = new URL(ogImage, SEO_CONFIG.siteUrl).href
+---
+
+<!doctype html>
+<html lang='en' class='page'>
+  <head>
+    <meta charset='UTF-8' />
+    <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+    <meta name='description' content={description} />
+    <meta name='generator' content={Astro.generator} />
+    <link rel='canonical' href={canonicalURL} />
+
+    <!-- Resource Hints -->
+    <link rel='dns-prefetch' href='https://images.unsplash.com' />
+    <link rel='preconnect' href='https://fonts.googleapis.com' crossorigin />
+
+    <!-- Preload критичних ресурсів -->
+    <link
+      rel='preload'
+      href='/fonts/VisbyRegular.woff'
+      as='font'
+      type='font/woff'
+      crossorigin
+    />
+    <link
+      rel='preload'
+      href='/fonts/VisbySemibold.woff'
+      as='font'
+      type='font/woff'
+      crossorigin
+    />
+
+    <!-- Open Graph / Social Media -->
+    <meta property='og:type' content='website' />
+    <meta property='og:url' content={canonicalURL} />
+    <meta property='og:title' content={title} />
+    <meta property='og:description' content={description} />
+    <meta property='og:image' content={ogImageURL} />
+    <meta property='og:site_name' content={BUSINESS_INFO.name} />
+
+    <!-- Twitter -->
+    <meta name='twitter:card' content='summary_large_image' />
+    <meta name='twitter:site' content={SEO_CONFIG.twitterHandle} />
+    <meta name='twitter:title' content={title} />
+    <meta name='twitter:description' content={description} />
+    <meta name='twitter:image' content={ogImageURL} />
+
+    <!-- Favicon -->
+    <link rel='icon' type='image/svg+xml' href='/favicon.svg' />
+
+    <title>{title}</title>
+
+    <!-- Structured Data -->
+    <script
+      type='application/ld+json'
+      set:html={JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'FinancialService',
+        name: BUSINESS_INFO.name,
+        telephone: BUSINESS_INFO.phone,
+        url: SEO_CONFIG.siteUrl,
+        address: {
+          '@type': 'PostalAddress',
+          addressCountry: 'US',
+        },
+        description: description,
+      })}
+    />
+  </head>
+  <body class='page__body'>
+    <div class='site-container'>
+      <slot />
+    </div>
+    <ToastContainer client:only='react' />
+  </body>
+</html>

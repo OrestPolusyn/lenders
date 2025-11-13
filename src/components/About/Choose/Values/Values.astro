@@ -1,0 +1,69 @@
+---
+import styles from "./Values.module.css";
+
+const valueList = [
+  {
+    title: "Trust & Integrity",
+    icon: "trust",
+    text: "We operate with complete transparency and honesty in every interaction.",
+  },
+  {
+    title: "Client-Focused",
+    icon: "client",
+    text: "Your financial goals are our priority. We tailor solutions to fit your unique needs.",
+  },
+  {
+    title: "Expert Guidance",
+    icon: "expert",
+    text: "Our team of experienced professionals provides expert advice every step of the way.",
+  },
+  {
+    title: "Excellence",
+    icon: "excellence",
+    text: "We strive for excellence in service, delivering the best mortgage solutions.",
+  },
+  {
+    title: "Innovation",
+    icon: "innovation",
+    text: "We leverage the latest technology to streamline your mortgage experience.",
+  },
+  {
+    title: "Community",
+    icon: "community",
+    text: "We're committed to helping families in our community achieve homeownership."
+  },
+];
+---
+
+<section class={styles.Values}>
+  <div class="container">
+    <div class={styles.ValuesContent}>
+      <div class="slogan slogan--double">
+        <span>Our Values</span>
+      </div>
+
+      <h2>What Drives Us Forward</h2>
+
+      <p>
+        Our core values guide everything we do, ensuring we provide the best
+        service to our clients.
+      </p>
+    </div>
+
+    <ul class={styles.ValuesList}>
+      {
+        valueList.map((value) => (
+          <li>
+            <span
+              class={`${styles.ValuesListItem} ${styles[`ValuesListItem--${value.icon}`]}`}
+            />
+
+            <h3>{value.title}</h3>
+
+            <p>{value.text}</p>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>

@@ -1,0 +1,119 @@
+---
+import styles from './Header.module.css'
+import { BUSINESS_INFO } from '@/config/constants'
+import ResponsiveMenuWrapper from './ResponsiveMenuWrapper'
+import MobileMenuWrapper from '../MobileMenu/MobileMenuWrapper'
+
+const links = [
+  { title: 'Home', href: '/' },
+  { title: 'About Us', href: '/about' },
+  { title: 'Our Programs', href: '/loan' },
+  { title: 'Calculator', href: '/calculator' },
+  { title: 'News', href: '/news' },
+  { title: 'Contact Us', href: '/contact' },
+]
+---
+
+<header class={`${styles.header} header ${styles.headerVisible}`} id='header'>
+  <nav class={styles.headerNav}>
+    <a class={styles.headerLogo} href='/'>
+      <div class='logo'>The Lenders</div>
+    </a>
+
+    <ul class={styles.headerList}>
+      {
+        links.map(link => (
+          <li class={styles.headerListItem}>
+            <a class={styles.headerLink} href={link.href}>
+              {link.title}
+            </a>
+          </li>
+        ))
+      }
+      <li>
+        <a
+          class={`${styles.headerLink} phone`}
+          href={`tel:${BUSINESS_INFO.phone}`}
+        >
+          {BUSINESS_INFO.phoneFormatted}
+        </a>
+      </li>
+    </ul>
+
+    <button
+      class={styles.headerSidebar}
+      id='sidebarBtn'
+      aria-label='Open sidebar'
+    >
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </nav>
+</header>
+
+<!-- Responsive menu React component (outside header for proper positioning) -->
+<MobileMenuWrapper client:load client:media='(max-width: 1180px)' />
+<ResponsiveMenuWrapper client:load client:media='(min-width: 1181px)' />
+
+<script>
+  // Set header height CSS variable
+  function setHeaderHeight() {
+    const header = document.getElementById('header')
+    if (!header) return
+
+    const headerHeight = header.offsetHeight
+    document.documentElement.style.setProperty(
+      '--header-height',
+      `${headerHeight}px`
+    )
+  }
+
+  // Initialize header height on load
+  setHeaderHeight()
+
+  // Update header height on resize
+  window.addEventListener('resize', setHeaderHeight)
+
+  // Sticky header hide/show on scroll
+  let lastScrollY = 0
+  let ticking = false
+
+  function controlHeader() {
+    const header = document.getElementById('header')
+    if (!header) return
+
+    const currentScrollY = window.scrollY
+
+    if (currentScrollY < 100) {
+      header.classList.add('headerVisible')
+      header.classList.remove('headerHidden')
+    } else if (currentScrollY > lastScrollY && currentScrollY > 150) {
+      // Scrolling down
+      header.classList.remove('headerVisible')
+      header.classList.add('headerHidden')
+    } else if (currentScrollY < lastScrollY) {
+      // Scrolling up
+      header.classList.add('headerVisible')
+      header.classList.remove('headerHidden')
+    }
+
+    lastScrollY = currentScrollY
+    ticking = false
+  }
+
+  function handleScroll() {
+    if (!ticking) {
+      window.requestAnimationFrame(controlHeader)
+      ticking = true
+    }
+  }
+
+  window.addEventListener('scroll', handleScroll, { passive: true })
+</script>
+
+<style is:global>
+  .headerHidden {
+    translate: 0 -200%;
+  }
+</style>

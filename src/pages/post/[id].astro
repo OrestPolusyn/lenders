@@ -1,0 +1,130 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Header from "@/components/Header/Header.astro";
+import Footer from "@/components/Footer/Footer.astro";
+import LazyImage from "@/components/UI/LazyImage/LazyImage.astro";
+import newsData from "@/data/news.json";
+
+interface NewsItem {
+  id: number;
+  title: string;
+  description: string;
+  date: string; // ISO
+  category: string;
+  image: string;
+}
+
+const news: NewsItem[] = newsData as NewsItem[];
+
+export async function getStaticPaths() {
+  const posts = newsData as NewsItem[];
+  return posts.map((item) => ({
+    params: { id: String(item.id) },
+    props: { item },
+  }));
+}
+
+const { item: itemFromProps } = Astro.props as { item?: NewsItem };
+const { id } = Astro.params;
+
+const item =
+  itemFromProps ??
+  (newsData as NewsItem[]).find((n) => String(n.id) === String(id));
+
+if (!item) {
+  throw new Error(`Post with id "${id}" not found`);
+}
+
+const formattedDate = new Date(item.date).toLocaleDateString("en-US", {
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+});
+---
+
+<BaseLayout title={item.title} description={item.description}>
+  <Header />
+
+  <main class="main main--singlepost">
+    <div class="container">
+      <article class="singlepost__article">
+        <a class="button button--back" href="/news"><span>Back to blog</span></a
+        >
+        <header class="singlepost__header">
+          <div class="singlepost__media">
+            <LazyImage
+              src={item.image}
+              alt={item.title}
+              width={1600}
+              height={650}
+              class="singlepost__image"
+            />
+            <span class="singlepost__category">{item.category}</span>
+          </div>
+
+          <div class="singlepost__meta">
+            <time class="singlepost__date" datetime={item.date}
+              >{formattedDate}</time
+            >
+          </div>
+
+          <h1>{item.title}</h1>
+        </header>
+
+        <div class="singlepost__content">
+          <p>
+            Neque porro est qui dolorem ipsum quia quaed inventor veritatis et
+            quasi architecto beatae vitae dicta sunt explicabo. Aelltes port
+            lacus quis enim var sed efficitur turpis gilla sed sit amet finibus
+            eros. Lorem Ipsum is simply dummy text of the printing and
+            typesetting industr
+          </p>
+
+          <p>
+            When an unknown printer took a galley of type and scrambled it to
+            make a type specimen book. It has survived not only five centuries,
+            but also the leap into electronic typesetting, remaining essentially
+            unchanged. Aelltes port lacus quis enim var sed efficitur
+          </p>
+
+          <p>
+            Dear hiring manager:. Cc me on that pipeline, or innovation is hot
+            right now, for beef up. Hit the ground running cross pollination
+            across our domains usabiltiy nor regroup put. Going forward touch
+            base this medium needs to be more dynamic, yet are we in agreeance,
+            so crank this out you gotta smoke test your hypothesis.
+          </p>
+
+          <div class="singlepost__wrapper">
+            <LazyImage
+              src={item.image}
+              alt={item.title}
+              width={600}
+              height={350}
+              class="singlepost__image"
+            />
+          </div>
+
+          <ul>
+            <li>
+              Another area of AI that holds great promise is robotics, which
+              involves developing
+            </li>
+
+            <li>
+              AI also has the potential to improve healthcare, by enabling more
+              accurate diagnosis and
+            </li>
+
+            <li>
+              However, there are also challenges associated with the development
+              and deployment
+            </li>
+          </ul>
+        </div>
+      </article>
+    </div>
+  </main>
+
+  <Footer />
+</BaseLayout>

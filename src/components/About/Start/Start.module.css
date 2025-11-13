@@ -1,0 +1,25 @@
+.Start {
+  width: 100%;
+  max-width: 1080px;
+  margin-inline: auto;
+}
+.StartContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  color: var(--color-white);
+
+  h2 {
+    margin-block-end: 20px;
+  }
+
+  p {
+      margin-block-end: 35px;
+  }
+}
+
+.StartActions {
+  display: flex;
+  gap: 1rem;
+}

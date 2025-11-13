@@ -1,0 +1,30 @@
+---
+import Choose from "@/components/About/Choose/Choose.astro";
+import Values from "@/components/About/Choose/Values/Values.astro";
+import NumbersSection from "@/components/NumbersSection/NumbersSection.astro";
+import Start from "../components/About/Start/Start.astro";
+import History from "../components/About/History/History.astro";
+import Footer from "../components/Footer/Footer.astro";
+import Header from "../components/Header/Header.astro";
+import PageHeader from "../components/PageHeader/PageHeader.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+// Import Astro components
+---
+
+<BaseLayout
+  title="The Lenders - Best Mortgage Rates & Home Loans"
+  description="Find the best mortgage rates and home loan solutions with The Lenders. Expert guidance for your home financing needs."
+>
+  <Header />
+
+  <main class="main">
+    <PageHeader title="About Us" />
+    <History />
+    <Choose />
+    <NumbersSection />
+    <Values />
+    <Start />
+  </main>
+
+  <Footer />
+</BaseLayout>

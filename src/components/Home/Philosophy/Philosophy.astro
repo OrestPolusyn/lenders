@@ -1,0 +1,65 @@
+---
+import styles from './Philosophy.module.css'
+import philosophyImage from '/public/images/home/philosophy-women.jpg'
+---
+
+<section class={styles.homePhilosophy}>
+  <div class='container'>
+    <div class={`${styles.homePhilosophyWrapper} wrapper`}>
+      <div class={styles.homePhilosophyImages}>
+        <img
+          class={styles.homePhilosophyImage}
+          src={philosophyImage.src}
+          alt='Philosophy'
+          width={495}
+          height={500}
+          loading='lazy'
+        />
+
+        <div class={styles.homePhilosophyInfo}>
+          <p>"We believe everyone deserves a chance to be approved."</p>
+        </div>
+      </div>
+
+      <div class={styles.homePhilosophyContent}>
+        <div class='slogan slogan--reverse'>
+          <span>our philosophy</span>
+        </div>
+
+        <h2>Mortgage Lending: Building Dreams</h2>
+
+        <p>
+          At our core, we believe that homeownership shouldn't be an impossible
+          dream. We're committed to finding solutions for borrowers who might
+          have been turned away elsewhere.
+        </p>
+
+        <p>
+          With over 15 years of experience, we've helped thousands of borrowers
+          navigate the complex world of mortgage lending with accessible,
+          transparent, and flexible solutions.
+        </p>
+
+        <ul class={styles.homePhilosophyList}>
+          <li
+            class={`${styles.homePhilosophyListItem} ${styles.homPhilosophyListItemFirst}`}
+          >
+            <h3>Transparency</h3>
+            <p>Clear communication at every step of your journey</p>
+          </li>
+
+          <li
+            class={`${styles.homePhilosophyListItem} ${styles.homePhilosophyListItemSecond}`}
+          >
+            <h3>Flexibility</h3>
+            <p>Customized solutions for your unique needs</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <a class='button' href='/loans'>
+      <span>Read Our Story</span>
+    </a>
+  </div>
+</section>
