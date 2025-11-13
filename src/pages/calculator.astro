@@ -1,0 +1,21 @@
+---
+import Footer from "../components/Footer/Footer.astro";
+import Header from "../components/Header/Header.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PageHeader from "../components/PageHeader/PageHeader.astro";
+import Faq from "@/components/Calculator/Faq/Faq.astro";
+---
+
+<BaseLayout
+  title="The Lenders - calculator"
+  description="Have questions about mortgage rates or home loans? Contact The Lenders and speak with our experts to find the right financing solution for your new home."
+>
+  <Header />
+
+  <main class="main">
+    <PageHeader title="Calculator" />
+    <Faq />
+  </main>
+
+  <Footer />
+</BaseLayout>

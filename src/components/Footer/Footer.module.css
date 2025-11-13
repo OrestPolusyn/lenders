@@ -69,6 +69,10 @@
       background-color: #00d3f2;
       transform: translateY(-3px);
     }
+
+    svg {
+      fill: var(--color-gold-400);
+    }
   }
 }
 
