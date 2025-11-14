@@ -1,0 +1,19 @@
+.loanList {
+  padding-block: clamp(1.5rem, 1.5rem + 5vw, 4rem);
+  color: var(--color-blue-600);
+  background-color: var(--color-white);
+  text-align: center;
+
+  :global(.loanGrid) {
+    background-color: var(--color-blue-50);
+  }
+}
+
+.loanListWrapper {
+  margin-bottom: clamp(1rem, 1rem + 5vw, 3rem);
+}
+
+:global([data-loan-description]) {
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}

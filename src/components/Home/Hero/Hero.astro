@@ -2,31 +2,41 @@
 import styles from './Hero.module.css'
 ---
 
+<script
+  src='https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js'
+></script>
+
 <section class={`${styles.hero} hero-section`}>
   <div class='container'>
-    <div class={styles.heroContent}>
-      <div>
-        <p class='slogan'>Smart Loans For Bright Future</p>
+    <div class={styles.heroWrapper}>
+      <div class={styles.heroContent}>
+        <div>
+          <p class='slogan'>Leading the way in Home Loans</p>
+        </div>
+        <h1>Achieve THE AMERICAN DREAM With The Lenders</h1>
+
+        <p>
+          We are committed to helping you achieve your American Dream through
+          reliable, transparent, and stress-free mortgage solutions.
+        </p>
+
+        <div class={styles.heroActions}>
+          <a class='button' href='/preapproved'>
+            <span>Get Pre-Approved</span>
+          </a>
+          <a class='button button--reverse' href='/about'>
+            <span>Explore Loan Options</span>
+          </a>
+        </div>
       </div>
-      <h1>Personal Loans To Fulfill Your Dreams</h1>
-      <div class={styles.heroActions}>
-        <a class='button' href='/preapproved'>
-          <span>Get PreApproved</span>
-        </a>
-        <a class='button button--reverse' href='/about'>
-          <span>Learn More</span>
-        </a>
+
+      <div class={styles.heroAnimation}>
+        <lottie-player
+          src='/data/lenders.json'
+          background='transparent'
+          speed='0.7'
+          autoplay></lottie-player>
       </div>
     </div>
-
-    <!-- <div class={styles.heroImage}>
-      <LazyImage
-        src='/public/images/home/hero-men.jpg'
-        alt='Professional businessman reviewing mortgage documents'
-        width={500}
-        height={500}
-        loading='eager'
-      />
-    </div> -->
   </div>
 </section>

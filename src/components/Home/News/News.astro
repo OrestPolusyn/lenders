@@ -27,55 +27,60 @@ const formatDate = (dateString: string) => {
   <div class='container'>
     <div class={styles.newsContent}>
       <div class={styles.newsHeader}>
-        <p class='slogan slogan--double'>latest updates</p>
+        <p class='slogan slogan--double'>
+          Stay informed with expert mortgage tips, rate trends, and homebuyer
+          guides.
+        </p>
         <h2>news & insights</h2>
       </div>
 
       <div class={styles.newsSliderWrapper}>
         <div class={`swiper ${styles.newsSlider}`} data-news-swiper>
           <div class='swiper-wrapper'>
-            {news.map(item => (
-              <div class='swiper-slide'>
-                <div class={styles.newsItem}>
-                  <div class={styles.newsItemImage}>
-                    <img src={item.image} alt={item.title} />
-                    <span class={styles.newsItemCategory}>
-                      {item.category}
-                    </span>
-                  </div>
+            {
+              news.map(item => (
+                <div class='swiper-slide'>
+                  <div class={styles.newsItem}>
+                    <div class={styles.newsItemImage}>
+                      <img src={item.image} alt={item.title} />
+                      <span class={styles.newsItemCategory}>
+                        {item.category}
+                      </span>
+                    </div>
 
-                  <div class={styles.newsItemContent}>
-                    <time class={styles.newsItemDate}>
-                      {formatDate(item.date)}
-                    </time>
-                    <h3>{item.title}</h3>
-                    <p>{item.description}</p>
-                    <button class={styles.newsItemButton}>
-                      Read More
-                      <svg
-                        width='20'
-                        height='20'
-                        viewBox='0 0 20 20'
-                        fill='none'
-                        xmlns='http://www.w3.org/2000/svg'
-                      >
-                        <path
-                          d='M7.5 15L12.5 10L7.5 5'
-                          stroke='currentColor'
-                          stroke-width='2'
-                          stroke-linecap='round'
-                          stroke-linejoin='round'
-                        />
-                      </svg>
-                    </button>
+                    <div class={styles.newsItemContent}>
+                      <time class={styles.newsItemDate}>
+                        {formatDate(item.date)}
+                      </time>
+                      <h3>{item.title}</h3>
+                      <p>{item.description}</p>
+                      <button class={styles.newsItemButton}>
+                        Read More
+                        <svg
+                          width='20'
+                          height='20'
+                          viewBox='0 0 20 20'
+                          fill='none'
+                          xmlns='http://www.w3.org/2000/svg'
+                        >
+                          <path
+                            d='M7.5 15L12.5 10L7.5 5'
+                            stroke='currentColor'
+                            stroke-width='2'
+                            stroke-linecap='round'
+                            stroke-linejoin='round'
+                          />
+                        </svg>
+                      </button>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))
+            }
           </div>
-          <div class="swiper-pagination"></div>
-          <div class="swiper-button-prev"></div>
-          <div class="swiper-button-next"></div>
+          <div class='swiper-pagination'></div>
+          <div class='swiper-button-prev'></div>
+          <div class='swiper-button-next'></div>
         </div>
       </div>
     </div>
@@ -83,14 +88,14 @@ const formatDate = (dateString: string) => {
 </section>
 
 <script>
-  import Swiper from 'swiper';
-  import { Navigation, Pagination, Autoplay } from 'swiper/modules';
-  import 'swiper/css';
-  import 'swiper/css/navigation';
-  import 'swiper/css/pagination';
+  import Swiper from 'swiper'
+  import 'swiper/css'
+  import 'swiper/css/navigation'
+  import 'swiper/css/pagination'
+  import { Autoplay, Navigation, Pagination } from 'swiper/modules'
 
-  const swiperEl = document.querySelector('[data-news-swiper]');
-  
+  const swiperEl = document.querySelector('[data-news-swiper]')
+
   if (swiperEl) {
     new Swiper(swiperEl as HTMLElement, {
       modules: [Navigation, Pagination, Autoplay],
@@ -123,6 +128,6 @@ const formatDate = (dateString: string) => {
           slidesPerGroup: 3,
         },
       },
-    });
+    })
   }
 </script>

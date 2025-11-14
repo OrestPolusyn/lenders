@@ -1,0 +1,540 @@
+---
+import Footer from '@/components/Footer/Footer.astro'
+import Header from '@/components/Header/Header.astro'
+import PageHeader from '@/components/PageHeader/PageHeader.astro'
+import BaseLayout from '@/layouts/BaseLayout.astro'
+---
+
+<BaseLayout
+  title='Header Variants'
+  description='Header options and logo variants for The Lenders'
+>
+  <Header />
+
+  <main class='main'>
+    <PageHeader title='Header Variants & Logos' />
+
+    <section class='header-variants'>
+      <div class='container'>
+        <h2 class='header-variants__title'>Header variants</h2>
+        <p class='header-variants__subtitle'>
+          Preview of header bar using four logo options.
+        </p>
+
+        <div class='header-variants__grid'>
+          <!-- Current header background + Logo 1 -->
+          <div class='header-variant'>
+            <div class='header-variant__bar header-variant__bar--current'>
+              <img
+                src='/images/logo_1.svg'
+                alt='Logo variant 1'
+                class='header-variant__logo'
+              />
+              <nav class='header-variant__nav'>
+                <span></span>
+                <span></span>
+                <span></span>
+              </nav>
+            </div>
+            <p class='header-variant__label'>
+              Variant 1 — current primary logo
+            </p>
+          </div>
+
+          <div class='header-variant'>
+            <div class='header-variant__bar'>
+              <img
+                src='/images/logo_2.svg'
+                alt='Logo variant 2'
+                class='header-variant__logo'
+              />
+              <nav class='header-variant__nav'>
+                <span></span>
+                <span></span>
+                <span></span>
+              </nav>
+            </div>
+            <p class='header-variant__label'>Variant 2</p>
+          </div>
+
+          <div class='header-variant'>
+            <div class='header-variant__bar'>
+              <img
+                src='/images/logo_3.svg'
+                alt='Logo variant 3'
+                class='header-variant__logo'
+              />
+              <nav class='header-variant__nav'>
+                <span></span>
+                <span></span>
+                <span></span>
+              </nav>
+            </div>
+            <p class='header-variant__label'>Variant 3</p>
+          </div>
+
+          <!-- Current header background + Logo 2 -->
+          <div class='header-variant'>
+            <div class='header-variant__bar header-variant__bar--current'>
+              <img
+                src='/images/logo_2.svg'
+                alt='Logo 2 on current header background'
+                class='header-variant__logo'
+              />
+              <nav class='header-variant__nav'>
+                <span></span>
+                <span></span>
+                <span></span>
+              </nav>
+            </div>
+            <p class='header-variant__label'>
+              Variant 2 — current background + Logo 2
+            </p>
+          </div>
+
+          <!-- Soft light header + Logo 3 -->
+          <div class='header-variant'>
+            <div class='header-variant__bar header-variant__bar--light'>
+              <img
+                src='/images/logo_2.svg'
+                alt='Logo variant 2'
+                class='header-variant__logo'
+              />
+              <nav class='header-variant__nav'>
+                <span></span>
+                <span></span>
+                <span></span>
+              </nav>
+            </div>
+            <p class='header-variant__label'>
+              Variant 6 — light header + Logo 4
+            </p>
+          </div>
+
+          <!-- Solid blue header + Logo 1 -->
+          <div class='header-variant'>
+            <div class='header-variant__bar header-variant__bar--solid-blue'>
+              <img
+                src='/images/logo_4.svg'
+                alt='Logo variant 4 on solid blue background'
+                class='header-variant__logo'
+              />
+              <nav class='header-variant__nav'>
+                <span></span>
+                <span></span>
+                <span></span>
+              </nav>
+            </div>
+            <p class='header-variant__label'>Variant 7 — solid blue + Logo 4</p>
+          </div>
+
+          <!-- Solid blue header + Logo 1 -->
+          <div class='header-variant'>
+            <div class='header-variant__bar header-variant__bar--solid-blue'>
+              <img
+                src='/images/logo_1.svg'
+                alt='Logo 1 on solid blue background'
+                class='header-variant__logo'
+              />
+              <nav class='header-variant__nav'>
+                <span></span>
+                <span></span>
+                <span></span>
+              </nav>
+            </div>
+            <p class='header-variant__label'>Variant 8 — solid blue + Logo 1</p>
+          </div>
+
+          <!-- Soft blue header + Logo 1 -->
+          <div class='header-variant'>
+            <div class='header-variant__bar header-variant__bar--blue-soft'>
+              <img
+                src='/images/logo_1.svg'
+                alt='Logo 1 with soft blue background'
+                class='header-variant__logo'
+              />
+              <nav class='header-variant__nav'>
+                <span></span>
+                <span></span>
+                <span></span>
+              </nav>
+            </div>
+            <p class='header-variant__label'>Variant 9 — soft blue + Logo 1</p>
+          </div>
+
+          <!-- Soft blue header + Logo 2 -->
+          <div class='header-variant'>
+            <div class='header-variant__bar header-variant__bar--blue-soft'>
+              <img
+                src='/images/logo_2.svg'
+                alt='Logo 2 with soft blue background'
+                class='header-variant__logo'
+              />
+              <nav class='header-variant__nav'>
+                <span></span>
+                <span></span>
+                <span></span>
+              </nav>
+            </div>
+            <p class='header-variant__label'>Variant 10 — soft blue + Logo 2</p>
+          </div>
+
+          <!-- Blue accent header + Logo 1 -->
+          <div class='header-variant'>
+            <div class='header-variant__bar header-variant__bar--blue-accent'>
+              <img
+                src='/images/logo_1.svg'
+                alt='Logo variant with blue angle accent'
+                class='header-variant__logo'
+              />
+              <nav class='header-variant__nav'>
+                <span></span>
+                <span></span>
+                <span></span>
+              </nav>
+            </div>
+            <p class='header-variant__label'>
+              Variant 7 — full blue bar with angled accent
+            </p>
+          </div>
+
+          <!-- Dark header + Logo 3 -->
+          <div class='header-variant'>
+            <div class='header-variant__bar header-variant__bar--dark'>
+              <img
+                src='/images/logo_3.svg'
+                alt='Logo variant 3'
+                class='header-variant__logo'
+              />
+              <nav class='header-variant__nav'>
+                <span></span>
+                <span></span>
+                <span></span>
+              </nav>
+            </div>
+            <p class='header-variant__label'>
+              Variant 11 — dark header + Logo 3
+            </p>
+          </div>
+
+          <!-- Blue accent header + Logo 3 -->
+          <div class='header-variant'>
+            <div class='header-variant__bar header-variant__bar--blue-accent'>
+              <img
+                src='/images/logo_3.svg'
+                alt='Logo 3 on blue accent header'
+                class='header-variant__logo'
+              />
+              <nav class='header-variant__nav'>
+                <span></span>
+                <span></span>
+                <span></span>
+              </nav>
+            </div>
+            <p class='header-variant__label'>
+              Variant 12 — blue accent + Logo 3
+            </p>
+          </div>
+
+          <!-- Blue accent header + Logo 2 -->
+          <div class='header-variant'>
+            <div class='header-variant__bar header-variant__bar--blue-accent'>
+              <img
+                src='/images/logo_2.svg'
+                alt='Logo 2 on blue accent header'
+                class='header-variant__logo'
+              />
+              <nav class='header-variant__nav'>
+                <span></span>
+                <span></span>
+                <span></span>
+              </nav>
+            </div>
+            <p class='header-variant__label'>
+              Variant 13 — blue accent + Logo 2
+            </p>
+          </div>
+
+          <!-- Dark header + Logo 1 -->
+          <div class='header-variant'>
+            <div class='header-variant__bar header-variant__bar--dark'>
+              <img
+                src='/images/logo_1.svg'
+                alt='Logo variant 1'
+                class='header-variant__logo'
+              />
+              <nav class='header-variant__nav'>
+                <span></span>
+                <span></span>
+                <span></span>
+              </nav>
+            </div>
+            <p class='header-variant__label'>
+              Variant 14 — dark header + Logo 1
+            </p>
+          </div>
+
+          <!-- Dark header + Logo 2 -->
+          <div class='header-variant'>
+            <div class='header-variant__bar header-variant__bar--dark'>
+              <img
+                src='/images/logo_2.svg'
+                alt='Logo variant 2'
+                class='header-variant__logo'
+              />
+              <nav class='header-variant__nav'>
+                <span></span>
+                <span></span>
+                <span></span>
+              </nav>
+            </div>
+            <p class='header-variant__label'>
+              Variant 15 — dark header + Logo 2
+            </p>
+          </div>
+
+          <!-- Light header + Logo 1 -->
+          <div class='header-variant'>
+            <div class='header-variant__bar header-variant__bar--light'>
+              <img
+                src='/images/logo_1.svg'
+                alt='Logo variant 1'
+                class='header-variant__logo'
+              />
+              <nav class='header-variant__nav'>
+                <span></span>
+                <span></span>
+                <span></span>
+              </nav>
+            </div>
+            <p class='header-variant__label'>
+              Variant 16 — light header + Logo 1
+            </p>
+          </div>
+
+          <!-- Light header + Logo 3 -->
+          <div class='header-variant'>
+            <div class='header-variant__bar header-variant__bar--light'>
+              <img
+                src='/images/logo_3.svg'
+                alt='Logo variant 3'
+                class='header-variant__logo'
+              />
+              <nav class='header-variant__nav'>
+                <span></span>
+                <span></span>
+                <span></span>
+              </nav>
+            </div>
+            <p class='header-variant__label'>
+              Variant 17 — light header + Logo 3
+            </p>
+          </div>
+
+          <!-- Solid blue header + Logo 3 -->
+          <div class='header-variant'>
+            <div class='header-variant__bar header-variant__bar--solid-blue'>
+              <img
+                src='/images/logo_3.svg'
+                alt='Logo variant 3 on solid blue background'
+                class='header-variant__logo'
+              />
+              <nav class='header-variant__nav'>
+                <span></span>
+                <span></span>
+                <span></span>
+              </nav>
+            </div>
+            <p class='header-variant__label'>
+              Variant 18 — solid blue + Logo 3
+            </p>
+          </div>
+
+          <!-- Soft blue header + Logo 3 -->
+          <div class='header-variant'>
+            <div class='header-variant__bar header-variant__bar--blue-soft'>
+              <img
+                src='/images/logo_3.svg'
+                alt='Logo 3 with soft blue background'
+                class='header-variant__logo'
+              />
+              <nav class='header-variant__nav'>
+                <span></span>
+                <span></span>
+                <span></span>
+              </nav>
+            </div>
+            <p class='header-variant__label'>Variant 19 — soft blue + Logo 3</p>
+          </div>
+
+          <!-- Soft blue header + Logo 4 -->
+          <div class='header-variant'>
+            <div class='header-variant__bar header-variant__bar--blue-soft'>
+              <img
+                src='/images/logo_4.svg'
+                alt='Logo 4 with soft blue background'
+                class='header-variant__logo'
+              />
+              <nav class='header-variant__nav'>
+                <span></span>
+                <span></span>
+                <span></span>
+              </nav>
+            </div>
+            <p class='header-variant__label'>Variant 20 — soft blue + Logo 4</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</BaseLayout>
+
+<style>
+  .header-variants {
+    padding-block: clamp(2rem, 3vw, 3rem);
+    background-color: transparent;
+  }
+
+  .header-variants__title {
+    text-align: center;
+    margin-bottom: 0.5rem;
+    color: var(--color-blue-600);
+  }
+
+  .header-variants__subtitle {
+    text-align: center;
+    margin-bottom: clamp(1.5rem, 3vw, 2rem);
+    color: var(--color-blue-400);
+  }
+
+  .header-variants__grid {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(1rem, 2vw, 1.5rem);
+  }
+
+  .header-variant {
+    background-color: transparent;
+  }
+
+  .header-variant__bar {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.75rem 1.5rem;
+    border-radius: var(--radius-main);
+    min-height: 72px;
+    box-shadow: 0 6px 26px rgba(0, 0, 0, 0.15);
+    overflow: hidden;
+    border: 1px solid rgba(0, 0, 0, 0.04);
+  }
+
+  /* Variant 1 — similar to current header (white bar with gradient left accent) */
+  .header-variant__bar--current {
+    background-color: var(--color-white);
+  }
+
+  .header-variant__bar--current::before,
+  .header-variant__bar--current::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    max-width: 260px;
+    clip-path: polygon(0 0, 100% 0%, 80% 100%, 0% 100%);
+  }
+
+  .header-variant__bar--current::before {
+    background: var(--color-gradient-100);
+    z-index: -1;
+  }
+
+  .header-variant__bar--current::after {
+    background: var(--color-blue-600);
+    transform: translateX(22px);
+    z-index: -2;
+  }
+
+  /* Variant 2 — solid blue header */
+  .header-variant__bar--solid-blue {
+    background: linear-gradient(
+      90deg,
+      var(--color-blue-600),
+      var(--color-blue-500)
+    );
+  }
+
+  /* Variant 3 — dark header */
+  .header-variant__bar--dark {
+    background: radial-gradient(circle at top left, #3b4b9b 0%, #050820 70%);
+  }
+
+  /* Variant 4 — light transparent header over tinted background */
+  .header-variant__bar--light {
+    background: rgba(255, 255, 255, 0.92);
+    border: 1px solid rgba(0, 71, 171, 0.15);
+    box-shadow: 0 10px 30px rgba(0, 71, 171, 0.12);
+  }
+
+  /* Variant 5 — soft blue background close to logo blue */
+  .header-variant__bar--blue-soft {
+    background: linear-gradient(
+      90deg,
+      var(--color-blue-100),
+      var(--color-blue-200)
+    );
+  }
+
+  /* Variant 6 — full blue bar with pseudo-element angled accent */
+  .header-variant__bar--blue-accent {
+    background: linear-gradient(
+      90deg,
+      var(--color-blue-500),
+      var(--color-blue-700)
+    );
+    position: relative;
+  }
+
+  .header-variant__bar--blue-accent::before {
+    content: '';
+    position: absolute;
+    right: -40px;
+    top: -20px;
+    width: 220px;
+    height: 140px;
+    background: rgba(255, 255, 255, 0.12);
+    transform: rotate(-8deg);
+    pointer-events: none;
+  }
+
+  .header-variant__logo {
+    height: 32px;
+    width: auto;
+  }
+
+  .header-variant__nav {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .header-variant__nav span {
+    width: 42px;
+    height: 6px;
+    border-radius: 999px;
+    background-color: rgba(255, 255, 255, 0.8);
+  }
+
+  .header-variant__label {
+    margin-top: 0.75rem;
+    font-size: 0.9rem;
+    color: var(--color-blue-500);
+  }
+
+  @media (max-width: 768px) {
+    .header-variants {
+      padding-block: 1.5rem 2.5rem;
+    }
+  }
+</style>

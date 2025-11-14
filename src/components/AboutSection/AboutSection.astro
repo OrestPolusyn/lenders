@@ -1,5 +1,6 @@
 ---
-import styles from './About.module.css'
+import ProgressLines from '../ProgressLines/ProgressLines.astro'
+import styles from './AboutSection.module.css'
 import aboutImage from '/public/images/home/about-men.jpg'
 import calculateImage from '/public/images/home/calculate.jpg'
 ---
@@ -39,47 +40,24 @@ import calculateImage from '/public/images/home/calculate.jpg'
 
       <div class={styles.homeAboutContent}>
         <div class='slogan slogan--reverse'>
-          <span>welcome to easiloan</span>
+          <span>Welcome to The Lenders</span>
         </div>
 
         <h2>our loans will fill yourdreams come true</h2>
 
         <p>
-          Lorem Ipsum Dolor Sit Amet, Consectetur Adipisicing Elit, Sed Do
-          Eiusmod Tempor Incididunt Ut Labore Et Dolore Magna Aliqua.
+          We provide simple, transparent, and stress-free mortgage solutions
+          tailored to your financial goals. Choose from Conventional, FHA, VA,
+          Jumbo, First-Time Buyer loans — with expert support at every step.
         </p>
 
-        <ul class={styles.homeAboutList}>
-          <li
-            class={`${styles.homeAboutListItem} ${styles.homeAboutListItemFirst}`}
-          >
-            <p>Quick Loan Process</p>
-          </li>
-
-          <li
-            class={`${styles.homeAboutListItem} ${styles.homeAboutListItemSecond}`}
-          >
-            <p>Small Business Loan</p>
-          </li>
-
-          <li
-            class={`${styles.homeAboutListItem} ${styles.homeAboutListItemThird}`}
-          >
-            <p>Very Low Rates</p>
-          </li>
-
-          <li
-            class={`${styles.homeAboutListItem} ${styles.homeAboutListItemFourth}`}
-          >
-            <p>Studying Abroad Loan</p>
-          </li>
-        </ul>
-
-        <a class='button' href='/loans'>
-          <span>Explore Loans</span>
-        </a>
+        <ProgressLines />
       </div>
     </div>
+
+    <a class='button' href='/loans'>
+      <span>Explore Loans</span>
+    </a>
   </div>
 </section>
 

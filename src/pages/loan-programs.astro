@@ -1,0 +1,23 @@
+---
+import LoanList from '@/components/LoanPrograms/LoanList/LoanList.astro'
+import Footer from '../components/Footer/Footer.astro'
+import Header from '../components/Header/Header.astro'
+import PageHeader from '../components/PageHeader/PageHeader.astro'
+import BaseLayout from '../layouts/BaseLayout.astro'
+// Import Astro components
+---
+
+<BaseLayout
+  title='Our Programs - The Lenders | Mortgage & Loan Solutions'
+  description='Explore our comprehensive range of mortgage and lending services. From home loans to business financing, we provide tailored solutions for your financial needs.'
+>
+  <Header />
+
+  <main class='main'>
+    <PageHeader title='Find the Loan That Fits Your Life' />
+
+    <LoanList />
+  </main>
+
+  <Footer />
+</BaseLayout>

@@ -6,10 +6,16 @@ import MobileMenuWrapper from '../MobileMenu/MobileMenuWrapper'
 
 const links = [
   { title: 'Home', href: '/' },
-  { title: 'About Us', href: '/about' },
-  { title: 'Our Programs', href: '/loan' },
+  { title: 'Loan Programs', href: '/loan-programs' },
   { title: 'Calculator', href: '/calculator' },
-  { title: 'News', href: '/news' },
+  {
+    title: 'About',
+    children: [
+      { title: 'About Us', href: '/about' },
+      { title: 'News', href: '/news' },
+      { title: 'Guides', href: '/guides' },
+    ],
+  },
   { title: 'Contact Us', href: '/contact' },
 ]
 ---
@@ -17,16 +23,54 @@ const links = [
 <header class={`${styles.header} header ${styles.headerVisible}`} id='header'>
   <nav class={styles.headerNav}>
     <a class={styles.headerLogo} href='/'>
-      <div class='logo'>The Lenders</div>
+      <img src='/images/logo_1.svg' alt='The Lenders' />
     </a>
 
     <ul class={styles.headerList}>
       {
         links.map(link => (
-          <li class={styles.headerListItem}>
-            <a class={styles.headerLink} href={link.href}>
+          <li
+            class={`${styles.headerListItem} ${link.children ? styles.headerListItemHasDropdown : ''}`}
+          >
+            <a
+              class={styles.headerLink}
+              href={
+                link.href || (link.children && link.children[0]?.href) || '#'
+              }
+            >
               {link.title}
+              {link.children && (
+                <span class={styles.headerDropdownIcon} aria-hidden='true'>
+                  <svg
+                    width='10'
+                    height='10'
+                    viewBox='0 0 10 10'
+                    fill='none'
+                    xmlns='http://www.w3.org/2000/svg'
+                  >
+                    <path
+                      d='M2 3.5L5 6.5L8 3.5'
+                      stroke='currentColor'
+                      stroke-width='1.4'
+                      stroke-linecap='round'
+                      stroke-linejoin='round'
+                    />
+                  </svg>
+                </span>
+              )}
             </a>
+
+            {link.children && (
+              <ul class={styles.headerDropdown}>
+                {link.children.map(child => (
+                  <li class={styles.headerDropdownItem}>
+                    <a class={styles.headerDropdownLink} href={child.href}>
+                      {child.title}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            )}
           </li>
         ))
       }
