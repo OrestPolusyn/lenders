@@ -2,6 +2,7 @@
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import Header from "@/components/Header/Header.astro";
 import Footer from "@/components/Footer/Footer.astro";
+import PageHeader from "../../components/PageHeader/PageHeader.astro";
 import LazyImage from "@/components/UI/LazyImage/LazyImage.astro";
 import newsData from "@/data/news.json";
 
@@ -47,20 +48,24 @@ const formattedDate = new Date(item.date).toLocaleDateString("en-US", {
 <BaseLayout title={item.title} description={item.description}>
   <Header />
 
-  <main class="main main--singlepost">
-    <div class="container">
-      <article class="singlepost__article">
-        <a class="button button--back" href="/news">
-          <span>Back to blog</span>
-        </a>
+  <main class="main">
+    <PageHeader title={item.title} />
 
-        <header class="singlepost__header">
+    <section class="singlepost">
+      <div class="container">
+        <article class="singlepost__article">
+          <a class="button button--back" href="/news">
+            <span>Back to blog</span>
+          </a>
+
+          <h2>{item.title}</h2>
+
           <div class="singlepost__media">
             <LazyImage
               src={item.image}
               alt={item.title}
               width={1600}
-              height={650}
+              height={450}
               class="singlepost__image"
             />
             <span class="singlepost__category">{item.category}</span>
@@ -72,78 +77,77 @@ const formattedDate = new Date(item.date).toLocaleDateString("en-US", {
             </time>
           </div>
 
-          <h1>{item.title}</h1>
-        </header>
+          <div class="singlepost__content">
+            <p>
+              Neque porro est qui dolorem ipsum quia quaed inventor veritatis et
+              quasi architecto beatae vitae dicta sunt explicabo. Aelltes port
+              lacus quis enim var sed efficitur turpis gilla sed sit amet
+              finibus eros. Lorem Ipsum is simply dummy text of the printing and
+              typesetting industr
+            </p>
 
-        <div class="singlepost__content">
-          <p>
-            Neque porro est qui dolorem ipsum quia quaed inventor veritatis et
-            quasi architecto beatae vitae dicta sunt explicabo. Aelltes port
-            lacus quis enim var sed efficitur turpis gilla sed sit amet finibus
-            eros. Lorem Ipsum is simply dummy text of the printing and
-            typesetting industr
-          </p>
+            <p>
+              When an unknown printer took a galley of type and scrambled it to
+              make a type specimen book. It has survived not only five
+              centuries, but also the leap into electronic typesetting,
+              remaining essentially unchanged. Aelltes port lacus quis enim var
+              sed efficitur
+            </p>
 
-          <p>
-            When an unknown printer took a galley of type and scrambled it to
-            make a type specimen book. It has survived not only five centuries,
-            but also the leap into electronic typesetting, remaining essentially
-            unchanged. Aelltes port lacus quis enim var sed efficitur
-          </p>
+            <p>
+              Dear hiring manager:. Cc me on that pipeline, or innovation is hot
+              right now, for beef up. Hit the ground running cross pollination
+              across our domains usabiltiy nor regroup put. Going forward touch
+              base this medium needs to be more dynamic, yet are we in
+              agreeance, so crank this out you gotta smoke test your hypothesis.
+            </p>
 
-          <p>
-            Dear hiring manager:. Cc me on that pipeline, or innovation is hot
-            right now, for beef up. Hit the ground running cross pollination
-            across our domains usabiltiy nor regroup put. Going forward touch
-            base this medium needs to be more dynamic, yet are we in agreeance,
-            so crank this out you gotta smoke test your hypothesis.
-          </p>
+            {
+              (item["image-second"] || item["image-third"]) && (
+                <div class="singlepost__wrapper">
+                  {item["image-second"] && (
+                    <LazyImage
+                      src={item["image-second"]}
+                      alt={item.title}
+                      width={600}
+                      height={350}
+                      class="singlepost__image"
+                    />
+                  )}
 
-          {
-            (item["image-second"] || item["image-third"]) && (
-              <div class="singlepost__wrapper">
-                {item["image-second"] && (
-                  <LazyImage
-                    src={item["image-second"]}
-                    alt={item.title}
-                    width={600}
-                    height={350}
-                    class="singlepost__image"
-                  />
-                )}
+                  {item["image-third"] && (
+                    <LazyImage
+                      src={item["image-third"]}
+                      alt={item.title}
+                      width={600}
+                      height={350}
+                      class="singlepost__image"
+                    />
+                  )}
+                </div>
+              )
+            }
 
-                {item["image-third"] && (
-                  <LazyImage
-                    src={item["image-third"]}
-                    alt={item.title}
-                    width={600}
-                    height={350}
-                    class="singlepost__image"
-                  />
-                )}
-              </div>
-            )
-          }
+            <ul>
+              <li>
+                Another area of AI that holds great promise is robotics, which
+                involves developing
+              </li>
 
-          <ul>
-            <li>
-              Another area of AI that holds great promise is robotics, which
-              involves developing
-            </li>
+              <li>
+                AI also has the potential to improve healthcare, by enabling
+                more accurate diagnosis and
+              </li>
 
-            <li>
-              AI also has the potential to improve healthcare, by enabling more
-              accurate diagnosis and
-            </li>
-
-            <li>
-              However, there are also challenges associated with the development
-              and deployment
-            </li>
-          </ul>
-        </div>
-      </article>
-    </div>
+              <li>
+                However, there are also challenges associated with the
+                development and deployment
+              </li>
+            </ul>
+          </div>
+        </article>
+      </div>
+    </section>
   </main>
 
   <Footer />
