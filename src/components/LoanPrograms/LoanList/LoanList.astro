@@ -6,7 +6,7 @@ import styles from './LoanList.module.css'
 
 <section class={styles.loanList}>
   <div class='container'>
-    <div class={styles.loanListWrapper}>
+    <div class={styles.loanListWrapper} data-loans>
       <h2>Loan Categories Overview</h2>
       <p>
         Explore flexible, competitive mortgage programs designed to support
@@ -14,9 +14,11 @@ import styles from './LoanList.module.css'
       </p>
     </div>
 
-    <LoansGrid />
+    <div class={styles.loanListInner}>
+      <LoansGrid />
 
-    <LoanDescription />
+      <LoanDescription />
+    </div>
   </div>
 </section>
 
@@ -24,6 +26,9 @@ import styles from './LoanList.module.css'
   if (typeof window !== 'undefined') {
     window.addEventListener('DOMContentLoaded', () => {
       const grid = document.querySelector('.loanGrid') as HTMLElement | null
+      const loansContainer = document.querySelector(
+        '[data-loans]'
+      ) as HTMLElement | null
       const descriptionSection = document.querySelector(
         '[data-loan-description]'
       ) as HTMLElement | null
@@ -38,39 +43,47 @@ import styles from './LoanList.module.css'
       ) as HTMLButtonElement | null
 
       // Hide description initially
-      descriptionSection.style.display = 'none'
-      descriptionSection.style.opacity = '0'
       descriptionBlocks.forEach(block => {
-        ;(block as HTMLElement).style.display = 'none'
+        ;(block as HTMLElement).classList.add('loan-description-hidden')
       })
 
-      const openLoan = (loanSlug: string) => {
+      const openLoan = (loanSlug: string, target: HTMLElement) => {
         if (!loanSlug) return
 
-        // Hide grid, show description section
-        grid.style.display = 'none'
-        descriptionSection.style.display = 'block'
+        const loanTarget = target.closest('li')
 
-        // Trigger fade-in
-        requestAnimationFrame(() => {
-          descriptionSection.style.opacity = '1'
+        // Hide grid, show description section
+        grid.querySelectorAll('li').forEach(item => {
+          if (item === loanTarget) {
+            item?.classList.add('active-loan')
+          } else {
+            item.classList.add('hide-loan')
+          }
         })
+        descriptionSection.classList.add('data-visible')
 
         descriptionBlocks.forEach(block => {
           const el = block as HTMLElement
           const value = el.getAttribute('data-loan-block')
-          el.style.display = value === loanSlug ? 'block' : 'none'
+          el.classList.toggle('loan-description-hidden', value !== loanSlug)
         })
+        setTimeout(() => {
+          window.scrollTo({
+            top: loansContainer?.offsetTop || 0,
+            behavior: 'smooth',
+          })
+        }, 1200)
       }
 
       const showAllPrograms = () => {
         // Show grid, hide description section and all description blocks
-        grid.style.display = 'grid'
-        descriptionSection.style.opacity = '0'
-        descriptionSection.style.display = 'none'
+        grid.querySelectorAll('li').forEach(item => {
+          item.classList.remove('hide-loan', 'active-loan')
+        })
+        descriptionSection.classList.remove('data-visible')
 
         descriptionBlocks.forEach(block => {
-          ;(block as HTMLElement).style.display = 'none'
+          ;(block as HTMLElement).classList.remove('loan-description-hidden')
         })
       }
 
@@ -78,7 +91,7 @@ import styles from './LoanList.module.css'
       const params = new URLSearchParams(window.location.search)
       const initialLoan = params.get('loan')
       if (initialLoan) {
-        openLoan(initialLoan)
+        openLoan(initialLoan, grid)
       }
 
       if (backButton) {
@@ -97,7 +110,7 @@ import styles from './LoanList.module.css'
         const loanSlug = item.getAttribute('data-loan')
         if (!loanSlug) return
 
-        openLoan(loanSlug)
+        openLoan(loanSlug, target)
       })
     })
   }

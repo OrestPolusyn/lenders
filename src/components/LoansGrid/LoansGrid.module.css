@@ -3,6 +3,7 @@
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;
   margin-block-end: 36px;
+  animation: gridShow 1s ease forwards;
 }
 
 :global(.loanGridItem) {
@@ -143,5 +144,39 @@
 :global(.loanGridItem--self-employed) {
   &::after {
     mask-image: url("data:image/svg+xml,%0A%3Csvg width='36' height='36' viewBox='0 0 36 36' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M24 30V6C24 5.20435 23.6839 4.44129 23.1213 3.87868C22.5587 3.31607 21.7956 3 21 3H15C14.2044 3 13.4413 3.31607 12.8787 3.87868C12.3161 4.44129 12 5.20435 12 6V30' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round' /%3E%3Cpath d='M30 9H6C4.34315 9 3 10.3431 3 12V27C3 28.6569 4.34315 30 6 30H30C31.6569 30 33 28.6569 33 27V12C33 10.3431 31.6569 9 30 9Z' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round' /%3E%3C/svg%3E");
+  }
+}
+
+:global(.hide-loan) {
+  transform: translateY(0);
+  animation: gridHide 1s ease forwards;
+}
+
+:global(.active-loan) {
+  transform: translateY(0);
+  animation: gridHide 1s ease 0.5s forwards;
+}
+
+@keyframes gridHide {
+  from {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+  }
+  to {
+    transform: translateY(100px);
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+@keyframes gridShow {
+  from {
+    transform: translateY(-100px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
   }
 }

@@ -1,11 +1,12 @@
 .loanDescription {
-  padding-block: clamp(1.5rem, 1.5rem + 5vw, 4rem);
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 3;
+  width: 100%;
+  padding-block: 0;
   color: var(--color-blue-600);
   background-color: var(--color-white);
-
-  :global(.loanGrid) {
-    background-color: var(--color-blue-50);
-  }
 }
 
 .loanDescriptionBack {
@@ -26,4 +27,36 @@
   background-color: var(--color-blue-500);
   border-color: var(--color-blue-500);
   color: var(--color-white);
+}
+.loanDescriptionWrapper {
+  position: absolute;
+  display: block;
+}
+
+:global([data-loan-description]) {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease;
+
+  &:global(.data-visible) {
+    animation: slideShow 1s ease 1s forwards;
+  }
+}
+
+:global(.loan-description-hidden) {
+  opacity: 0;
+  visibility: hidden;
+}
+
+@keyframes slideShow {
+  from {
+    transform: translateY(100px);
+    opacity: 0;
+    visibility: hidden;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+  }
 }

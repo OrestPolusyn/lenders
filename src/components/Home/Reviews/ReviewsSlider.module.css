@@ -20,7 +20,6 @@
   left: 30px;
   font-size: clamp(4rem, 4rem + 5vw, 6rem);
   font-weight: var(--fw-800);
-  color: var(--color-blue-50);
   line-height: 1;
   opacity: 0.3;
 }
