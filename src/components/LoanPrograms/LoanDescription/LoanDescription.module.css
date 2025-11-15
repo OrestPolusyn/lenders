@@ -1,0 +1,62 @@
+.loanDescription {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 3;
+  width: 100%;
+  padding-block: 0;
+  color: var(--color-blue-600);
+  background-color: var(--color-white);
+}
+
+.loanDescriptionBack {
+  margin-bottom: 1.5rem;
+  padding: 0.5rem 1.25rem;
+  border-radius: 999px;
+  border: 1px solid var(--color-blue-400);
+  background-color: transparent;
+  color: var(--color-blue-500);
+  font-weight: var(--fw-600);
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.loanDescriptionBack:hover {
+  background-color: var(--color-blue-500);
+  border-color: var(--color-blue-500);
+  color: var(--color-white);
+}
+.loanDescriptionWrapper {
+  position: absolute;
+  display: block;
+}
+
+:global([data-loan-description]) {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease;
+
+  &:global(.data-visible) {
+    animation: slideShow 1s ease 1s forwards;
+  }
+}
+
+:global(.loan-description-hidden) {
+  opacity: 0;
+  visibility: hidden;
+}
+
+@keyframes slideShow {
+  from {
+    transform: translateY(100px);
+    opacity: 0;
+    visibility: hidden;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+  }
+}

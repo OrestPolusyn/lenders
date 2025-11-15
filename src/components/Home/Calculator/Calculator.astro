@@ -1,45 +1,7 @@
 ---
+import LoansGrid from '@/components/LoansGrid/LoansGrid.astro'
 import styles from './Calculator.module.css'
 import calculatorImage from '/public/images/home/calculator.png'
-
-const loanList = [
-  {
-    title: 'Conventional Loans',
-    icon: 'conventional',
-  },
-  {
-    title: 'FHA Loans',
-    icon: 'fha',
-  },
-  {
-    title: 'VA Loans',
-    icon: 'va',
-  },
-  {
-    title: 'USDA Loans',
-    icon: 'usda',
-  },
-  {
-    title: 'Jumbo Loans',
-    icon: 'jumbo',
-  },
-  {
-    title: 'HELOC (Home Equity)',
-    icon: 'heloc',
-  },
-  {
-    title: 'Rehab / Investment Property',
-    icon: 'rehab-investment',
-  },
-  {
-    title: 'Zero Downpayment Options',
-    icon: 'zero-downpayment',
-  },
-  {
-    title: 'Self-Employed Programs',
-    icon: 'self-employed',
-  },
-]
 ---
 
 <section class={styles.homeCalculator}>
@@ -68,26 +30,7 @@ const loanList = [
         />
       </div>
 
-      <div class={styles.homeCalculatorGrid}>
-        <ul class={styles.homeCalculatorList}>
-          {
-            loanList.map(loan => (
-              <li>
-                <a
-                  class={`${styles.homeCalculatorListItem} ${styles[`homeCalculatorListItem--${loan.icon}`]}`}
-                  href={`/loans/${loan.icon}`}
-                >
-                  <p>{loan.title}</p>
-
-                  <div class='button'>
-                    <span>Read more</span>
-                  </div>
-                </a>
-              </li>
-            ))
-          }
-        </ul>
-      </div>
+      <LoansGrid numberOfItems={4} linkToLoanPrograms={true} />
     </div>
   </div>
 </section>

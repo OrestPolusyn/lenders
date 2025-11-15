@@ -1,0 +1,29 @@
+---
+import loansData from '@/data/loans.json'
+import styles from './LoanDescription.module.css'
+
+interface LoanProgram {
+  slug: string
+  title: string
+  tagline: string
+}
+
+const loans = loansData as LoanProgram[]
+---
+
+<section class={styles.loanDescription} data-loan-description>
+  <div class='container'>
+    <button type='button' class={styles.loanDescriptionBack} data-loan-back>
+      Back to all programs
+    </button>
+
+    {
+      loans.map(loan => (
+        <div class={styles.loanDescriptionWrapper} data-loan-block={loan.slug}>
+          <h2>{loan.title}</h2>
+          <p>{loan.tagline}</p>
+        </div>
+      ))
+    }
+  </div>
+</section>

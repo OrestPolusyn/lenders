@@ -1,0 +1,14 @@
+.loanList {
+  padding-block: clamp(1.5rem, 1.5rem + 5vw, 4rem);
+  color: var(--color-blue-600);
+  background-color: var(--color-white);
+  text-align: center;
+}
+
+.loanListWrapper {
+  margin-bottom: clamp(1rem, 1rem + 5vw, 3rem);
+}
+
+.loanListInner {
+  position: relative;
+}

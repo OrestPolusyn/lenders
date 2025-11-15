@@ -1,0 +1,60 @@
+.ProgressLines {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+
+  p {
+    margin-block-end: 2px;
+    font-size: 20px !important;
+    text-transform: capitalize;
+    font-weight: var(--fw-600) !important;
+  }
+}
+
+.ProgressLine {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 3px;
+  background-color: var(--color-white);
+}
+
+.ProgressLine {
+  position: relative;
+
+  &:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    background-color: var(--color-gold-400);
+    width: var(--percent, 0%);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 2s ease-in-out;
+  }
+}
+
+.ProgressLine span {
+  position: absolute;
+  top: 10px;
+  right: 0;
+  font-weight: var(--fw-700);
+}
+
+.ProgressLine:global(.animate):before {
+  transform: scaleX(1);
+}
+
+@keyframes moveImageSquare {
+  0% {
+    transform: translate(-10%, 10%);
+  }
+  50% {
+    transform: translate(-12%, 8%);
+  }
+  100% {
+    transform: translate(-10%, 10%);
+  }
+}

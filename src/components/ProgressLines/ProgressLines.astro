@@ -1,0 +1,47 @@
+---
+import styles from './ProgressLines.module.css'
+---
+
+<ul class={styles.ProgressLines}>
+  <li>
+    <p>Fast Same-Day Loan Approvals</p>
+    <span class={styles.ProgressLine} data-progress style='--percent: 90%'>
+      <span>Up to 90%</span>
+    </span>
+  </li>
+  <li>
+    <p>Lowest Interest Rates Available</p>
+    <span class={styles.ProgressLine} data-progress style='--percent: 95%'>
+      <span>95% Satisfaction</span>
+    </span>
+  </li>
+  <li>
+    <p>Flexible & Affordable Payment Options</p>
+    <span class={styles.ProgressLine} data-progress style='--percent: 90%'>
+      <span>90% Customer Preference</span>
+    </span>
+  </li>
+</ul>
+
+<script>
+  const progressLines = document.querySelectorAll('[data-progress]')
+
+  if (progressLines.length > 0) {
+    const observer = new IntersectionObserver(
+      entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const line = entry.target as HTMLElement
+            line.classList.add('animate')
+            observer.unobserve(line)
+          }
+        })
+      },
+      {
+        threshold: 0.5,
+      }
+    )
+
+    progressLines.forEach(line => observer.observe(line))
+  }
+</script>

@@ -1,92 +1,75 @@
 ---
-import BaseLayout from "@/layouts/BaseLayout.astro";
-import Header from "@/components/Header/Header.astro";
-import Footer from "@/components/Footer/Footer.astro";
-import PageHeader from "@/components/PageHeader/PageHeader.astro";
-import loansData from "@/data/loans.json";
+import Footer from '@/components/Footer/Footer.astro'
+import Header from '@/components/Header/Header.astro'
+import PageHeader from '@/components/PageHeader/PageHeader.astro'
+import loansData from '@/data/loans.json'
+import BaseLayout from '@/layouts/BaseLayout.astro'
 
 interface LoanProgram {
-  slug: string;
-  title: string;
-  tagline: string;
-  overview: string[];
-  features: string[];
-  idealFor: string[];
-  ctaLabel: string;
-  ctaLink: string;
+  slug: string
+  title: string
+  tagline: string
+  overview: string[]
+  features: string[]
+  idealFor: string[]
+  ctaLabel: string
+  ctaLink: string
 }
 
-const loans: LoanProgram[] = loansData as LoanProgram[];
+const loans: LoanProgram[] = loansData as LoanProgram[]
 
 export async function getStaticPaths() {
-  const allLoans = loansData as LoanProgram[];
-  return allLoans.map((loan) => ({
+  const allLoans = loansData as LoanProgram[]
+  return allLoans.map(loan => ({
     params: { slug: loan.slug },
     props: { loan },
-  }));
+  }))
 }
 
-const { loan: loanFromProps } = Astro.props as { loan?: LoanProgram };
-const { slug } = Astro.params;
+const { loan: loanFromProps } = Astro.props as { loan?: LoanProgram }
+const { slug } = Astro.params
 
 const loan =
   loanFromProps ??
-  (loansData as LoanProgram[]).find(
-    (program) => program.slug === String(slug),
-  );
+  (loansData as LoanProgram[]).find(program => program.slug === String(slug))
 
 if (!loan) {
-  throw new Error(`Loan program with slug "${slug}" not found`);
+  throw new Error(`Loan program with slug "${slug}" not found`)
 }
 ---
 
 <BaseLayout title={loan.title} description={loan.tagline}>
   <Header />
 
-  <main class="loan">
+  <main class='loan'>
     <PageHeader title={loan.title} />
 
-    <section class="loan__intro">
-      <div class="container">
-        <p class="loan__tagline">{loan.tagline}</p>
+    <section class='loan__intro'>
+      <div class='container'>
+        <p class='loan__tagline'>{loan.tagline}</p>
         {
-          loan.overview.map((paragraph) => (
-            <p class="loan__paragraph">{paragraph}</p>
+          loan.overview.map(paragraph => (
+            <p class='loan__paragraph'>{paragraph}</p>
           ))
         }
       </div>
     </section>
 
-    <section class="loan__grid">
-      <div class="container loan__grid-container">
-        <div class="loan__card">
+    <section class='loan__grid'>
+      <div class='container loan__grid-container'>
+        <div class='loan__card'>
           <h2>Program highlights</h2>
           <ul>
-            {loan.features.map((feature) => (
-              <li>{feature}</li>
-            ))}
+            {loan.features.map(feature => <li>{feature}</li>)}
           </ul>
         </div>
 
-        <div class="loan__card">
+        <div class='loan__card'>
           <h2>Designed for</h2>
           <ul>
-            {loan.idealFor.map((item) => (
-              <li>{item}</li>
-            ))}
+            {loan.idealFor.map(item => <li>{item}</li>)}
           </ul>
         </div>
-      </div>
-    </section>
-
-    <section class="loan__cta">
-      <div class="container">
-        <h2>Ready to move forward?</h2>
-        <p>
-          Let's review your goals and outline the next steps to secure the right
-          financing.
-        </p>
-        <a class="loan__cta-button" href={loan.ctaLink}>{loan.ctaLabel}</a>
       </div>
     </section>
   </main>
@@ -159,7 +142,7 @@ if (!loan) {
   }
 
   .loan__card li::before {
-    content: "•";
+    content: '•';
     position: absolute;
     left: 8px;
     color: #3949ff;
@@ -210,4 +193,3 @@ if (!loan) {
     box-shadow: 0 18px 34px rgba(57, 73, 255, 0.4);
   }
 </style>
-

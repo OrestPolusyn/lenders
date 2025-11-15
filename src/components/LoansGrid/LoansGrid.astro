@@ -1,0 +1,40 @@
+---
+import { loanList } from '@/const/loansPrograms'
+import './LoansGrid.module.css'
+
+interface Props {
+  numberOfItems?: number
+  linkToLoanPrograms?: boolean
+}
+
+const { numberOfItems = loanList.length, linkToLoanPrograms = false } =
+  Astro.props
+---
+
+<ul class='loanGrid'>
+  {
+    loanList.map((loan, index) => {
+      if (index < numberOfItems) {
+        const href = linkToLoanPrograms
+          ? `/loan-programs?loan=${loan.icon}`
+          : undefined
+
+        return (
+          <li>
+            <a
+              class={`loanGridItem loanGridItem--${loan.icon}`}
+              data-loan={loan.icon}
+              href={href}
+            >
+              <p>{loan.title}</p>
+
+              <div class='button'>
+                <span>Read more</span>
+              </div>
+            </a>
+          </li>
+        )
+      }
+    })
+  }
+</ul>
