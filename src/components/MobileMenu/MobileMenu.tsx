@@ -1,20 +1,11 @@
-import { useState, useEffect } from 'react'
-import { BUSINESS_INFO } from '@/config/constants'
+import { navLinks } from '@/const/navLinks'
+import { useEffect } from 'react'
 import styles from './MobileMenu.module.css'
 
 interface MobileMenuProps {
   isOpen: boolean
   onClose: () => void
 }
-
-const links = [
-  { title: 'Home', href: '/' },
-  { title: 'About Us', href: '/about' },
-  { title: 'Our Programs', href: '/loan' },
-  { title: 'Calculator', href: '/calculator' },
-  { title: 'News', href: '/news' },
-  { title: 'Contact Us', href: '/contact' },
-]
 
 export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
   useEffect(() => {
@@ -35,17 +26,20 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
       <div
         className={`${styles.backdrop} ${isOpen ? styles.backdropOpen : ''}`}
         onClick={onClose}
-        aria-hidden="true"
+        aria-hidden='true'
       />
 
       {/* Mobile Menu */}
-      <div className={`${styles.mobileMenu} ${isOpen ? styles.mobileMenuOpen : ''}`}>
+      <div
+        className={`${styles.mobileMenu} ${
+          isOpen ? styles.mobileMenuOpen : ''
+        }`}
+      >
         <div className={styles.mobileMenuHeader}>
-          <div className="logo">The Lenders</div>
           <button
             className={styles.closeButton}
             onClick={onClose}
-            aria-label="Close menu"
+            aria-label='Close menu'
           >
             <span></span>
             <span></span>
@@ -54,7 +48,7 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
 
         <nav className={styles.mobileMenuNav}>
           <ul className={styles.mobileMenuList}>
-            {links.map((link) => (
+            {navLinks.map(link => (
               <li key={link.href} className={styles.mobileMenuListItem}>
                 <a
                   href={link.href}
@@ -66,21 +60,6 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
               </li>
             ))}
           </ul>
-
-          <div className={styles.mobileMenuFooter}>
-            <a
-              href={`tel:${BUSINESS_INFO.phone}`}
-              className={styles.mobileMenuPhone}
-            >
-              {BUSINESS_INFO.phoneFormatted}
-            </a>
-            <a
-              href={`mailto:${BUSINESS_INFO.email}`}
-              className={styles.mobileMenuEmail}
-            >
-              {BUSINESS_INFO.email}
-            </a>
-          </div>
         </nav>
       </div>
     </>

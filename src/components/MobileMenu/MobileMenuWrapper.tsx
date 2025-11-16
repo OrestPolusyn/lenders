@@ -5,31 +5,31 @@ export default function MobileMenuWrapper() {
   const [isOpen, setIsOpen] = useState(false)
 
   useEffect(() => {
-    const sidebarBtn = document.getElementById('sidebarBtn')
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn')
 
     const handleClick = () => {
       setIsOpen(prev => {
         const newState = !prev
-        sidebarBtn?.classList.toggle('active', newState)
+        mobileMenuBtn?.classList.toggle('active', newState)
         return newState
       })
     }
 
-    if (sidebarBtn) {
-      sidebarBtn.addEventListener('click', handleClick)
+    if (mobileMenuBtn) {
+      mobileMenuBtn.addEventListener('click', handleClick)
     }
 
     return () => {
-      if (sidebarBtn) {
-        sidebarBtn.removeEventListener('click', handleClick)
+      if (mobileMenuBtn) {
+        mobileMenuBtn.removeEventListener('click', handleClick)
       }
     }
   }, [])
 
   const handleClose = () => {
     setIsOpen(false)
-    const sidebarBtn = document.getElementById('sidebarBtn')
-    sidebarBtn?.classList.remove('active')
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn')
+    mobileMenuBtn?.classList.remove('active')
   }
 
   return <MobileMenu isOpen={isOpen} onClose={handleClose} />

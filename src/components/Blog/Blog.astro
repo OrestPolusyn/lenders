@@ -1,34 +1,34 @@
 ---
-import LazyImage from "@/components/UI/LazyImage/LazyImage.astro";
-import styles from "./Blog.module.css";
-import newsData from "@/data/news.json";
+import newsData from '@/data/news.json'
+import styles from './Blog.module.css'
 interface NewsItem {
-  id: number;
-  title: string;
-  description: string;
-  date: string;
-  category: string;
-  image: string;
+  id: number
+  title: string
+  description: string
+  date: string
+  category: string
+  image: string
 }
 
-const news: NewsItem[] = newsData;
+const news: NewsItem[] = newsData
 
 const formatDate = (dateString: string) => {
-  const date = new Date(dateString);
-  return date.toLocaleDateString("en-US", {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  });
-};
+  const date = new Date(dateString)
+  return date.toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  })
+}
 ---
 
 <section class={styles.blog}>
-  <div class="container">
-    <h2 class="sr-only">Blog</h2>
+  <div class='container'>
+    <h2>Latest News</h2>
+
     <ul class={styles.blogList}>
       {
-        news.map((item) => (
+        news.map(item => (
           <li class={styles.newsItem}>
             <article>
               <div class={styles.newsItemImage}>
@@ -43,18 +43,18 @@ const formatDate = (dateString: string) => {
                 <a class={styles.newsItemButton} href={`/post/${item.id}`}>
                   Read More
                   <svg
-                    width="20"
-                    height="20"
-                    viewBox="0 0 20 20"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
+                    width='20'
+                    height='20'
+                    viewBox='0 0 20 20'
+                    fill='none'
+                    xmlns='http://www.w3.org/2000/svg'
                   >
                     <path
-                      d="M7.5 15L12.5 10L7.5 5"
-                      stroke="currentColor"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
+                      d='M7.5 15L12.5 10L7.5 5'
+                      stroke='currentColor'
+                      stroke-width='2'
+                      stroke-linecap='round'
+                      stroke-linejoin='round'
                     />
                   </svg>
                 </a>
@@ -64,5 +64,7 @@ const formatDate = (dateString: string) => {
         ))
       }
     </ul>
+
+    <button class='button'>Load More</button>
   </div>
 </section>

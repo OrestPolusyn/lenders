@@ -1,9 +1,9 @@
 .homeReviews {
   position: relative;
-  padding-block: clamp(5rem, 5rem + 5vw, 10rem);
+  padding-block: clamp(2rem, 2rem + 5vw, 4rem);
   color: var(--color-blue-500);
   background-color: var(--color-white);
-  clip-path: polygon(0 10%, 100% 0, 100% 90%, 0% 100%);
+  clip-path: var(--clip-path);
 }
 
 .homeReviews a {
@@ -98,57 +98,5 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-  }
-}
-
-@media screen and (max-width: 1024px) {
-  .homeReviews {
-    clip-path: polygon(0 5%, 100% 0, 100% 95%, 0% 100%);
-  }
-}
-
-@media screen and (max-width: 992px) {
-  .homeReviewsWrapper:global(.wrapper) {
-    grid-template-columns: 1fr;
-    gap: 20px;
-  }
-
-  .homeReviewsGrid {
-    margin-inline: auto;
-    max-width: 800px;
-    width: 100%;
-  }
-}
-
-@media screen and (max-width: 768px) {
-  .homeReviewsStatCard {
-    padding: 20px;
-
-    &:nth-child(4) {
-      grid-column: span 2;
-    }
-  }
-
-  .homeReviewsImageBottom,
-  .homeReviewsImage {
-    display: none;
-  }
-}
-
-@media screen and (max-width: 576px) {
-  .homeReviews {
-    clip-path: polygon(0 3%, 100% 0, 100% 97%, 0% 100%);
-  }
-
-  .homeReviewsGrid {
-    grid-template-columns: 1fr;
-  }
-
-  .homeReviewsStatCard {
-    max-width: 100%;
-
-    &:nth-child(4) {
-      grid-column: auto;
-    }
   }
 }
