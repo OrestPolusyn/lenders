@@ -15,13 +15,6 @@
   h2 {
     margin-block-end: 20px;
   }
-
-  .slogan {
-    &::before,
-    &::after {
-      background-color: var(--color-blue-500);
-    }
-  }
 }
 
 .faqItem {
@@ -43,19 +36,21 @@
 }
 
 .faqItem summary:before {
-  content: '';
+  content: "";
   display: block;
   background-color: var(--color-blue-500);
   position: absolute;
   top: 50%;
   left: 16px;
-  transition: opacity 0.2s ease, transform 0.2s ease;
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease;
   width: 25px;
   height: 3px;
   transform: translateY(-50%);
 }
 .faqItem summary:after {
-  content: '';
+  content: "";
   display: block;
   background-color: var(--color-blue-500);
   position: absolute;
@@ -83,4 +78,20 @@
 
 .faqItem summary + div {
   padding: 16px 24px 24px 24px;
+}
+
+@media screen and (max-width: 992px) {
+  .faqWrapper {
+    grid-template-columns: 1fr;
+  }
+
+  img {
+    max-height: 450px;
+  }
+
+.faqContent {
+  h2 {
+    margin-block-end: 0;
+  }
+}
 }

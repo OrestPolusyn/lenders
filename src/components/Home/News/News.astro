@@ -1,46 +1,45 @@
 ---
-import newsData from '@/data/news.json'
-import styles from './News.module.css'
+import newsData from "@/data/news.json";
+import styles from "./News.module.css";
 
 interface NewsItem {
-  id: number
-  title: string
-  description: string
-  date: string
-  category: string
-  image: string
+  id: number;
+  title: string;
+  description: string;
+  date: string;
+  category: string;
+  image: string;
 }
 
-const news: NewsItem[] = newsData
+const news: NewsItem[] = newsData;
 
 const formatDate = (dateString: string) => {
-  const date = new Date(dateString)
-  return date.toLocaleDateString('en-US', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-  })
-}
+  const date = new Date(dateString);
+  return date.toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+};
 ---
 
 <section class={styles.news}>
-  <div class='container'>
+  <div class="container">
     <div class={styles.newsContent}>
       <div class={styles.newsHeader}>
-        <p class='slogan slogan--double'>
-          Stay informed with expert mortgage tips, rate trends, and homebuyer
-          guides.
+        <p class="slogan slogan--double">
+          Smart mortgage tips and rate trends.
         </p>
         <h2>news & insights</h2>
       </div>
 
       <div class={styles.newsSliderWrapper}>
         <div class={`swiper ${styles.newsSlider}`} data-news-swiper>
-          <div class='swiper-wrapper'>
+          <div class="swiper-wrapper">
             {
-              news.map(item => (
-                <div class='swiper-slide'>
-                  <div class={styles.newsItem}>
+              news.map((item) => (
+                <div class="swiper-slide">
+                  <article class={styles.newsItem}>
                     <div class={styles.newsItemImage}>
                       <img src={item.image} alt={item.title} />
                       <span class={styles.newsItemCategory}>
@@ -54,33 +53,36 @@ const formatDate = (dateString: string) => {
                       </time>
                       <h3>{item.title}</h3>
                       <p>{item.description}</p>
-                      <button class={styles.newsItemButton}>
+                      <a
+                        class={styles.newsItemButton}
+                        href={`/post/${item.id}`}
+                      >
                         Read More
                         <svg
-                          width='20'
-                          height='20'
-                          viewBox='0 0 20 20'
-                          fill='none'
-                          xmlns='http://www.w3.org/2000/svg'
+                          width="20"
+                          height="20"
+                          viewBox="0 0 20 20"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
                         >
                           <path
-                            d='M7.5 15L12.5 10L7.5 5'
-                            stroke='currentColor'
-                            stroke-width='2'
-                            stroke-linecap='round'
-                            stroke-linejoin='round'
+                            d="M7.5 15L12.5 10L7.5 5"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
                           />
                         </svg>
-                      </button>
+                      </a>
                     </div>
-                  </div>
+                  </article>
                 </div>
               ))
             }
           </div>
-          <div class='swiper-pagination'></div>
-          <div class='swiper-button-prev'></div>
-          <div class='swiper-button-next'></div>
+          <div class="swiper-pagination"></div>
+          <div class="swiper-button-prev"></div>
+          <div class="swiper-button-next"></div>
         </div>
       </div>
     </div>
@@ -88,26 +90,27 @@ const formatDate = (dateString: string) => {
 </section>
 
 <script>
-  import Swiper from 'swiper'
-  import 'swiper/css'
-  import 'swiper/css/navigation'
-  import 'swiper/css/pagination'
-  import { Autoplay, Navigation, Pagination } from 'swiper/modules'
+  import Swiper from "swiper";
+  import "swiper/css";
+  import "swiper/css/navigation";
+  import "swiper/css/pagination";
+  import { Autoplay, Navigation, Pagination } from "swiper/modules";
 
-  const swiperEl = document.querySelector('[data-news-swiper]')
+  const swiperEl = document.querySelector("[data-news-swiper]");
 
   if (swiperEl) {
     new Swiper(swiperEl as HTMLElement, {
-      modules: [Navigation, Pagination, Autoplay],
-      spaceBetween: 30,
+      modules: [Navigation, Pagination],
+      speed: 600,
+      resistanceRatio: 0.75,
       slidesPerView: 1,
-      slidesPerGroup: 1,
+      spaceBetween: 30,
       navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
       },
       pagination: {
-        el: '.swiper-pagination',
+        el: ".swiper-pagination",
         clickable: true,
       },
       autoplay: {
@@ -115,19 +118,13 @@ const formatDate = (dateString: string) => {
         disableOnInteraction: false,
       },
       breakpoints: {
-        640: {
-          slidesPerView: 1,
-          slidesPerGroup: 1,
-        },
-        768: {
+        575: {
           slidesPerView: 2,
-          slidesPerGroup: 2,
         },
         1024: {
           slidesPerView: 3,
-          slidesPerGroup: 3,
         },
       },
-    })
+    });
   }
 </script>

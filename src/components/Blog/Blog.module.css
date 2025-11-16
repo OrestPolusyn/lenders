@@ -28,6 +28,7 @@
   transition: transform 0.3s ease;
 }
 
+
 .newsItem {
   display: flex;
   flex-direction: column;
@@ -121,5 +122,17 @@
     svg {
       transform: translateX(4px);
     }
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .blogList {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .blogList {
+    grid-template-columns: 1fr;
   }
 }

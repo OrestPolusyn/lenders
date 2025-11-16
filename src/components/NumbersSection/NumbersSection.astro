@@ -1,26 +1,143 @@
 ---
-import styles from './NumbersSection.module.css'
+import styles from "./NumbersSection.module.css";
 ---
 
 <section class={styles.numbersSection}>
-  <div class='container'>
+  <div class="container">
     <ul class={styles.numbersSectionList}>
       <li class={styles.numbersSectionItem}>
-        <h3 class={styles.numbersSectionItemNumber}>15+</h3>
+        <h3 class={styles.numbersSectionItemNumber} data-value="15k">15k</h3>
         <p class={styles.numbersSectionItemText}>Years Experience</p>
       </li>
       <li class={styles.numbersSectionItem}>
-        <h3 class={styles.numbersSectionItemNumber}>$ 2B+</h3>
+        <h3 class={styles.numbersSectionItemNumber} data-value="2B">2B</h3>
         <p class={styles.numbersSectionItemText}>Loans Funded</p>
       </li>
       <li class={styles.numbersSectionItem}>
-        <h3 class={styles.numbersSectionItemNumber}>10k+</h3>
+        <h3 class={styles.numbersSectionItemNumber} data-value="10k">10k</h3>
         <p class={styles.numbersSectionItemText}>Happy Clients</p>
       </li>
       <li class={styles.numbersSectionItem}>
-        <h3 class={styles.numbersSectionItemNumber}>98%</h3>
+        <h3 class={styles.numbersSectionItemNumber} data-value="98%">98%</h3>
         <p class={styles.numbersSectionItemText}>Satisfaction Rate</p>
       </li>
     </ul>
   </div>
 </section>
+
+<script>
+  function initNumberAnimation() {
+    // Спробуємо кілька способів знайти елементи
+    let numbersSectionItemNumbers = document.querySelectorAll(
+      '[class*="numbersSectionItemNumber"]',
+    );
+
+    // Якщо не знайшли, спробуємо через data-value
+    if (numbersSectionItemNumbers.length === 0) {
+      numbersSectionItemNumbers = document.querySelectorAll(
+        'h3[data-value]',
+      );
+    }
+
+    // Якщо все ще не знайшли, спробуємо через структуру
+    if (numbersSectionItemNumbers.length === 0) {
+      const section = document.querySelector('[class*="numbersSection"]');
+      if (section) {
+        numbersSectionItemNumbers = section.querySelectorAll('h3[data-value]');
+      }
+    }
+
+    if (numbersSectionItemNumbers.length === 0) {
+      console.warn('NumbersSection: No elements found');
+      return;
+    }
+
+    console.log(`NumbersSection: Found ${numbersSectionItemNumbers.length} elements`);
+
+    // Спостерігаємо за секцією, а не за окремими елементами
+    const section = document.querySelector('[class*="numbersSection"]') || 
+                    numbersSectionItemNumbers[0].closest('section');
+    
+    if (!section) {
+      console.warn('NumbersSection: Section not found');
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            console.log('NumbersSection: Section is intersecting, starting animations');
+            
+          
+            numbersSectionItemNumbers.forEach((element, index) => {
+              const dataValue = element.getAttribute("data-value") || "0";
+              
+           
+              let number = 0;
+              let suffix = "";
+              
+          
+              const numberMatch = dataValue.match(/(\d+(?:\.\d+)?)/);
+              if (numberMatch) {
+                number = parseFloat(numberMatch[1]);
+                const numberIndex = numberMatch.index || 0;
+                
+       
+                const suffixStart = numberIndex + numberMatch[1].length;
+                if (suffixStart < dataValue.length) {
+                  suffix = dataValue.substring(suffixStart);
+                }
+              } else {
+                console.warn(`NumbersSection: Invalid number for element ${index}`, element);
+                return;
+              }
+
+              console.log(`NumbersSection: Animating element ${index} to ${number}${suffix}`);
+
+              let startTimestamp: number | null = null;
+              const duration = 900;
+              const start = 0;
+              const end = number;
+
+              const step = (timestamp: number) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                const currentValue = Math.floor(progress * (end - start) + start);
+                
+         
+                element.innerHTML = `${currentValue}${suffix}`;
+                
+                if (progress < 1) {
+                  window.requestAnimationFrame(step);
+                } else {
+              
+                  element.innerHTML = `${end}${suffix}`;
+                }
+              };
+              
+              window.requestAnimationFrame(step);
+            });
+
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        threshold: 0.1,
+        rootMargin: '0px 0px -100px 0px',
+      },
+    );
+
+    observer.observe(section);
+  }
+
+  if (typeof window !== 'undefined') {
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initNumberAnimation);
+    } else {
+  
+      initNumberAnimation();
+    }
+  }
+</script>

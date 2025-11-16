@@ -21,5 +21,14 @@
 
 .StartActions {
   display: flex;
+  flex-wrap: wrap;
   gap: 1rem;
+}
+
+@media screen and (max-width: 575px) {  .StartActions {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+  }
 }

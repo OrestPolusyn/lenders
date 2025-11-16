@@ -146,8 +146,8 @@
   }
 }
 
-@media screen and (max-width: 768px) {
-  :global(.swiper-pagination) {
-    display: none;
+@media screen and (max-width:992px) {
+  .reviewsSlider {
+    max-width: 100%;
   }
 }

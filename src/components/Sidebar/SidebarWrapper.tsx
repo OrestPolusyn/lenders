@@ -5,29 +5,53 @@ export default function SidebarWrapper() {
   const [isOpen, setIsOpen] = useState(false)
 
   useEffect(() => {
+    // Handle button with id="contactBtn" (legacy support)
     const contactBtn = document.getElementById('contactBtn')
-
-    if (!contactBtn) return
-
-    const handleClick = () => {
+    const handleContactClick = () => {
       setIsOpen(prev => !prev)
     }
 
-    contactBtn.addEventListener('click', handleClick)
+    if (contactBtn) {
+      contactBtn.addEventListener('click', handleContactClick)
+    }
+
+    // Handle all buttons with data-open-sidebar attribute
+    const sidebarButtons = document.querySelectorAll('[data-open-sidebar]')
+    const handleSidebarClick = () => {
+      setIsOpen(prev => !prev)
+    }
+
+    sidebarButtons.forEach(button => {
+      button.addEventListener('click', handleSidebarClick)
+    })
 
     return () => {
-      contactBtn.removeEventListener('click', handleClick)
+      if (contactBtn) {
+        contactBtn.removeEventListener('click', handleContactClick)
+      }
+      sidebarButtons.forEach(button => {
+        button.removeEventListener('click', handleSidebarClick)
+      })
     }
   }, [])
 
-  // Block scroll when sidebar is open
+  // Block scroll when sidebar is open and update button states
   useEffect(() => {
     const contactBtn = document.getElementById('contactBtn')
+    const sidebarButtons = document.querySelectorAll('[data-open-sidebar]')
 
     if (isOpen) {
+      document.body.style.overflow = 'hidden'
       contactBtn?.classList.add('active')
+      sidebarButtons.forEach(button => button.classList.add('active'))
     } else {
+      document.body.style.overflow = ''
       contactBtn?.classList.remove('active')
+      sidebarButtons.forEach(button => button.classList.remove('active'))
+    }
+
+    return () => {
+      document.body.style.overflow = ''
     }
   }, [isOpen])
 

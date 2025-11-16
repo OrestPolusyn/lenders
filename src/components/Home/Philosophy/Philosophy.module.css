@@ -19,8 +19,8 @@
   z-index: 1;
   align-items: center;
   margin-block-end: clamp(1.5rem, 1.5rem + 5vw, 5rem);
-  grid-template-columns: minmax(408px, 1fr) minmax(650px, 1fr);
-  gap: clamp(1rem, 1rem + 5vw, 2.5rem);
+  grid-template-columns: repeat(2, 1fr);
+ gap: clamp(20px, 5vw, 70px);
 }
 
 .homePhilosophyImages {
@@ -54,7 +54,7 @@
 .homePhilosophyInfo {
   position: absolute;
   border-radius: var(--radius-main);
-  padding: 30px;
+  padding: clamp(20px, 20px + 5vw, 30px);
   bottom: 35px;
   left: 35px;
   right: 35px;
@@ -143,5 +143,37 @@
         var(--color-blue-100) 100%
       );
     }
+  }
+}
+
+@media screen and (max-width:992px) {
+  .homePhilosophyWrapper {
+    grid-template-columns: repeat(1, 1fr);
+    align-items: center;
+  }
+
+  .homePhilosophyContent {
+   
+      text-align: center;
+   
+  }
+
+  .homePhilosophyImages {
+    max-height: 450px;
+    order: 1;
+  }
+}
+
+@media screen and (max-width:575px) {
+  .homePhilosophyList {
+        grid-template-columns: 1fr
+  }
+  .homePhilosophyInfo {
+
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 10px;
+  
   }
 }
