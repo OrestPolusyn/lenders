@@ -1,9 +1,8 @@
 .faq {
   position: relative;
-  padding-block: clamp(2.5rem, 2.5rem + 5vw, 4rem) clamp(5rem, 5rem + 5vw, 8rem);
   color: var(--color-blue-500);
   background-color: var(--color-white);
-  clip-path: polygon(0 0, 100% 0, 100% 90%, 0% 100%);
+  clip-path: var(--clip-path-secondary);
 }
 
 .faqContent {
@@ -26,13 +25,12 @@
 }
 
 .faqItem {
-  background:var(--color-white);
+  background: var(--color-white);
   border-radius: 8px;
   margin-bottom: 16px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   overflow: hidden;
 }
-
 
 .faqItem summary {
   position: relative;
@@ -44,45 +42,44 @@
   cursor: pointer;
 }
 
-
 .faqItem summary:before {
-		content: "";
-		display: block;
-		background-color: var(--color-blue-500);
-		position: absolute;		
-		top: 50%; 
-    left: 16px;
-		transition: opacity 0.2s ease, transform 0.2s ease;
-		width: 25px;
-		height: 3px;
-    transform: translateY(-50%);
-	}
-  .faqItem summary:after {
-		content: "";
-		display: block;
-		background-color: var(--color-blue-500);
-		position: absolute;		
-		top: 50%; 
-    left: 16px;
-		transition: .35s;
-		width: 25px;
-		height: 3px;
-    transform: translateY(-50%) rotate(90deg);
-	}
+  content: '';
+  display: block;
+  background-color: var(--color-blue-500);
+  position: absolute;
+  top: 50%;
+  left: 16px;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  width: 25px;
+  height: 3px;
+  transform: translateY(-50%);
+}
+.faqItem summary:after {
+  content: '';
+  display: block;
+  background-color: var(--color-blue-500);
+  position: absolute;
+  top: 50%;
+  left: 16px;
+  transition: 0.35s;
+  width: 25px;
+  height: 3px;
+  transform: translateY(-50%) rotate(90deg);
+}
 
 .faqItem details[open] summary {
   padding-bottom: 12px;
   border-bottom: 1px solid #e9ecef;
 }
 
-  .faqItem details[open] summary::before {
-    transform: translateY(-50%) rotate(-90deg);
-    opacity: 0;
-  }
+.faqItem details[open] summary::before {
+  transform: translateY(-50%) rotate(-90deg);
+  opacity: 0;
+}
 
-    .faqItem details[open] summary::after {
-    transform: translateY(-50%) rotate(0);
-  }
+.faqItem details[open] summary::after {
+  transform: translateY(-50%) rotate(0);
+}
 
 .faqItem summary + div {
   padding: 16px 24px 24px 24px;

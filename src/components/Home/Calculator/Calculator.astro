@@ -1,7 +1,7 @@
 ---
 import LoansGrid from '@/components/LoansGrid/LoansGrid.astro'
+import MortgageCalculator from '@/components/MortgageCalculator/MortgageCalculator.astro'
 import styles from './Calculator.module.css'
-import calculatorImage from '/public/images/home/calculator.png'
 ---
 
 <section class={styles.homeCalculator}>
@@ -20,17 +20,11 @@ import calculatorImage from '/public/images/home/calculator.png'
     </div>
 
     <div class={styles.homeCalculatorWrapper}>
-      <div class={styles.homeCalculatorImages}>
-        <img
-          src={calculatorImage.src}
-          alt='About'
-          width={404}
-          height={616}
-          loading='lazy'
-        />
-      </div>
+      <MortgageCalculator />
 
-      <LoansGrid numberOfItems={4} linkToLoanPrograms={true} />
+      <div class={styles.homeLoanPrograms}>
+        <LoansGrid numberOfItems={4} linkToLoanPrograms={true} />
+      </div>
     </div>
   </div>
 </section>

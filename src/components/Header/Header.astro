@@ -1,76 +1,29 @@
 ---
 import styles from './Header.module.css'
 import { BUSINESS_INFO } from '@/config/constants'
-import ResponsiveMenuWrapper from './ResponsiveMenuWrapper'
 import MobileMenuWrapper from '../MobileMenu/MobileMenuWrapper'
-
-const links = [
-  { title: 'Home', href: '/' },
-  { title: 'Loan Programs', href: '/loan-programs' },
-  { title: 'Calculator', href: '/calculator' },
-  {
-    title: 'About',
-    children: [
-      { title: 'About Us', href: '/about' },
-      { title: 'News', href: '/news' },
-      { title: 'Guides', href: '/guides' },
-    ],
-  },
-  { title: 'Contact Us', href: '/contact' },
-]
+import { navLinks } from '@/const/navLinks'
 ---
 
 <header class={`${styles.header} header ${styles.headerVisible}`} id='header'>
   <nav class={styles.headerNav}>
     <a class={styles.headerLogo} href='/'>
-      <img src='/images/logo_1.svg' alt='The Lenders' />
+      <img
+        src='/images/logo_white.svg'
+        alt='The Lenders'
+        width='240'
+        height='70'
+        loading='eager'
+      />
     </a>
 
     <ul class={styles.headerList}>
       {
-        links.map(link => (
-          <li
-            class={`${styles.headerListItem} ${link.children ? styles.headerListItemHasDropdown : ''}`}
-          >
-            <a
-              class={styles.headerLink}
-              href={
-                link.href || (link.children && link.children[0]?.href) || '#'
-              }
-            >
+        navLinks.map(link => (
+          <li class={`${styles.headerListItem}`}>
+            <a class={styles.headerLink} href={link.href}>
               {link.title}
-              {link.children && (
-                <span class={styles.headerDropdownIcon} aria-hidden='true'>
-                  <svg
-                    width='10'
-                    height='10'
-                    viewBox='0 0 10 10'
-                    fill='none'
-                    xmlns='http://www.w3.org/2000/svg'
-                  >
-                    <path
-                      d='M2 3.5L5 6.5L8 3.5'
-                      stroke='currentColor'
-                      stroke-width='1.4'
-                      stroke-linecap='round'
-                      stroke-linejoin='round'
-                    />
-                  </svg>
-                </span>
-              )}
             </a>
-
-            {link.children && (
-              <ul class={styles.headerDropdown}>
-                {link.children.map(child => (
-                  <li class={styles.headerDropdownItem}>
-                    <a class={styles.headerDropdownLink} href={child.href}>
-                      {child.title}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            )}
           </li>
         ))
       }
@@ -79,15 +32,15 @@ const links = [
           class={`${styles.headerLink} phone`}
           href={`tel:${BUSINESS_INFO.phone}`}
         >
-          {BUSINESS_INFO.phoneFormatted}
+          Call us
         </a>
       </li>
     </ul>
 
     <button
-      class={styles.headerSidebar}
-      id='sidebarBtn'
-      aria-label='Open sidebar'
+      class={styles.headerMenu}
+      id='mobileMenuBtn'
+      aria-label='Open mobile menu'
     >
       <span></span>
       <span></span>
@@ -98,7 +51,6 @@ const links = [
 
 <!-- Responsive menu React component (outside header for proper positioning) -->
 <MobileMenuWrapper client:load client:media='(max-width: 1180px)' />
-<ResponsiveMenuWrapper client:load client:media='(min-width: 1181px)' />
 
 <script>
   // Set header height CSS variable

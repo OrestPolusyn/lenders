@@ -5,12 +5,12 @@ import aboutImage from '/public/images/home/about-men.jpg'
 import calculateImage from '/public/images/home/calculate.jpg'
 ---
 
-<section class={styles.homeAbout}>
+<section class={styles.aboutSection}>
   <div class='container'>
-    <div class={`${styles.homeAboutWrapper} wrapper`}>
-      <div class={styles.homeAboutImages}>
+    <div class={`${styles.aboutSectionWrapper} wrapper`}>
+      <div class={styles.aboutSectionImages}>
         <img
-          class={styles.homeAboutImageFirst}
+          class={styles.aboutSectionImageFirst}
           src={aboutImage.src}
           alt='About'
           width={aboutImage.width}
@@ -18,7 +18,7 @@ import calculateImage from '/public/images/home/calculate.jpg'
           loading='lazy'
         />
         <img
-          class={styles.homeAboutImageSecond}
+          class={styles.aboutSectionImageSecond}
           src={calculateImage.src}
           alt='About'
           width={calculateImage.width}
@@ -26,19 +26,19 @@ import calculateImage from '/public/images/home/calculate.jpg'
           loading='lazy'
         />
 
-        <div class={styles.homeAboutInfo}>
-          <span class={styles.homeAboutExperience}>
+        <div class={styles.aboutSectionInfo}>
+          <span class={styles.aboutSectionExperience}>
             years of <br />
             experience
           </span>
 
-          <span class={styles.homeAboutExperienceNumber} data-value='15'>
+          <span class={styles.aboutSectionExperienceNumber} data-value='15'>
             0
           </span>
         </div>
       </div>
 
-      <div class={styles.homeAboutContent}>
+      <div class={styles.aboutSectionContent}>
         <div class='slogan slogan--reverse'>
           <span>Welcome to The Lenders</span>
         </div>
@@ -64,21 +64,21 @@ import calculateImage from '/public/images/home/calculate.jpg'
 <script>
   import { animateValue } from '@/utils/helpers'
 
-  const homeAboutExperienceNumber = document.querySelector(
-    '[class*="homeAboutExperienceNumber"]'
+  const aboutSectionExperienceNumber = document.querySelector(
+    '[class*="aboutSectionExperienceNumber"]'
   )
 
-  if (homeAboutExperienceNumber) {
+  if (aboutSectionExperienceNumber) {
     const years = parseInt(
-      homeAboutExperienceNumber.getAttribute('data-value') || '0'
+      aboutSectionExperienceNumber.getAttribute('data-value') || '0'
     )
 
     const observer = new IntersectionObserver(
       entries => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
-            animateValue(homeAboutExperienceNumber, 0, years, 1000)
-            observer.unobserve(homeAboutExperienceNumber)
+            animateValue(aboutSectionExperienceNumber, 0, years, 1000)
+            observer.unobserve(aboutSectionExperienceNumber)
           }
         })
       },
@@ -87,6 +87,6 @@ import calculateImage from '/public/images/home/calculate.jpg'
       }
     )
 
-    observer.observe(homeAboutExperienceNumber)
+    observer.observe(aboutSectionExperienceNumber)
   }
 </script>

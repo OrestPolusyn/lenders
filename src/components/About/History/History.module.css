@@ -2,7 +2,7 @@
   padding-block: clamp(60px, 8vw, 150px);
   background-color: var(--color-white);
   color: var(--color-blue-500);
-  clip-path: polygon(0 0, 100% 0, 100% 90%, 0% 100%);
+  clip-path: var(--clip-path-secondary);
 }
 
 .historyWrapper {
