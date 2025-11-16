@@ -18,7 +18,7 @@
   position: relative;
   display: grid;
   grid-template-columns: minmax(450px, 1fr) minmax(550px, 1fr);
-  gap: 5rem;
+  gap:clamp(20px, 5vw, 70px);
   z-index: 1;
 }
 
@@ -96,6 +96,45 @@
       z-index: 2;
 
       animation: moveImageSquare 2s linear infinite;
+    }
+  }
+}
+
+@media screen and (max-width: 1280px) {
+  .chooseWrapper {
+    gap: 20px;
+  }
+  .chooseImage {
+    img {
+      &:last-child {
+        transform: translate(-20%, 0);
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .chooseWrapper {
+    grid-template-columns: 1fr;
+  }
+
+  .chooseContent {
+    text-align: center;
+  }
+  .chooseList {
+    justify-content: center;
+    flex-wrap: wrap; 
+    li {
+      flex: 1;
+    }
+  }
+
+  .chooseImage {
+    padding-top: 40px;
+    img {
+      &:last-child {
+        transform: translate(0, 0);
+      }
     }
   }
 }

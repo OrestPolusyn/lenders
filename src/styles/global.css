@@ -279,6 +279,13 @@ h3 {
   }
 }
 
+@media screen and (max-width:992px) { 
+  .slogan {
+    margin-inline: auto;
+    text-align: center;
+}
+}
+
 .hero-section {
   margin-block-start: var(--top-padding);
 }
@@ -469,21 +476,24 @@ h3 {
   margin-block-end: 1rem;
 }
 
-.singlepost__content ul li {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding-left: 1rem;
-  position: relative;
-  &::before {
-    content: '';
-    display: block;
-    border-radius: 50%;
-    background-color: var(--color-blue-500);
-    width: 10px;
-    height: 10px;
+.singlepost__content {
+    ul {
+    padding-left: 1.5rem;
+    margin-block-end: 1rem;
+
+    li {
+      padding-left: 1rem;
+      &:not(:last-child) {
+        margin-block-end: 1rem;
+      }
+      &::marker {
+        content: '✓';
+        margin-right: 15px;
+      }
+    }
   }
 }
+
 
 .singlepost__content ul li:not(:last-child) {
   margin-block-end: 1rem;

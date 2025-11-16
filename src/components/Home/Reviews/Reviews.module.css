@@ -100,3 +100,9 @@
     object-fit: cover;
   }
 }
+
+@media screen and (max-width:992px) {
+  .homeReviewsWrapper {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}

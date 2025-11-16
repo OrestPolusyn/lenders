@@ -1,11 +1,12 @@
 .hero {
   position: relative;
+  isolation: isolate;
   height: 100dvh;
   min-height: 750px;
   color: var(--color-white);
 
   &::before {
-    content: '';
+    content: "";
     position: absolute;
     inset: 0;
     background-image: linear-gradient(
@@ -61,7 +62,7 @@
   position: relative;
 
   &::before {
-    content: '';
+    content: "";
     position: absolute;
     top: 50%;
     left: 50%;
@@ -85,21 +86,49 @@
   }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 992px) {
+  .heroWrapper {
+    grid-template-columns: 1fr;
+  }
+
   .hero {
     padding-block: clamp(60px, 8vw, 150px);
   }
 
   .heroContent {
+    align-items: center;
+    justify-content: center;
+    text-align: center;
     max-width: 100%;
   }
 
+  .heroAnimation lottie-player {
+    width: 90%;
+    &::before {
+      top: 0;
+    }
+  }
+
+  .heroAnimation {
+    &::before {
+      top: 0;
+    }
+  }
+
+  .heroActions {
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+@media screen and (max-width: 575px) {
   .heroActions {
     flex-direction: column;
     gap: 15px;
 
-    .button {
+   :global(.button) {
       width: 100%;
+      max-width: 100%;
       justify-content: center;
     }
   }

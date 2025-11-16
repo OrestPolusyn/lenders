@@ -8,7 +8,8 @@
 .historyWrapper {
   display: grid;
   grid-template-columns: minmax(450px, 1fr) minmax(550px, 1fr);
-  gap: 5rem;
+  align-items: center;
+  gap: clamp(20px, 5vw, 70px);
 }
 
 .historyContent {
@@ -57,6 +58,39 @@
   object-fit: cover;
   z-index: 1;
 }
+
+@media screen and (max-width:1280px) {
+  .historyWrapper {
+    grid-template-columns: minmax(400px, 1fr) minmax(400px, 1fr);
+    gap: 30px;
+  }
+}
+
+@media screen and (max-width:992px) {
+  .historyWrapper {
+    grid-template-columns: 1fr;
+    justify-content: center;
+  }
+
+  .historyContent {
+    h2 {
+     text-align: center;
+    }
+  }
+
+  .historyImage {
+    img {
+      max-height: 450px;
+      object-position: top;
+    }
+    &:before,
+    &:after {
+      width: 100px;
+      height: 100px;
+    }
+}
+}
+
 
 @keyframes moveImageSquare {
   0% {

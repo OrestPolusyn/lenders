@@ -1,5 +1,5 @@
 .loanList {
-  padding-block: clamp(1.5rem, 1.5rem + 5vw, 4rem);
+  padding: clamp(40px, 1.5rem + 5vw, 4rem) 0 calc(clamp(40px, 1.5rem + 5vw, 4rem) + 40px) 0;
   color: var(--color-blue-600);
   background-color: var(--color-white);
   text-align: center;

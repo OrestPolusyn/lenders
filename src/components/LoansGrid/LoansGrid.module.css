@@ -157,6 +157,35 @@
   animation: gridHide 1s ease 0.5s forwards;
 }
 
+
+@media screen and (max-width:992px) {
+  :global(.loanGridItem) {
+  padding: 10px;
+  }
+}
+
+@media screen and (max-width:768px) {
+  :global(.loanGrid) {
+  grid-template-columns: repeat(2, 1fr);
+  }
+
+.loanGrid li:last-child { 
+    grid-column: 2 span;
+  }
+}
+
+@media screen and (max-width:575px) {
+  :global(.loanGrid) {
+  grid-template-columns: 1fr;
+  }
+
+.loanGrid li:last-child { 
+    grid-column: auto;
+  }
+}
+
+  
+
 @keyframes gridHide {
   from {
     transform: translateY(0);

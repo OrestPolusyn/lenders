@@ -29,5 +29,30 @@
   display: grid;
   grid-template-columns: minmax(408px, 1fr) minmax(586px, 1fr);
   justify-content: center;
-  gap: clamp(1.5rem, 1.5rem + 5vw, 3.6rem);
+ gap: clamp(20px, 5vw, 70px);
+}
+
+@media screen and (max-width:1100px) {
+  .homeCalculatorWrapper {
+    gap: 20px;
+    grid-template-columns:repeat(1, 1fr);
+  }
+
+  .homeCalculatorWrapper {
+    :global(.loanGrid) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  }
+
+  .homeCalculatorContent > p {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width:575px) {
+  .homeCalculatorWrapper {
+    :global(.loanGrid) {
+    grid-template-columns: repeat(1, 1fr);
+  }
+  }
 }

@@ -143,6 +143,7 @@
   align-items: center;
   flex-wrap: wrap;
   gap: 15px;
+  margin-block-end: 20px;
 
   p {
     font-size: 13px;
@@ -167,13 +168,19 @@
     padding: 2.5rem 0 1.5rem;
   }
 
-  .footerNav {
-    grid-template-columns: 1fr;
-  }
-
   .footerCopyright {
     flex-direction: column;
     text-align: center;
+  }
+}
+
+@media screen and (max-width: 475px) {
+  .footerTopWrapper {
+    grid-template-columns: 1fr;
+  }
+
+  .footerNav {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
