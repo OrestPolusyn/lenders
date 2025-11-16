@@ -14,11 +14,10 @@ import faqImage from "/public/images/faq-bg.jpg";
     </div>
 
     <div class={`${styles.faqWrapper} wrapper`}>
-      <div class={styles.homeAboutImages}>
+      <div class={styles.FaqImage}>
         <img
-          class={styles.faqImage}
           src={faqImage.src}
-          alt="About"
+          alt="Faq"
           width={faqImage.width}
           height={faqImage.height}
           loading="lazy"
@@ -28,7 +27,9 @@ import faqImage from "/public/images/faq-bg.jpg";
       <ul class={styles.faqList}>
         <li class={styles.faqItem}>
           <details open>
-            <summary>What is a mortgage?</summary>
+            <summary>
+              <span>What is a mortgage?</span>
+            </summary>
             <div>
               <p>
                 A mortgage is a loan used to buy a home. Once approved for a

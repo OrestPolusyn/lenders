@@ -3,7 +3,7 @@
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url('/fonts/VisbyRegular.woff') format('woff');
+  src: url("/fonts/VisbyRegular.woff") format("woff");
 }
 
 @font-face {
@@ -11,7 +11,7 @@
   font-style: normal;
   font-weight: 500;
   font-display: swap;
-  src: url('/fonts/VisbyMedium.woff') format('woff');
+  src: url("/fonts/VisbyMedium.woff") format("woff");
 }
 
 @font-face {
@@ -19,7 +19,7 @@
   font-style: normal;
   font-weight: 600;
   font-display: swap;
-  src: url('/fonts/VisbySemibold.woff') format('woff');
+  src: url("/fonts/VisbySemibold.woff") format("woff");
 }
 
 @font-face {
@@ -27,7 +27,7 @@
   font-style: normal;
   font-weight: 700;
   font-display: swap;
-  src: url('/fonts/VisbyBold.woff') format('woff');
+  src: url("/fonts/VisbyBold.woff") format("woff");
 }
 
 @font-face {
@@ -35,7 +35,7 @@
   font-style: normal;
   font-weight: 800;
   font-display: swap;
-  src: url('/fonts/VisbyExtrabold.woff') format('woff');
+  src: url("/fonts/VisbyExtrabold.woff") format("woff");
 }
 
 @font-face {
@@ -43,7 +43,7 @@
   font-style: normal;
   font-weight: 900;
   font-display: swap;
-  src: url('/fonts/VisbyHeavy.woff') format('woff');
+  src: url("/fonts/VisbyHeavy.woff") format("woff");
 }
 
 :root {
@@ -52,7 +52,7 @@
   --container-width: calc(var(--content-width) + (var(--container-offset) * 2));
 
   /* font-family */
-  --font-family: 'Visby', sans-serif;
+  --font-family: "Visby", sans-serif;
 
   /* font-weight */
   --fw-400: 400;
@@ -84,7 +84,9 @@
   --letter-spacing-none: 0;
   --top-padding: 20px;
 
-  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 10%), 0 4px 6px -4px rgb(0 0 0 / 10%);
+  box-shadow:
+    0 10px 15px -3px rgb(0 0 0 / 10%),
+    0 4px 6px -4px rgb(0 0 0 / 10%);
 }
 
 .logo {
@@ -167,7 +169,7 @@ img {
   padding-left: 28px;
 
   &::before {
-    content: '';
+    content: "";
     position: absolute;
     top: 50%;
     left: 0;
@@ -231,7 +233,7 @@ h3 {
 
   &::before,
   &::after {
-    content: '';
+    content: "";
     position: absolute;
     top: 50%;
     left: -10px;
@@ -294,7 +296,7 @@ h3 {
     z-index: 2;
 
     &::before {
-      content: '';
+      content: "";
       position: absolute;
       top: 0;
       right: -10px;
@@ -306,7 +308,7 @@ h3 {
   }
 
   &::before {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     left: 0;
@@ -318,7 +320,7 @@ h3 {
   }
 
   &::after {
-    content: '';
+    content: "";
     margin-inline-start: 20px;
     width: 20px;
     height: 20px;
@@ -399,13 +401,17 @@ h3 {
   }
 }
 
+.singlepost {
+  color: var(--color-blue-600);
+  background-color: var(--color-white);
+}
+
 .singlepost__article {
-  color: var(--color-white);
   .button--back {
     margin-block-end: 30px;
   }
 
-  h1 {
+  h2 {
     margin-block-end: 1.5rem;
   }
 }
@@ -418,15 +424,15 @@ h3 {
 }
 
 .singlepost__image {
-  max-height: 650px;
+  max-height: 450px;
 }
 
 .singlepost__category {
   position: absolute;
   top: 15px;
   right: 15px;
-  background-color: var(--color-blue-100);
-  color: var(--color-blue-600);
+  background-color: var(--color-blue-600);
+  color: var(--color-white);
   padding: 6px 14px;
   border-radius: calc(var(--radius-main) * 2);
   font-size: 12px;
@@ -437,7 +443,7 @@ h3 {
 
 .singlepost__date {
   display: block;
-  color: var(--color-gold-400);
+  color: var(--color-blue-500);
   font-weight: var(--fw-600);
   margin-bottom: 10px;
 }
@@ -454,11 +460,10 @@ h3 {
   padding-left: 1rem;
   position: relative;
   &::before {
-    content: '';
+    content: "";
     display: block;
     border-radius: 50%;
-    left: 15px;
-    background-color: var(--color-gold-400);
+    background-color: var(--color-blue-500);
     width: 10px;
     height: 10px;
   }
@@ -484,17 +489,56 @@ h3 {
   }
 }
 
-.contactWrapper {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1rem;
+.privacy {
+  color: var(--color-blue-600);
+  background-color: var(--color-white);
+
+  a {
+    color: var(--color-blue-600);
+    text-decoration: underline;
+  }
+}
+
+.privacy__content {
+  strong {
+    font-weight: var(--fw-600);
+    text-transform: uppercase;
+  }
+
+  h2 {
+    font-size: clamp(20px, 0.875rem + 1.1111vw, 30px);
+    margin-block-end: 1.5rem;
+  }
+
+  h3 {
+    font-size: clamp(18px, 0.875rem + 1.1111vw, 25px);
+    margin-block-end: 1rem;
+  }
+
+  p:not(:last-child) {
+    margin-block-end: 1rem;
+  }
+
+  ul {
+    padding-left: 1.5rem;
+    margin-block-end: 1rem;
+
+    li {
+      padding-left: 1rem;
+      &:not(:last-child) {
+        margin-block-end: 1rem;
+      }
+      &::marker {
+        content: "✓";
+        margin-right: 15px;
+      }
+    }
+  }
 }
 
 /* Fixed header spacing */
 .main {
-  padding-top: calc(
-    var(--header-height) + 20px
-  ); /* fallback to 105px if JS not loaded */
+  padding-top: calc(var(--header-height) + 20px); /* fallback to 105px if JS not loaded */
 }
 
 .main--singlepost {
@@ -503,8 +547,6 @@ h3 {
 
 @media screen and (max-width: 768px) {
   .main {
-    padding-top: calc(
-      var(--header-height) + 20px
-    ); /* fallback to 80px on mobile */
+    padding-top: calc(var(--header-height) + 20px); /* fallback to 80px on mobile */
   }
 }
