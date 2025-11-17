@@ -126,6 +126,7 @@
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out;
   display: inline-flex;
   align-items: center;
+  cursor: pointer;
 
   &:global(.phone) {
     border: 1px solid var(--color-blue-600);
@@ -143,17 +144,14 @@
 
 .headerDropdownIcon {
   display: inline-flex;
+  align-items: center;
+  justify-content: center;
   margin-left: 0.35rem;
-  transition: transform 0.15s ease-in-out;
-}
-
-.headerListItemHasDropdown:hover .headerDropdownIcon {
-  transform: translateY(1px) rotate(180deg);
-}
-
-.headerDropdownIcon {
-  display: inline-flex;
-  margin-left: 0.35rem;
+  width: 0;
+  height: 0;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 5px solid var(--color-blue-400);
   transition: transform 0.15s ease-in-out;
 }
 

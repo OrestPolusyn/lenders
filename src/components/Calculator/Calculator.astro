@@ -1,0 +1,626 @@
+---
+import styles from './Calculator.module.css'
+import { BUSINESS_INFO } from '@/config/constants'
+---
+
+<section class={styles.calculator} aria-labelledby='loan-calculator-heading'>
+  <div class='container'>
+    <div class={styles.calculatorInner}>
+      <div class={styles.calculatorHeader}>
+        <h2 id='loan-calculator-heading'>Mortgage & Loan Payment Calculator</h2>
+        <p>
+          Compare different mortgage programs, estimate your monthly payment,
+          and see how much goes toward principal versus interest over the life
+          of the loan.
+        </p>
+      </div>
+
+      <div class={styles.calculatorLayout}>
+        <form
+          class={styles.calculatorForm}
+          data-calculator-form
+          data-target-email={BUSINESS_INFO.email}
+        >
+          <div class={styles.formRow}>
+            <label for='program'>Loan program</label>
+            <select id='program' name='program' data-program>
+              <option value='refinance-purchase'
+                >Refinance &amp; Purchase</option
+              >
+              <option value='primary-home' selected>Primary Home</option>
+              <option value='secondary-home'>Secondary Home</option>
+              <option value='investment-property'>Investment Property</option>
+              <option value='conventional'>Conventional</option>
+              <option value='fha'>FHA</option>
+              <option value='va'>VA</option>
+              <option value='jumbo'>Jumbo Prime</option>
+              <option value='reverse-mortgage'>Reverse Mortgage</option>
+            </select>
+          </div>
+
+          <div class={styles.formGrid}>
+            <div class={styles.formRow}>
+              <label for='homePrice'>Loan amount</label>
+              <div class={styles.inputWithPrefix}>
+                <span>$</span>
+                <input
+                  id='homePrice'
+                  name='homePrice'
+                  type='number'
+                  min='0'
+                  step='1000'
+                  value='400000'
+                  data-home-price
+                />
+              </div>
+            </div>
+
+            <div class={styles.formRow}>
+              <label for='downPayment'>Down payment</label>
+              <div class={styles.dualInput}>
+                <div class={styles.inputWithPrefix}>
+                  <span>$</span>
+                  <input
+                    id='downPayment'
+                    name='downPayment'
+                    type='number'
+                    min='0'
+                    step='1000'
+                    value='80000'
+                    data-down-payment
+                  />
+                </div>
+                <div class={styles.inputWithSuffix}>
+                  <input
+                    id='downPaymentPercent'
+                    name='downPaymentPercent'
+                    type='number'
+                    min='0'
+                    max='100'
+                    step='0.1'
+                    value='20'
+                    data-down-payment-percent
+                  />
+                  <span>%</span>
+                </div>
+              </div>
+            </div>
+
+            <div class={styles.formRow}>
+              <label for='rate'>Interest rate (APR)</label>
+              <div class={styles.inputWithSuffix}>
+                <input
+                  id='rate'
+                  name='rate'
+                  type='number'
+                  min='0'
+                  max='30'
+                  step='0.01'
+                  value='6.5'
+                  data-rate
+                />
+                <span>%</span>
+              </div>
+            </div>
+
+            <div class={styles.formRow}>
+              <label for='term'>Loan term</label>
+              <select id='term' name='term' data-term>
+                <option value='30' selected>30 years</option>
+                <option value='25'>25 years</option>
+                <option value='20'>20 years</option>
+                <option value='15'>15 years</option>
+                <option value='10'>10 years</option>
+              </select>
+            </div>
+          </div>
+
+          <div class={styles.formRow}>
+            <label for='taxes'>Estimated taxes &amp; insurance</label>
+            <div class={styles.inputWithPrefix}>
+              <span>$</span>
+              <input
+                id='taxes'
+                name='taxes'
+                type='number'
+                min='0'
+                step='10'
+                value='350'
+                data-taxes
+              />
+            </div>
+            <p class={styles.fieldHint}>
+              Optional: monthly estimate for property taxes, insurance, HOA, or
+              other costs.
+            </p>
+          </div>
+
+          <div class={styles.formRow}>
+            <label>Your details</label>
+            <div class={styles.formGridSmall}>
+              <div class={styles.formRowInner}>
+                <input
+                  type='text'
+                  name='fullName'
+                  placeholder='Full name'
+                  autocomplete='name'
+                  data-name
+                />
+              </div>
+              <div class={styles.formRowInner}>
+                <input
+                  type='tel'
+                  name='phone'
+                  placeholder='Phone number'
+                  autocomplete='tel'
+                  data-phone
+                />
+              </div>
+              <div class={styles.formRowInner}>
+                <input
+                  type='email'
+                  name='email'
+                  placeholder='Email address'
+                  autocomplete='email'
+                  data-email
+                />
+              </div>
+            </div>
+          </div>
+
+          <div class={styles.formActions}>
+            <button type='button' class='button' data-calc-submit>
+              <span>Update calculation</span>
+            </button>
+
+            <button
+              type='button'
+              class={`button button--reverse ${styles.sendButton}`}
+              data-send-results
+            >
+              <span>Send my results</span>
+            </button>
+          </div>
+        </form>
+
+        <div class={styles.calculatorResults} data-calculator-results>
+          <div class={styles.resultsTop}>
+            <div class={styles.donutWrapper}>
+              <div class={styles.donutLabel}>
+                <span class={styles.donutAmount} data-monthly-payment>
+                  $0
+                </span>
+                <span class={styles.donutCaption}
+                  >Estimated monthly payment</span
+                >
+              </div>
+
+              <svg
+                class={styles.donut}
+                viewBox='0 0 120 120'
+                aria-hidden='true'
+              >
+                <circle class={styles.donutTrack} cx='60' cy='60' r='44'
+                ></circle>
+                <circle
+                  class={styles.donutSlicePrincipal}
+                  cx='60'
+                  cy='60'
+                  r='44'
+                  data-donut-principal></circle>
+                <circle
+                  class={styles.donutSliceInterest}
+                  cx='60'
+                  cy='60'
+                  r='44'
+                  data-donut-interest></circle>
+              </svg>
+
+              <div class={styles.legend}>
+                <div class={styles.legendItem}>
+                  <span
+                    class={`${styles.legendDot} ${styles.legendDotPrincipal}`}
+                  ></span>
+                  <span>Principal</span>
+                  <strong data-legend-principal>$0</strong>
+                </div>
+                <div class={styles.legendItem}>
+                  <span
+                    class={`${styles.legendDot} ${styles.legendDotInterest}`}
+                  ></span>
+                  <span>Interest</span>
+                  <strong data-legend-interest>$0</strong>
+                </div>
+              </div>
+            </div>
+
+            <div class={styles.resultsSummary}>
+              <h3>Loan snapshot</h3>
+              <dl>
+                <div>
+                  <dt>Loan amount</dt>
+                  <dd data-summary-loan-amount>$0</dd>
+                </div>
+                <div>
+                  <dt>Down payment</dt>
+                  <dd data-summary-down-payment>$0 (0%)</dd>
+                </div>
+                <div>
+                  <dt>Principal &amp; interest</dt>
+                  <dd data-summary-principal-interest>$0</dd>
+                </div>
+                <div>
+                  <dt>Taxes &amp; insurance (est.)</dt>
+                  <dd data-summary-taxes>$0</dd>
+                </div>
+                <div>
+                  <dt>Total monthly payment</dt>
+                  <dd data-summary-monthly-total>$0</dd>
+                </div>
+              </dl>
+            </div>
+          </div>
+
+          <div class={styles.resultsDetails}>
+            <h3>Lifetime cost overview</h3>
+            <div class={styles.resultsDetailsGrid}>
+              <div>
+                <p class={styles.resultsLabel}>Total paid over the term</p>
+                <p class={styles.resultsValue} data-total-paid>$0</p>
+              </div>
+              <div>
+                <p class={styles.resultsLabel}>Total principal</p>
+                <p class={styles.resultsValue} data-total-principal>$0</p>
+              </div>
+              <div>
+                <p class={styles.resultsLabel}>Total interest</p>
+                <p class={styles.resultsValue} data-total-interest>$0</p>
+              </div>
+            </div>
+
+            <p class={styles.disclaimer}>
+              This calculator is for educational purposes only and does not
+              constitute a commitment to lend. Actual terms, rates, and costs
+              may vary. Connect with The Lenders for a personalized quote.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  if (typeof window !== 'undefined') {
+    const form = document.querySelector(
+      '[data-calculator-form]'
+    ) as HTMLFormElement | null
+
+    if (form) {
+      const programSelect = form.querySelector(
+        '[data-program]'
+      ) as HTMLSelectElement | null
+      const homePriceInput = form.querySelector(
+        '[data-home-price]'
+      ) as HTMLInputElement | null
+      const downPaymentInput = form.querySelector(
+        '[data-down-payment]'
+      ) as HTMLInputElement | null
+      const downPaymentPercentInput = form.querySelector(
+        '[data-down-payment-percent]'
+      ) as HTMLInputElement | null
+      const rateInput = form.querySelector(
+        '[data-rate]'
+      ) as HTMLInputElement | null
+      const termSelect = form.querySelector(
+        '[data-term]'
+      ) as HTMLSelectElement | null
+      const taxesInput = form.querySelector(
+        '[data-taxes]'
+      ) as HTMLInputElement | null
+      const submitButton = form.querySelector(
+        '[data-calc-submit]'
+      ) as HTMLButtonElement | null
+
+      const nameInput = form.querySelector(
+        '[data-name]'
+      ) as HTMLInputElement | null
+      const phoneInput = form.querySelector(
+        '[data-phone]'
+      ) as HTMLInputElement | null
+      const emailInput = form.querySelector(
+        '[data-email]'
+      ) as HTMLInputElement | null
+      const sendButton = form.querySelector(
+        '[data-send-results]'
+      ) as HTMLButtonElement | null
+
+      const monthlyPaymentEl = document.querySelector(
+        '[data-monthly-payment]'
+      ) as HTMLElement | null
+      const donutPrincipal = document.querySelector(
+        '[data-donut-principal]'
+      ) as SVGCircleElement | null
+      const donutInterest = document.querySelector(
+        '[data-donut-interest]'
+      ) as SVGCircleElement | null
+
+      const legendPrincipal = document.querySelector(
+        '[data-legend-principal]'
+      ) as HTMLElement | null
+      const legendInterest = document.querySelector(
+        '[data-legend-interest]'
+      ) as HTMLElement | null
+
+      const summaryLoanAmount = document.querySelector(
+        '[data-summary-loan-amount]'
+      ) as HTMLElement | null
+      const summaryDownPayment = document.querySelector(
+        '[data-summary-down-payment]'
+      ) as HTMLElement | null
+      const summaryPrincipalInterest = document.querySelector(
+        '[data-summary-principal-interest]'
+      ) as HTMLElement | null
+      const summaryTaxes = document.querySelector(
+        '[data-summary-taxes]'
+      ) as HTMLElement | null
+      const summaryMonthlyTotal = document.querySelector(
+        '[data-summary-monthly-total]'
+      ) as HTMLElement | null
+
+      const totalPaidEl = document.querySelector(
+        '[data-total-paid]'
+      ) as HTMLElement | null
+      const totalPrincipalEl = document.querySelector(
+        '[data-total-principal]'
+      ) as HTMLElement | null
+      const totalInterestEl = document.querySelector(
+        '[data-total-interest]'
+      ) as HTMLElement | null
+
+      const R = 44
+      const CIRC = 2 * Math.PI * R
+
+      const formatCurrency = (value: number) => {
+        if (!Number.isFinite(value)) return '$0'
+        return value.toLocaleString('en-US', {
+          style: 'currency',
+          currency: 'USD',
+          maximumFractionDigits: 0,
+        })
+      }
+
+      const validateEmail = (email: string): boolean => {
+        const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+        return re.test(email)
+      }
+
+      const validatePhone = (phone: string): boolean => {
+        const cleaned = phone.replace(/\D/g, '')
+        return cleaned.length >= 10
+      }
+
+      const syncDownPayment = (source: 'amount' | 'percent') => {
+        if (!homePriceInput || !downPaymentInput || !downPaymentPercentInput)
+          return
+
+        const price = Number(homePriceInput.value) || 0
+
+        if (source === 'amount') {
+          const down = Math.min(Number(downPaymentInput.value) || 0, price)
+          const percent = price > 0 ? (down / price) * 100 : 0
+          downPaymentInput.value = down.toFixed(0)
+          downPaymentPercentInput.value = percent.toFixed(1)
+        } else {
+          const percent = Math.min(
+            Math.max(Number(downPaymentPercentInput.value) || 0, 0),
+            100
+          )
+          const down = (price * percent) / 100
+          downPaymentPercentInput.value = percent.toFixed(1)
+          downPaymentInput.value = down.toFixed(0)
+        }
+      }
+
+      const presetByProgram: Record<string, { rate: number; term: number }> = {
+        'refinance-purchase': { rate: 6.25, term: 30 },
+        'primary-home': { rate: 6.5, term: 30 },
+        'secondary-home': { rate: 6.75, term: 30 },
+        'investment-property': { rate: 7.1, term: 30 },
+        conventional: { rate: 6.4, term: 30 },
+        fha: { rate: 6.1, term: 30 },
+        va: { rate: 6.05, term: 30 },
+        jumbo: { rate: 6.9, term: 30 },
+        'reverse-mortgage': { rate: 7.25, term: 30 },
+      }
+
+      const applyProgramPreset = () => {
+        if (!programSelect || !rateInput || !termSelect) return
+        const preset = presetByProgram[programSelect.value]
+        if (!preset) return
+
+        rateInput.value = preset.rate.toString()
+        termSelect.value = preset.term.toString()
+      }
+
+      const calculate = () => {
+        if (
+          !homePriceInput ||
+          !downPaymentInput ||
+          !rateInput ||
+          !termSelect ||
+          !taxesInput
+        ) {
+          return
+        }
+
+        const price = Number(homePriceInput.value) || 0
+        const downPayment = Math.min(Number(downPaymentInput.value) || 0, price)
+        const principal = Math.max(price - downPayment, 0)
+        const annualRate = Number(rateInput.value) || 0
+        const termYears = Number(termSelect.value) || 30
+        const taxes = Number(taxesInput.value) || 0
+
+        const n = termYears * 12
+        const monthlyRate = annualRate > 0 ? annualRate / 100 / 12 : 0
+
+        let principalAndInterest = 0
+        if (monthlyRate === 0) {
+          principalAndInterest = n > 0 ? principal / n : 0
+        } else {
+          const factor = Math.pow(1 + monthlyRate, n)
+          principalAndInterest =
+            (principal * monthlyRate * factor) / (factor - 1)
+        }
+
+        const totalMonthly = principalAndInterest + taxes
+
+        const totalPaid = totalMonthly * n
+        const totalInterest = Math.max(totalPaid - principal - taxes * n, 0)
+
+        // Update UI
+        if (monthlyPaymentEl)
+          monthlyPaymentEl.textContent = formatCurrency(totalMonthly)
+
+        if (summaryLoanAmount)
+          summaryLoanAmount.textContent = formatCurrency(principal)
+        if (summaryDownPayment) {
+          const percent = price > 0 ? (downPayment / price) * 100 : 0
+          summaryDownPayment.textContent = `${formatCurrency(
+            downPayment
+          )} (${percent.toFixed(1)}%)`
+        }
+        if (summaryPrincipalInterest)
+          summaryPrincipalInterest.textContent =
+            formatCurrency(principalAndInterest)
+        if (summaryTaxes) summaryTaxes.textContent = formatCurrency(taxes)
+        if (summaryMonthlyTotal)
+          summaryMonthlyTotal.textContent = formatCurrency(totalMonthly)
+
+        if (totalPaidEl) totalPaidEl.textContent = formatCurrency(totalPaid)
+        if (totalPrincipalEl)
+          totalPrincipalEl.textContent = formatCurrency(principal)
+        if (totalInterestEl)
+          totalInterestEl.textContent = formatCurrency(totalInterest)
+
+        // Donut chart: principal vs interest over the term
+        const principalTotal = principal
+        const interestTotal = totalInterest
+        const sum = principalTotal + interestTotal || 1
+        const principalRatio = principalTotal / sum
+        const interestRatio = interestTotal / sum
+
+        const setSlice = (
+          el: SVGCircleElement | null,
+          ratio: number,
+          offset: number
+        ) => {
+          if (!el) return
+          const length = CIRC * ratio
+          el.style.strokeDasharray = `${length} ${CIRC}`
+          el.style.strokeDashoffset = `${-offset}`
+        }
+
+        const principalLength = CIRC * principalRatio
+        setSlice(donutPrincipal, principalRatio, 0)
+        setSlice(donutInterest, interestRatio, principalLength)
+
+        if (legendPrincipal)
+          legendPrincipal.textContent = formatCurrency(principalTotal)
+        if (legendInterest)
+          legendInterest.textContent = formatCurrency(interestTotal)
+      }
+
+      // Sync down payment fields
+      downPaymentInput?.addEventListener('input', () =>
+        syncDownPayment('amount')
+      )
+      downPaymentPercentInput?.addEventListener('input', () =>
+        syncDownPayment('percent')
+      )
+      homePriceInput?.addEventListener('input', () => syncDownPayment('amount'))
+
+      programSelect?.addEventListener('change', () => {
+        applyProgramPreset()
+        calculate()
+      })
+
+      submitButton?.addEventListener('click', () => {
+        calculate()
+      })
+
+      const targetEmail = (form.getAttribute('data-target-email') || '').trim()
+
+      sendButton?.addEventListener('click', () => {
+        calculate()
+
+        if (!nameInput || !phoneInput || !emailInput) return
+
+        const name = nameInput.value.trim()
+        const phone = phoneInput.value.trim()
+        const email = emailInput.value.trim()
+
+        if (!name || name.length < 2) {
+          alert('Please enter your name so we know who to contact.')
+          return
+        }
+
+        if (!validateEmail(email)) {
+          alert('Please enter a valid email address.')
+          return
+        }
+
+        if (!validatePhone(phone)) {
+          alert('Please enter a valid phone number (at least 10 digits).')
+          return
+        }
+
+        const emailTo = targetEmail || email
+
+        const loanAmount = summaryLoanAmount?.textContent || ''
+        const downPayment = summaryDownPayment?.textContent || ''
+        const principalInterest = summaryPrincipalInterest?.textContent || ''
+        const taxes = summaryTaxes?.textContent || ''
+        const totalMonthly = summaryMonthlyTotal?.textContent || ''
+        const totalPaid = totalPaidEl?.textContent || ''
+        const totalPrincipal = totalPrincipalEl?.textContent || ''
+        const totalInterest = totalInterestEl?.textContent || ''
+
+        const subject = encodeURIComponent(
+          `Loan calculator request from ${name}`
+        )
+
+        const bodyLines = [
+          `Name: ${name}`,
+          `Email: ${email}`,
+          `Phone: ${phone}`,
+          '',
+          `Program: ${
+            programSelect?.options[programSelect.selectedIndex]?.text || ''
+          }`,
+          `Loan amount: ${loanAmount}`,
+          `Down payment: ${downPayment}`,
+          `Interest rate (APR): ${rateInput?.value || ''}%`,
+          `Term: ${termSelect?.value || ''} years`,
+          `Estimated taxes & insurance: ${taxes}`,
+          '',
+          `Principal & interest (monthly): ${principalInterest}`,
+          `Total monthly payment: ${totalMonthly}`,
+          '',
+          `Total paid over term: ${totalPaid}`,
+          `Total principal: ${totalPrincipal}`,
+          `Total interest: ${totalInterest}`,
+        ]
+
+        const body = encodeURIComponent(bodyLines.join('\n'))
+        const href = `mailto:${encodeURIComponent(emailTo)}?subject=${subject}&body=${body}`
+        window.location.href = href
+      })
+
+      // Initial preset + calculation
+      applyProgramPreset()
+      syncDownPayment('amount')
+      calculate()
+    }
+  }
+</script>

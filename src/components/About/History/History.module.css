@@ -2,7 +2,6 @@
   padding-block: clamp(60px, 8vw, 150px);
   background-color: var(--color-white);
   color: var(--color-blue-500);
-  clip-path: var(--clip-path-secondary);
 }
 
 .historyWrapper {
@@ -59,14 +58,14 @@
   z-index: 1;
 }
 
-@media screen and (max-width:1280px) {
+@media screen and (max-width: 1280px) {
   .historyWrapper {
     grid-template-columns: minmax(400px, 1fr) minmax(400px, 1fr);
     gap: 30px;
   }
 }
 
-@media screen and (max-width:992px) {
+@media screen and (max-width: 992px) {
   .historyWrapper {
     grid-template-columns: 1fr;
     justify-content: center;
@@ -74,7 +73,7 @@
 
   .historyContent {
     h2 {
-     text-align: center;
+      text-align: center;
     }
   }
 
@@ -88,9 +87,8 @@
       width: 100px;
       height: 100px;
     }
+  }
 }
-}
-
 
 @keyframes moveImageSquare {
   0% {

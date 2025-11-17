@@ -22,7 +22,6 @@
     text-align: center;
     width: 100%;
     max-width: 250px;
-    padding-block: 0.7rem;
   }
 }
 
@@ -40,7 +39,7 @@
 
 .mortgageCalculatorGrid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: 1fr;
   gap: 0.9rem 1rem;
   margin-bottom: 1.5rem;
 }
@@ -98,6 +97,7 @@
   align-items: flex-start;
   justify-content: space-between;
   gap: 15px;
+  margin-top: auto;
   border-top: 1px solid rgba(255, 255, 255, 0.12);
 }
 
@@ -181,16 +181,12 @@
     padding: 1.25rem 1.25rem 1.5rem;
   }
 
-  .mortgageCalculatorGrid {
-    grid-template-columns: 1fr;
-  }
-
   .mortgageCalculatorMeta {
     text-align: left;
   }
 }
 
-@media screen and (max-width:575px) {
+@media screen and (max-width: 575px) {
   .mortgageCalculatorResults {
     flex-direction: column;
     align-items: center;
@@ -199,8 +195,8 @@
     div {
       display: flex;
       flex-direction: column;
-    align-items: center;
-    justify-content: center;
+      align-items: center;
+      justify-content: center;
     }
   }
 }

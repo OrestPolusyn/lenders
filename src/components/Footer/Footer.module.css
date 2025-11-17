@@ -1,10 +1,39 @@
 .footer {
+  position: relative;
   background: var(--color-blue-600);
   color: var(--color-white);
   padding-block-start: clamp(3rem, 3rem + 3vw, 5rem);
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 50%;
+    height: 90%;
+    overflow: hidden;
+    background-color: var(--color-gold-400);
+    filter: blur(100px);
+    border-radius: 100%;
+    z-index: 0;
+    opacity: 0.5;
+    transform: translate(-30%, 40%);
+
+    @media screen and (max-width: 1100px) {
+      width: 100%;
+      height: 60%;
+    }
+  }
 }
 
 /* Top Section */
+
+.footerTop {
+  position: relative;
+  z-index: 1;
+}
+
 .footerTopWrapper {
   display: grid;
   grid-template-columns: 1.2fr 2fr;

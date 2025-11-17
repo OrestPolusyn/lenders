@@ -4,7 +4,7 @@ import MortgageCalculator from '@/components/MortgageCalculator/MortgageCalculat
 import styles from './Calculator.module.css'
 ---
 
-<section class={styles.homeCalculator} >
+<section class={styles.homeCalculator}>
   <div class='container'>
     <div class={styles.homeCalculatorContent}>
       <div class='slogan slogan--double'>
@@ -23,7 +23,13 @@ import styles from './Calculator.module.css'
       <MortgageCalculator />
 
       <div class={styles.homeLoanPrograms}>
+        <h3>Top Programs</h3>
+
         <LoansGrid numberOfItems={4} linkToLoanPrograms={true} />
+
+        <a href='/loan-programs' class='button'>
+          <span>view all programs</span>
+        </a>
       </div>
     </div>
   </div>

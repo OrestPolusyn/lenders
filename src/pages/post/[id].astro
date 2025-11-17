@@ -1,83 +1,84 @@
 ---
-import BaseLayout from "@/layouts/BaseLayout.astro";
-import Header from "@/components/Header/Header.astro";
-import Footer from "@/components/Footer/Footer.astro";
-import PageHeader from "../../components/PageHeader/PageHeader.astro";
-import LazyImage from "@/components/UI/LazyImage/LazyImage.astro";
-import newsData from "@/data/news.json";
+import Footer from '@/components/Footer/Footer.astro'
+import GetInTouch from '@/components/GetInTouch/GetInTouch.astro'
+import Header from '@/components/Header/Header.astro'
+import PageHeader from '@/components/PageHeader/PageHeader.astro'
+import LazyImage from '@/components/UI/LazyImage/LazyImage.astro'
+import newsData from '@/data/news.json'
+import BaseLayout from '@/layouts/BaseLayout.astro'
 
 interface NewsItem {
-  id: number;
-  title: string;
-  description: string;
-  date: string; // ISO
-  category: string;
-  image: string;
-  "image-second"?: string;
-  "image-third"?: string;
+  id: number
+  title: string
+  description: string
+  date: string // ISO
+  category: string
+  image: string
+  'image-second'?: string
+  'image-third'?: string
 }
 
-const news: NewsItem[] = newsData as NewsItem[];
+const news: NewsItem[] = newsData as NewsItem[]
 
 export async function getStaticPaths() {
-  const posts = newsData as NewsItem[];
-  return posts.map((item) => ({
+  const posts = newsData as NewsItem[]
+  return posts.map(item => ({
     params: { id: String(item.id) },
     props: { item },
-  }));
+  }))
 }
 
-const { item: itemFromProps } = Astro.props as { item?: NewsItem };
-const { id } = Astro.params;
+const { item: itemFromProps } = Astro.props as { item?: NewsItem }
+const { id } = Astro.params
 
 const item =
   itemFromProps ??
-  (newsData as NewsItem[]).find((n) => String(n.id) === String(id));
+  (newsData as NewsItem[]).find(n => String(n.id) === String(id))
 
 if (!item) {
-  throw new Error(`Post with id "${id}" not found`);
+  throw new Error(`Post with id "${id}" not found`)
 }
 
-const formattedDate = new Date(item.date).toLocaleDateString("en-US", {
-  year: "numeric",
-  month: "long",
-  day: "numeric",
-});
+const formattedDate = new Date(item.date).toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+})
 ---
 
 <BaseLayout title={item.title} description={item.description}>
   <Header />
 
-  <main class="main">
+  <main class='main'>
     <PageHeader title={item.title} />
 
-    <section class="singlepost">
-      <div class="container">
-        <article class="singlepost__article">
-          <a class="button button--back" href="/news">
+    <section class='singlepost'>
+      <div class='container'>
+        <article class='singlepost__article'>
+          <a class='button button--back' href='/news'>
             <span>Back to blog</span>
           </a>
 
           <h2>{item.title}</h2>
 
-          <div class="singlepost__media">
+          <div class='singlepost__media'>
             <LazyImage
               src={item.image}
               alt={item.title}
               width={1600}
               height={450}
-              class="singlepost__image"
+              class='singlepost__image'
             />
-            <span class="singlepost__category">{item.category}</span>
+            <span class='singlepost__category'>{item.category}</span>
           </div>
 
-          <div class="singlepost__meta">
-            <time class="singlepost__date" datetime={item.date}>
+          <div class='singlepost__meta'>
+            <time class='singlepost__date' datetime={item.date}>
               {formattedDate}
             </time>
           </div>
 
-          <div class="singlepost__content">
+          <div class='singlepost__content'>
             <p>
               Neque porro est qui dolorem ipsum quia quaed inventor veritatis et
               quasi architecto beatae vitae dicta sunt explicabo. Aelltes port
@@ -103,25 +104,25 @@ const formattedDate = new Date(item.date).toLocaleDateString("en-US", {
             </p>
 
             {
-              (item["image-second"] || item["image-third"]) && (
-                <div class="singlepost__wrapper">
-                  {item["image-second"] && (
+              (item['image-second'] || item['image-third']) && (
+                <div class='singlepost__wrapper'>
+                  {item['image-second'] && (
                     <LazyImage
-                      src={item["image-second"]}
+                      src={item['image-second']}
                       alt={item.title}
                       width={600}
                       height={350}
-                      class="singlepost__image"
+                      class='singlepost__image'
                     />
                   )}
 
-                  {item["image-third"] && (
+                  {item['image-third'] && (
                     <LazyImage
-                      src={item["image-third"]}
+                      src={item['image-third']}
                       alt={item.title}
                       width={600}
                       height={350}
-                      class="singlepost__image"
+                      class='singlepost__image'
                     />
                   )}
                 </div>
@@ -148,6 +149,8 @@ const formattedDate = new Date(item.date).toLocaleDateString("en-US", {
         </article>
       </div>
     </section>
+
+    <GetInTouch />
   </main>
 
   <Footer />

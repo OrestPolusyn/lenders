@@ -27,8 +27,8 @@ const formatDate = (dateString: string) => {
     <h2>Latest News</h2>
 
     <ul class={styles.blogList}>
-        {
-          news.map(item => (
+      {
+        news.map(item => (
           <li class={styles.newsItem}>
             <article>
               <div class={styles.newsItemImage}>
@@ -65,6 +65,8 @@ const formatDate = (dateString: string) => {
       }
     </ul>
 
-    <button class='button'>Load More</button>
+    <button class='button'>
+      <span>View more</span>
+    </button>
   </div>
 </section>

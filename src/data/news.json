@@ -24,13 +24,5 @@
     "date": "2024-03-05",
     "category": "Success Stories",
     "image": "/images/news/news-3.jpg"
-  },
-  {
-    "id": 4,
-    "title": "New Loan Products Available",
-    "description": "We are excited to announce the launch of our new flexible loan products designed to meet diverse financial needs.",
-    "date": "2024-03-15",
-    "category": "Product Launch",
-    "image": "/images/news/news-1.jpg"
   }
 ]

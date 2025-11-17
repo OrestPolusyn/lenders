@@ -1,23 +1,23 @@
 ---
-import Footer from "../components/Footer/Footer.astro";
-import Header from "../components/Header/Header.astro";
-import PageHeader from "../components/PageHeader/PageHeader.astro";
-import BaseLayout from "../layouts/BaseLayout.astro";
-// Import Astro components
+import Footer from '@/components/Footer/Footer.astro'
+import GetInTouch from '@/components/GetInTouch/GetInTouch.astro'
+import Header from '@/components/Header/Header.astro'
+import PageHeader from '@/components/PageHeader/PageHeader.astro'
+import BaseLayout from '@/layouts/BaseLayout.astro'
 ---
 
 <BaseLayout
-  title="The Lenders | licensing and disclosures"
-  description="Review The Lenders licensing and disclosures to see our NMLS registration, state licenses, Equal Housing Lender statement, and other regulatory information."
+  title='The Lenders | licensing and disclosures'
+  description='Review The Lenders licensing and disclosures to see our NMLS registration, state licenses, Equal Housing Lender statement, and other regulatory information.'
 >
   <Header />
 
-  <main class="main">
-    <PageHeader title="licensing and disclosures" />
+  <main class='main'>
+    <PageHeader title='licensing and disclosures' />
 
-    <section class="privacy">
-      <div class="container">
-        <div class="privacy__content">
+    <section class='privacy'>
+      <div class='container'>
+        <div class='privacy__content'>
           <h2>Licensing disclosure</h2>
 
           <p>
@@ -72,7 +72,15 @@ import BaseLayout from "../layouts/BaseLayout.astro";
         </div>
       </div>
     </section>
+
+    <GetInTouch />
   </main>
 
   <Footer />
 </BaseLayout>
+
+<style is:global>
+  .privacy {
+    clip-path: var(--clip-path-secondary);
+  }
+</style>

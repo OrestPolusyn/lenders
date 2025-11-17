@@ -1,23 +1,23 @@
 ---
-import Footer from "../components/Footer/Footer.astro";
-import Header from "../components/Header/Header.astro";
-import PageHeader from "../components/PageHeader/PageHeader.astro";
-import BaseLayout from "../layouts/BaseLayout.astro";
-// Import Astro components
+import Footer from '@/components/Footer/Footer.astro'
+import GetInTouch from '@/components/GetInTouch/GetInTouch.astro'
+import Header from '@/components/Header/Header.astro'
+import PageHeader from '@/components/PageHeader/PageHeader.astro'
+import BaseLayout from '@/layouts/BaseLayout.astro'
 ---
 
 <BaseLayout
-  title="The Lenders | Terms of use"
-  description="Review The Lenders Terms of Use to understand the conditions, limitations, and legal notices that govern your access to our website and mortgage services."
+  title='The Lenders | Terms of use'
+  description='Review The Lenders Terms of Use to understand the conditions, limitations, and legal notices that govern your access to our website and mortgage services.'
 >
   <Header />
 
-  <main class="main">
-    <PageHeader title="Terms of use" />
+  <main class='main'>
+    <PageHeader title='Terms of use' />
 
-    <section class="privacy">
-      <div class="container">
-        <div class="privacy__content">
+    <section class='privacy'>
+      <div class='container'>
+        <div class='privacy__content'>
           <p>
             <strong>
               Please read these terms and conditions carefully. By accessing
@@ -349,6 +349,8 @@ import BaseLayout from "../layouts/BaseLayout.astro";
         </div>
       </div>
     </section>
+
+    <GetInTouch />
   </main>
 
   <Footer />
