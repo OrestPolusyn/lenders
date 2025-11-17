@@ -33,19 +33,23 @@
     position: absolute;
     top: 0;
     left: 0;
-    width: 80%;
-    height: 100%;
-    overflow: hidden;
-    background-color: var(--color-gold-400);
-    filter: blur(100px);
-    border-radius: 100%;
+    width: 85%;
+    height: 85%;
+    pointer-events: none;
     z-index: 0;
-    opacity: 0.4;
-    transform: translate(-30%, -30%);
-  }
 
-  :global(.container) {
-    height: 100%;
+    background: radial-gradient(
+      circle at 85% 25%,
+      rgba(255, 255, 255, 0.95) 0%,
+      rgba(255, 235, 180, 0.65) 35%,
+      rgba(255, 220, 120, 0.12) 70%,
+      transparent 100%
+    );
+    mix-blend-mode: screen;
+
+    filter: blur(75px);
+    opacity: 0.5;
+    transform: translate(-50%, 0);
   }
 }
 
