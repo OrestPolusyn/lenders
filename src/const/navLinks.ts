@@ -9,6 +9,7 @@ export const navLinks = [
       { title: 'Blog', href: '/blog' },
       { title: 'License', href: '/licensing' },
       { title: 'FAQ', href: '/faq' },
+      { title: 'Glossary', href: '/glossary' },
     ],
   },
   { title: 'Contact Us', href: '/contact' },

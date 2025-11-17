@@ -1,0 +1,52 @@
+---
+// Sienna Accessibility Widget - Open Source
+// GitHub: https://github.com/bennyluk/Sienna-Accessibility-Widget
+// Alternative CDN: https://freewebaccessible.com
+interface Props {
+  position?: 'left' | 'right';
+}
+
+const {
+  position = 'right',
+} = Astro.props;
+---
+
+<!-- Sienna Accessibility Widget CDN (Alternative) -->
+<script 
+  src="https://freewebaccessible.com/dist/sienna.min.js"
+  defer
+></script>
+
+<!-- Initialize Sienna Widget -->
+<script is:inline>
+  window.addEventListener('DOMContentLoaded', function() {
+    if (typeof Sienna !== 'undefined') {
+      Sienna.init({
+        position: '{position}',
+        showOnLoad: false,
+        primaryColor: '#2563eb'
+      });
+      
+      // Center the widget button
+      setTimeout(function() {
+        const widgetButton = document.querySelector('[data-sienna-widget]') || 
+                            document.querySelector('.sienna-widget') ||
+                            document.querySelector('#sienna-widget') ||
+                            document.querySelector('.sienna-accessibility-button') ||
+                            document.querySelector('[class*="sienna"][class*="button"]');
+        
+        if (widgetButton) {
+          widgetButton.style.position = 'fixed';
+          widgetButton.style.top = '50%';
+          widgetButton.style.left = '50%';
+          widgetButton.style.transform = 'translate(-50%, -50%)';
+          widgetButton.style.right = 'auto';
+          widgetButton.style.bottom = 'auto';
+          widgetButton.style.zIndex = '10000';
+        }
+      }, 500);
+    } else {
+      console.warn('Sienna Accessibility Widget failed to load');
+    }
+  });
+</script>

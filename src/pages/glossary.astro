@@ -1,0 +1,21 @@
+---
+import GlossarySection from "@/components/Glossary/Glossary.astro";
+import Footer from "@/components/Footer/Footer.astro";
+import Header from "@/components/Header/Header.astro";
+import PageHeader from "@/components/PageHeader/PageHeader.astro";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="The Lenders - Glossary"
+  description="Find the definitions of common mortgage and home loan terms with The Lenders Glossary. Learn about interest rates, loan types, and more to make informed decisions about your home financing."
+>
+  <Header />
+
+  <main class="main">
+    <PageHeader title="Glossary" />
+    <GlossarySection />
+  </main>
+
+  <Footer />
+</BaseLayout>

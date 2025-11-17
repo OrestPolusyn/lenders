@@ -1,0 +1,67 @@
+/* Розмір шрифту */
+[data-font-size="small"] {
+  font-size: 0.875rem;
+}
+
+[data-font-size="normal"] {
+  font-size: 1rem;
+}
+
+[data-font-size="large"] {
+  font-size: 1.25rem;
+}
+
+/* Високий контраст */
+[data-high-contrast="true"] {
+  --color-text: #000000;
+  --color-bg: #ffffff;
+  --color-primary: #0000ff;
+}
+
+[data-high-contrast="true"] * {
+  color: var(--color-text) !important;
+  background-color: var(--color-bg) !important;
+}
+
+/* Відключення анімацій */
+[data-reduce-motion="true"] *,
+[data-reduce-motion="true"] *::before,
+[data-reduce-motion="true"] *::after {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+  scroll-behavior: auto !important;
+}
+
+/* Збільшення інтервалів */
+[data-increase-spacing="true"] * {
+  letter-spacing: 0.1em !important;
+  word-spacing: 0.2em !important;
+  line-height: 1.8 !important;
+}
+
+[data-increase-spacing="true"] p,
+[data-increase-spacing="true"] li {
+  margin-bottom: 1.5em !important;
+}
+
+/* Великий курсор */
+[data-large-cursor="true"] * {
+  cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"><circle cx="12" cy="12" r="10" fill="black" opacity="0.5"/></svg>'), auto !important;
+}
+
+/* Центрування кнопки Sienna Accessibility Widget */
+[data-sienna-widget],
+.sienna-widget,
+#sienna-widget,
+.sienna-accessibility-button,
+[class*="sienna"],
+[class*="accessibility"][class*="button"] {
+  position: fixed !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  right: auto !important;
+  bottom: auto !important;
+  z-index: 10000 !important;
+}
