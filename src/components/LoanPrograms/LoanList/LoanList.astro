@@ -7,10 +7,11 @@ import styles from './LoanList.module.css'
 <section class={styles.loanList}>
   <div class='container'>
     <div class={styles.loanListWrapper} data-loans>
-      <h2>Loan Categories Overview</h2>
       <p>
-        Explore flexible, competitive mortgage programs designed to support
-        first-time buyers, veterans, investors, and experienced homeowners.
+        At The Lenders, we offer a comprehensive suite of mortgage solutions
+        built to match your goals, lifestyle, and financial path. Whether you're
+        buying your first home, upgrading, investing, or refinancing — we
+        provide guidance where homeownership begins.
       </p>
     </div>
 
@@ -38,9 +39,9 @@ import styles from './LoanList.module.css'
       const descriptionBlocks =
         descriptionSection.querySelectorAll('[data-loan-block]')
 
-      const backButton = descriptionSection.querySelector(
+      const backButtons = descriptionSection.querySelectorAll(
         '[data-loan-back]'
-      ) as HTMLButtonElement | null
+      ) as HTMLButtonElement[]
 
       // Hide description initially
       descriptionBlocks.forEach(block => {
@@ -60,6 +61,8 @@ import styles from './LoanList.module.css'
             item.classList.add('hide-loan')
           }
         })
+
+        grid.classList.add('hide-grid')
         descriptionSection.classList.add('data-visible')
 
         descriptionBlocks.forEach(block => {
@@ -80,10 +83,12 @@ import styles from './LoanList.module.css'
         grid.querySelectorAll('li').forEach(item => {
           item.classList.remove('hide-loan', 'active-loan')
         })
+        grid.classList.remove('hide-grid')
+
         descriptionSection.classList.remove('data-visible')
 
         descriptionBlocks.forEach(block => {
-          ;(block as HTMLElement).classList.remove('loan-description-hidden')
+          ;(block as HTMLElement).classList.add('loan-description-hidden')
         })
       }
 
@@ -94,9 +99,11 @@ import styles from './LoanList.module.css'
         openLoan(initialLoan, grid)
       }
 
-      if (backButton) {
-        backButton.addEventListener('click', () => {
-          showAllPrograms()
+      if (backButtons.length > 0) {
+        backButtons.forEach(button => {
+          button.addEventListener('click', () => {
+            showAllPrograms()
+          })
         })
       }
 

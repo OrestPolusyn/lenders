@@ -1,26 +1,16 @@
 .loanDescription {
-  position: absolute;
-  top: 0;
-  right: 0;
+  position: relative;
   z-index: 3;
   width: 100%;
   padding-block: 0;
   color: var(--color-blue-600);
   background-color: var(--color-white);
+  overflow: hidden;
 }
 
-.loanDescriptionBack {
-  margin-bottom: 1.5rem;
-  padding: 0.5rem 1.25rem;
-  border-radius: 999px;
-  border: 1px solid var(--color-blue-400);
-  background-color: transparent;
-  color: var(--color-blue-500);
-  font-weight: var(--fw-600);
-  font-size: 0.95rem;
-  cursor: pointer;
-  transition: background-color 0.2s ease, color 0.2s ease,
-    border-color 0.2s ease;
+.loanDescriptionBack:global(.button) {
+  border: 1px solid var(--color-blue-600);
+  margin-block-end: 1.5rem;
 }
 
 .loanDescriptionBack:hover {
@@ -28,9 +18,47 @@
   border-color: var(--color-blue-500);
   color: var(--color-white);
 }
+
 .loanDescriptionWrapper {
-  position: absolute;
   display: block;
+
+  h2,
+  h3 {
+    margin-block-end: 1.5rem;
+  }
+
+  p {
+    margin-block-end: 1.5rem;
+    font-size: 1.1rem;
+    font-weight: var(--fw-500);
+  }
+
+  ul {
+    list-style: none;
+    margin: 0 0 1.5rem;
+    padding: 0;
+  }
+
+  li {
+    position: relative;
+    margin-block-end: 1rem;
+    padding-left: 1.75rem;
+    font-size: 1.05rem;
+    font-weight: var(--fw-500);
+
+    &::before {
+      content: '';
+      position: absolute;
+      left: 0.1rem;
+      top: 0.45em;
+      width: 0.6rem;
+      height: 0.35rem;
+      border-left: 2px solid var(--color-gold-400);
+      border-bottom: 2px solid var(--color-gold-400);
+      transform: rotate(-45deg);
+      box-shadow: 0 0 0 2px rgba(0, 71, 171, 0.06);
+    }
+  }
 }
 
 :global([data-loan-description]) {
@@ -39,13 +67,14 @@
   transition: opacity 0.3s ease;
 
   &:global(.data-visible) {
-    animation: slideShow 1s ease 1s forwards;
+    animation: slideShow 1s ease 0.5s forwards;
   }
 }
 
 :global(.loan-description-hidden) {
   opacity: 0;
   visibility: hidden;
+  position: absolute;
 }
 
 @keyframes slideShow {
@@ -58,5 +87,6 @@
     transform: translateY(0);
     opacity: 1;
     visibility: visible;
+    position: relative;
   }
 }

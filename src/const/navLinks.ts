@@ -4,5 +4,11 @@ export const navLinks = [
   { title: 'Calculator', href: '/calculator' },
   { title: 'About Us', href: '/about' },
   { title: 'News', href: '/news' },
-  { title: 'Guides', href: '/guides' },
+  {
+    title: 'Guides',
+    children: [
+      { title: 'FAQ', href: '/faq' },
+      { title: 'License', href: '/licensing' },
+    ],
+  },
 ]

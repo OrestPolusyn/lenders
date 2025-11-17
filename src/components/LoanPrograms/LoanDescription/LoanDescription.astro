@@ -6,6 +6,32 @@ interface LoanProgram {
   slug: string
   title: string
   tagline: string
+  ctaLabel?: string
+  ctaLink?: string
+  content?: {
+    overview?: {
+      title?: string
+      text?: string
+    }
+    idealFor?: {
+      title?: string
+      description?: string
+      list?: string[]
+      closing?: string
+    }
+    keyBenefits?: {
+      title?: string
+      benefits?: {
+        title?: string
+        text?: string
+      }[]
+    }
+    requirements?: {
+      title?: string
+      list?: string[]
+      closing?: string
+    }
+  }
 }
 
 const loans = loansData as LoanProgram[]
@@ -13,8 +39,12 @@ const loans = loansData as LoanProgram[]
 
 <section class={styles.loanDescription} data-loan-description>
   <div class='container'>
-    <button type='button' class={styles.loanDescriptionBack} data-loan-back>
-      Back to all programs
+    <button
+      type='button'
+      class={`button button--back ${styles.loanDescriptionBack}`}
+      data-loan-back
+    >
+      <span>Back to all programs</span>
     </button>
 
     {
@@ -22,8 +52,93 @@ const loans = loansData as LoanProgram[]
         <div class={styles.loanDescriptionWrapper} data-loan-block={loan.slug}>
           <h2>{loan.title}</h2>
           <p>{loan.tagline}</p>
+
+          {loan.content?.overview?.text && (
+            <div>
+              {loan.content.overview.title && (
+                <h3>{loan.content.overview.title}</h3>
+              )}
+              <p>{loan.content.overview.text}</p>
+            </div>
+          )}
+
+          {(loan.content?.idealFor?.description ||
+            loan.content?.idealFor?.list?.length ||
+            loan.content?.idealFor?.closing) && (
+            <div>
+              {loan.content.idealFor?.title && (
+                <h3>{loan.content.idealFor.title}</h3>
+              )}
+
+              {loan.content.idealFor?.description && (
+                <p>{loan.content.idealFor.description}</p>
+              )}
+
+              {loan.content.idealFor?.list &&
+                loan.content.idealFor.list.length > 0 && (
+                  <ul>
+                    {loan.content.idealFor.list.map(item => (
+                      <li>{item}</li>
+                    ))}
+                  </ul>
+                )}
+
+              {loan.content.idealFor?.closing && (
+                <p>{loan.content.idealFor.closing}</p>
+              )}
+            </div>
+          )}
+
+          {loan.content?.keyBenefits?.benefits &&
+            loan.content.keyBenefits.benefits.length > 0 && (
+              <div>
+                {loan.content.keyBenefits.title && (
+                  <h3>{loan.content.keyBenefits.title}</h3>
+                )}
+
+                <ul>
+                  {loan.content.keyBenefits.benefits.map(benefit => (
+                    <li>
+                      {benefit.title && <strong>{benefit.title}</strong>}
+                      {benefit.text && <p>{benefit.text}</p>}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+
+          {loan.content?.requirements &&
+            (loan.content.requirements.list?.length ||
+              loan.content.requirements.closing) && (
+              <div>
+                {loan.content.requirements.title && (
+                  <h3>{loan.content.requirements.title}</h3>
+                )}
+
+                {loan.content.requirements.list &&
+                  loan.content.requirements.list.length > 0 && (
+                    <ul>
+                      {loan.content.requirements.list.map(item => (
+                        <li>{item}</li>
+                      ))}
+                    </ul>
+                  )}
+
+                {loan.content.requirements.closing && (
+                  <p>{loan.content.requirements.closing}</p>
+                )}
+              </div>
+            )}
         </div>
       ))
     }
+
+    <button
+      type='button'
+      class={`button button--back ${styles.loanDescriptionBack}`}
+      data-loan-back
+    >
+      <span>Back to all programs</span>
+    </button>
   </div>
 </section>

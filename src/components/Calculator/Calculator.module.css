@@ -1,0 +1,343 @@
+.calculator {
+  padding-block: clamp(60px, 8vw, 120px);
+  color: var(--color-blue-500);
+  background-color: var(--color-white);
+}
+
+.calculatorInner {
+  margin-inline: auto;
+}
+
+.calculatorHeader {
+  text-align: center;
+  margin-block-end: clamp(1.5rem, 1.5rem + 3vw, 3rem);
+
+  h2 {
+    margin-block-end: 0.75rem;
+  }
+
+  p {
+    max-width: 640px;
+    margin-inline: auto;
+  }
+}
+
+.calculatorLayout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: clamp(1.75rem, 3vw, 2.5rem);
+  align-items: stretch;
+}
+
+.calculatorForm {
+  padding: clamp(1.5rem, 1.5rem + 3vw, 2.5rem);
+  border-radius: var(--radius-main);
+  background-color: var(--color-grey-50, #f9fafb);
+  box-shadow: 0 18px 60px rgba(0, 71, 171, 0.09);
+  border: 1px solid var(--color-grey-100, #e5e7eb);
+}
+
+.formGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.25rem 1.5rem;
+  margin-block-end: 1.5rem;
+}
+
+.formGridSmall {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.75rem;
+}
+
+.formRow {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin-block-end: 1rem;
+}
+
+.formRowInner {
+  display: flex;
+  flex-direction: column;
+}
+
+.formRow label {
+  font-size: 0.95rem;
+  font-weight: var(--fw-600);
+  color: var(--color-blue-500);
+}
+.formActions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.fieldHint {
+  font-size: 0.85rem;
+  color: var(--color-blue-400);
+}
+
+.calculatorForm input,
+.calculatorForm select {
+  width: 100%;
+  border-radius: 999px;
+  border: 1px solid var(--color-grey-200, #d1d5db);
+  padding: 0.6rem 0.9rem;
+  font: inherit;
+  color: var(--color-blue-600);
+  background-color: var(--color-white);
+  outline: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.calculatorForm input:focus,
+.calculatorForm select:focus {
+  border-color: var(--color-blue-400);
+  box-shadow: 0 0 0 3px rgba(0, 71, 171, 0.15);
+}
+
+.inputWithPrefix,
+.inputWithSuffix,
+.dualInput {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.inputWithPrefix span,
+.inputWithSuffix span {
+  flex: 0 0 auto;
+  min-width: 2rem;
+  text-align: center;
+  font-size: 0.95rem;
+  font-weight: var(--fw-600);
+  color: var(--color-blue-500);
+}
+
+.inputWithPrefix input,
+.inputWithSuffix input {
+  flex: 1 1 auto;
+}
+
+.dualInput {
+  gap: 0.75rem;
+}
+
+.calculatorResults {
+  padding: clamp(1.5rem, 1.5rem + 3vw, 2.5rem);
+  border-radius: var(--radius-main);
+  background: radial-gradient(circle at top, #fdf5d5 0, #ffffff 55%);
+  box-shadow: 0 18px 60px rgba(0, 71, 171, 0.1);
+  border: 1px solid rgba(0, 71, 171, 0.06);
+}
+
+.resultsTop {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1.5rem;
+  margin-block-end: 1.75rem;
+}
+
+.donutWrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.donutLabel {
+  position: absolute;
+  inset: 50% auto auto 50%;
+  transform: translate(-50%, -80%);
+  text-align: center;
+  pointer-events: none;
+}
+
+.donutAmount {
+  display: block;
+  font-size: 1.3rem;
+  font-weight: var(--fw-700);
+  color: var(--color-blue-600);
+}
+
+.donutCaption {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--color-blue-400);
+}
+
+.donut {
+  width: 100%;
+  max-width: 500px;
+  height: auto;
+}
+
+.donutTrack {
+  fill: none;
+  stroke: rgba(0, 71, 171, 0.08);
+  stroke-width: 16;
+}
+
+.donutSlicePrincipal,
+.donutSliceInterest {
+  fill: none;
+  stroke-width: 16;
+  stroke-linecap: round;
+  transform-origin: center;
+  transform: rotate(-90deg);
+}
+
+.donutSlicePrincipal {
+  stroke: var(--color-blue-500);
+}
+
+.donutSliceInterest {
+  stroke: var(--color-gold-400);
+}
+
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.5rem;
+  margin-top: 1.25rem;
+}
+
+.legendItem {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.9rem;
+}
+
+.legendDot {
+  width: 12px;
+  height: 12px;
+  border-radius: 999px;
+}
+
+.legendDotPrincipal {
+  background-color: var(--color-blue-500);
+}
+
+.legendDotInterest {
+  background-color: var(--color-gold-400);
+}
+
+.legendItem strong {
+  margin-left: 0.25rem;
+  font-weight: var(--fw-700);
+}
+
+.resultsSummary {
+  align-self: center;
+}
+
+.resultsSummary h3,
+.resultsDetails h3 {
+  margin-block-end: 0.75rem;
+}
+
+.resultsSummary dl {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0.6rem;
+}
+
+.resultsSummary dl > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.75rem;
+  font-size: 0.95rem;
+}
+
+.resultsSummary dt {
+  color: var(--color-blue-400);
+}
+
+.resultsSummary dd {
+  font-weight: var(--fw-600);
+  text-align: end;
+}
+
+.resultsDetails {
+  border-top: 1px solid rgba(0, 71, 171, 0.08);
+  padding-top: 1.5rem;
+}
+
+.resultsDetailsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.25rem;
+  margin-block-end: 1rem;
+}
+
+.resultsLabel {
+  font-size: 0.85rem;
+  color: var(--color-blue-400);
+  margin-block-end: 0.25rem;
+}
+
+.resultsValue {
+  font-size: 1.1rem;
+  font-weight: var(--fw-700);
+}
+
+.disclaimer {
+  font-size: 0.8rem;
+  color: var(--color-blue-400);
+}
+
+@media screen and (max-width: 1024px) {
+  .calculatorLayout,
+  .resultsTop {
+    grid-template-columns: 1fr;
+  }
+
+  .calculatorLayout {
+    gap: 1.5rem;
+  }
+
+  .calculatorForm,
+  .calculatorResults {
+    max-width: 640px;
+    margin-inline: auto;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .formGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .resultsDetailsGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .calculator {
+    padding-block: clamp(40px, 6vw, 80px);
+  }
+
+  .calculatorForm,
+  .calculatorResults {
+    padding: 1.25rem;
+    box-shadow: 0 12px 40px rgba(0, 71, 171, 0.08);
+  }
+
+  .donut {
+    margin-inline: auto;
+    max-width: 420px;
+    scale: 1.2;
+  }
+
+  .formActions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .donutLabel {
+    transform: translate(-50%, -100%);
+  }
+}

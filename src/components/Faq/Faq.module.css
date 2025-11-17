@@ -3,13 +3,18 @@
   color: var(--color-blue-500);
   background-color: var(--color-white);
   clip-path: var(--clip-path-secondary);
+
+  .faqWrapper {
+    grid-template-columns: 1fr 1.7fr;
+    gap: 30px;
+  }
 }
 
 .faqContent {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-block-end: clamp(1.5rem, 1.5rem + 5vw, 3.6rem);
+  margin-block-end: clamp(1rem, 1rem + 5vw, 2rem);
   text-align: center;
 
   h2 {
@@ -17,12 +22,25 @@
   }
 }
 
+.FaqImage {
+  position: sticky;
+  top: 50px;
+  height: max-content;
+
+  @media screen and (max-width: 768px) {
+    display: none;
+  }
+}
+
 .faqItem {
   background: var(--color-white);
   border-radius: 8px;
-  margin-bottom: 16px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   overflow: hidden;
+
+  &:not(:last-child) {
+    margin-bottom: 16px;
+  }
 }
 
 .faqItem summary {
@@ -36,21 +54,19 @@
 }
 
 .faqItem summary:before {
-  content: "";
+  content: '';
   display: block;
   background-color: var(--color-blue-500);
   position: absolute;
   top: 50%;
   left: 16px;
-  transition:
-    opacity 0.2s ease,
-    transform 0.2s ease;
+  transition: opacity 0.2s ease, transform 0.2s ease;
   width: 25px;
   height: 3px;
   transform: translateY(-50%);
 }
 .faqItem summary:after {
-  content: "";
+  content: '';
   display: block;
   background-color: var(--color-blue-500);
   position: absolute;
@@ -81,7 +97,7 @@
 }
 
 @media screen and (max-width: 992px) {
-  .faqWrapper {
+  .faqWrapper:global(.wrapper) {
     grid-template-columns: 1fr;
   }
 
@@ -89,9 +105,9 @@
     max-height: 450px;
   }
 
-.faqContent {
-  h2 {
-    margin-block-end: 0;
+  .faqContent {
+    h2 {
+      margin-block-end: 0;
+    }
   }
-}
 }

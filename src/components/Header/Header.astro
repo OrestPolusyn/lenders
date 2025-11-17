@@ -20,10 +20,32 @@ import { navLinks } from '@/const/navLinks'
     <ul class={styles.headerList}>
       {
         navLinks.map(link => (
-          <li class={`${styles.headerListItem}`}>
-            <a class={styles.headerLink} href={link.href}>
-              {link.title}
-            </a>
+          <li
+            class={`${styles.headerListItem} ${
+              link.children ? styles.headerListItemHasDropdown : ''
+            }`}
+          >
+            {link.children ? (
+              <>
+                <a class={styles.headerLink} href={link.href ?? '#'}>
+                  {link.title}
+                  <span class={styles.headerDropdownIcon} />
+                </a>
+                <ul class={styles.headerDropdown}>
+                  {link.children.map(child => (
+                    <li class={styles.headerDropdownItem}>
+                      <a class={styles.headerDropdownLink} href={child.href}>
+                        {child.title}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </>
+            ) : (
+              <a class={styles.headerLink} href={link.href}>
+                {link.title}
+              </a>
+            )}
           </li>
         ))
       }

@@ -148,43 +148,55 @@
 }
 
 :global(.hide-loan) {
-  transform: translateY(0);
-  animation: gridHide 1s ease forwards;
+  animation: gridHideItem 1s ease forwards;
 }
 
 :global(.active-loan) {
-  transform: translateY(0);
-  animation: gridHide 1s ease 0.5s forwards;
+  animation: gridHide 1s ease 0.2s forwards;
 }
 
+:global(.hide-grid) {
+  animation: gridHide 1s ease 1s forwards;
+}
 
-@media screen and (max-width:992px) {
+@media screen and (max-width: 992px) {
   :global(.loanGridItem) {
-  padding: 10px;
+    padding: 10px;
   }
 }
 
-@media screen and (max-width:768px) {
+@media screen and (max-width: 768px) {
   :global(.loanGrid) {
-  grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, 1fr);
   }
 
-.loanGrid li:last-child { 
+  .loanGrid li:last-child {
     grid-column: 2 span;
   }
 }
 
-@media screen and (max-width:575px) {
+@media screen and (max-width: 575px) {
   :global(.loanGrid) {
-  grid-template-columns: 1fr;
+    grid-template-columns: 1fr;
   }
 
-.loanGrid li:last-child { 
+  .loanGrid li:last-child {
     grid-column: auto;
   }
 }
 
-  
+@keyframes gridHideItem {
+  from {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+  }
+  to {
+    transform: translateY(100px);
+    opacity: 0;
+    visibility: hidden;
+  }
+}
 
 @keyframes gridHide {
   from {
@@ -196,6 +208,7 @@
     transform: translateY(100px);
     opacity: 0;
     visibility: hidden;
+    position: absolute;
   }
 }
 

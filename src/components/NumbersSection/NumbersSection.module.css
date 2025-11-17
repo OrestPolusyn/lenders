@@ -3,6 +3,7 @@
   padding: 0;
   color: var(--color-white);
   background-color: var(--color-blue-600);
+  clip-path: var(--clip-path);
 
   &:before {
     content: '';
@@ -60,7 +61,6 @@
   .numbersSectionItem {
     &:not(:last-child) {
       border: none;
+    }
   }
 }
-}
-
