@@ -1,0 +1,21 @@
+---
+import Footer from '@/components/Footer/Footer.astro'
+import ContactComponent from '@/components/Contact/Contact.astro'
+import Header from '@/components/Header/Header.astro'
+import PageHeader from '@/components/PageHeader/PageHeader.astro'
+import BaseLayout from '@/layouts/BaseLayout.astro'
+---
+
+<BaseLayout
+  title='The Lenders - Best Mortgage Rates & Home Loans'
+  description='Find the best mortgage rates and home loan solutions with The Lenders. Expert guidance for your home financing needs.'
+>
+  <Header />
+
+  <main class='main'>
+    <PageHeader title='About Us' />
+   <ContactComponent />
+  </main>
+
+  <Footer />
+</BaseLayout>
