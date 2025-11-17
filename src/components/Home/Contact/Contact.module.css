@@ -208,7 +208,7 @@
 
   span {
     font-size: 25px;
-    color: #ffa500;
+    color: var(--color-gold-400);
   }
 }
 

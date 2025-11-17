@@ -9,19 +9,29 @@
     position: absolute;
     bottom: 0;
     left: 0;
-    width: 50%;
-    height: 90%;
-    overflow: hidden;
-    background-color: var(--color-gold-400);
-    filter: blur(100px);
-    border-radius: 100%;
+    width: 45%;
+    height: 75%;
+    pointer-events: none;
     z-index: 0;
+
+    background: radial-gradient(
+      circle at 85% 25%,
+      rgba(255, 255, 255, 0.95) 0%,
+      rgba(255, 235, 180, 0.65) 35%,
+      rgba(255, 220, 120, 0.12) 70%,
+      transparent 100%
+    );
+    mix-blend-mode: screen;
+
+    filter: blur(75px);
     opacity: 0.5;
-    transform: translate(-30%, 40%);
+    transform: translate(-50%, 20%);
 
     @media screen and (max-width: 1100px) {
-      width: 100%;
-      height: 60%;
+      width: 75%;
+      height: 55%;
+      filter: blur(90px);
+      transform: translate(-10%, 25%);
     }
   }
 }
@@ -74,7 +84,7 @@
     transition: all 0.3s ease;
 
     &:hover {
-      background-color: #00d3f2;
+      background-color: var(--color-blue-500);
       transform: translateY(-3px);
     }
 
@@ -126,7 +136,7 @@
   p {
     font-size: 16px;
     font-weight: var(--fw-600);
-    color: #00d3f2;
+    color: var(--color-white);
     margin: 0 0 20px;
     text-transform: capitalize;
   }
