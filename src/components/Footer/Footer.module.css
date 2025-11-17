@@ -1,6 +1,5 @@
 .footer {
   position: relative;
-  background: var(--color-blue-600);
   color: var(--color-white);
   padding-block-start: clamp(3rem, 3rem + 3vw, 5rem);
   overflow: hidden;
@@ -221,7 +220,7 @@
   box-shadow: 0 0 1rem rgba(255, 255, 255, 0.1);
   z-index: 10;
   transform: translateY(-50%);
-  background-color: var(--color-blue-600);
+  background-color: rgba(43, 124, 237, 0.927);
   color: var(--color-white);
   border-radius: var(--radius-main) 0 0 var(--radius-main);
   opacity: 0;

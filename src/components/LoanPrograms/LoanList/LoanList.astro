@@ -39,9 +39,8 @@ import styles from './LoanList.module.css'
       const descriptionBlocks =
         descriptionSection.querySelectorAll('[data-loan-block]')
 
-      const backButtons = descriptionSection.querySelectorAll(
-        '[data-loan-back]'
-      ) as HTMLButtonElement[]
+      const backButtons =
+        descriptionSection.querySelectorAll('[data-loan-back]')
 
       // Hide description initially
       descriptionBlocks.forEach(block => {
@@ -90,6 +89,13 @@ import styles from './LoanList.module.css'
         descriptionBlocks.forEach(block => {
           ;(block as HTMLElement).classList.add('loan-description-hidden')
         })
+
+        setTimeout(() => {
+          window.scrollTo({
+            top: loansContainer?.offsetTop - 200 || 0,
+            behavior: 'smooth',
+          })
+        }, 1200)
       }
 
       // Open from query param on initial load, e.g. /loan-programs?loan=conventional

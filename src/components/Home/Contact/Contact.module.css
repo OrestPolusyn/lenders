@@ -27,7 +27,7 @@
 
 /* Left Side - Form */
 .contactForm {
-  background-color: var(--color-blue-600);
+  background-color: rgba(43, 124, 237, 0.927);
   border-radius: var(--radius-main);
   padding: clamp(1rem, 2.5rem + 1vw, 2.2rem);
   color: var(--color-white);
@@ -219,7 +219,7 @@
 }
 
 .contactCard {
-  background-color: var(--color-blue-600);
+  background-color: rgba(43, 124, 237, 0.927);
   border-radius: var(--radius-main);
   padding: 25px;
   display: flex;
@@ -279,13 +279,13 @@
   }
 }
 
-@media screen and (max-width:992px) {
+@media screen and (max-width: 992px) {
   .contactContent {
     grid-template-columns: 1fr;
   }
 }
 
-@media screen and (max-width:575px) {
+@media screen and (max-width: 575px) {
   .contactForm {
     padding: 20px;
   }

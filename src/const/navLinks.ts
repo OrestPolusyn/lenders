@@ -3,12 +3,13 @@ export const navLinks = [
   { title: 'Loan Programs', href: '/loan-programs' },
   { title: 'Calculator', href: '/calculator' },
   { title: 'About Us', href: '/about' },
-  { title: 'News', href: '/news' },
   {
-    title: 'Guides',
+    title: 'Resources',
     children: [
-      { title: 'FAQ', href: '/faq' },
+      { title: 'Blog', href: '/blog' },
       { title: 'License', href: '/licensing' },
+      { title: 'FAQ', href: '/faq' },
     ],
   },
+  { title: 'Contact Us', href: '/contact' },
 ]

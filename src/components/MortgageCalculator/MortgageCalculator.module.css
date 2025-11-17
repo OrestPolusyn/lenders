@@ -150,7 +150,7 @@
   appearance: none;
   height: 4px;
   border-radius: 999px;
-  background-color: var(--color-blue-600);
+  background-color: rgba(43, 124, 237, 0.927);
   outline: none;
 }
 
