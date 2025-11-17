@@ -1,5 +1,6 @@
 .getInTouch {
   position: relative;
+  padding-block: 0 50px;
   width: 100%;
   max-width: 1080px;
   margin-inline: auto;

@@ -56,12 +56,12 @@
       border-left: 2px solid var(--color-gold-400);
       border-bottom: 2px solid var(--color-gold-400);
       transform: rotate(-45deg);
-      box-shadow: 0 0 0 2px rgba(0, 71, 171, 0.06);
     }
   }
 }
 
 :global([data-loan-description]) {
+  position: absolute;
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.3s ease;

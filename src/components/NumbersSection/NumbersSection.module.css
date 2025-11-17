@@ -2,7 +2,7 @@
   position: relative;
   padding: 0;
   color: var(--color-white);
-  background-color: var(--color-blue-600);
+  background-color: rgba(43, 124, 237, 0.927);
   clip-path: var(--clip-path);
 
   &:before {
