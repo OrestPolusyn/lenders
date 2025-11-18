@@ -27,10 +27,6 @@
   transform: translate(25%, -20%);
 }
 
-:global(.loanGrid) {
-  grid-template-columns: repeat(auto-fill, minmax(256px, 1fr));
-}
-
 .homeLoanPrograms {
   h3 {
     margin-bottom: 20px;
@@ -39,6 +35,10 @@
 
   :global(.button) {
     margin-inline: auto;
+  }
+
+  :global(.loanGrid) {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   }
 }
 
@@ -90,12 +90,7 @@
   }
 
   .homeCalculator::before {
-    width: 120%;
-    height: 70%;
-    right: -40%;
-    top: -20%;
-    filter: blur(100px);
-    transform: translate(10%, -10%);
+    display: none;
   }
 }
 

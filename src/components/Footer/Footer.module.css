@@ -6,7 +6,6 @@
   overflow: hidden;
 }
 
-/* GOLD GLOW У СТИЛІ ВСІХ СИНІХ СЕКЦІЙ */
 .footer::before {
   content: '';
   position: absolute;
@@ -207,6 +206,10 @@
 @media screen and (max-width: 768px) {
   .footer {
     padding-block-start: 2.5rem;
+
+    &::before {
+      display: none;
+    }
   }
 
   .footerCopyright {

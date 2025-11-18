@@ -199,6 +199,10 @@
 }
 
 @media screen and (max-width: 575px) {
+  .process:before {
+    display: none;
+  }
+
   .processList {
     grid-template-columns: 1fr;
     gap: 30px;

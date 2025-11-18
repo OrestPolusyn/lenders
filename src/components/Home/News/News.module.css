@@ -10,8 +10,8 @@
   position: absolute;
   bottom: 0;
   right: -10%;
-  width: 90%;
-  height: 90%;
+  width: 40%;
+  height: 40%;
   background: radial-gradient(
     circle at 65% 25%,
     rgba(255, 180, 0, 0.75) 0%,
@@ -20,7 +20,7 @@
     transparent 100%
   );
   filter: blur(80px);
-  opacity: 1;
+  opacity: 0.4;
   transform: translate(-30%, 90%);
   pointer-events: none;
   z-index: 0;
@@ -180,6 +180,9 @@
 @media screen and (max-width: 768px) {
   .news {
     padding: 60px 0;
+    &:before {
+      display: none;
+    }
   }
 
   .newsSliderWrapper {

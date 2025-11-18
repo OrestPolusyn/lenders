@@ -32,7 +32,7 @@
     width: var(--percent, 0%);
     transform: scaleX(0);
     transform-origin: left;
-    transition: transform 2s ease-in-out;
+    transition: transform 1s ease-out;
   }
 }
 
@@ -45,6 +45,14 @@
 
 .progressLine:global(.animate):before {
   transform: scaleX(1);
+}
+
+/* Disable progress animation on small screens for smoother performance */
+@media screen and (max-width: 768px) {
+  .progressLine:global(.animate):before {
+    transition: none;
+    transform: scaleX(1);
+  }
 }
 
 @keyframes moveImageSquare {

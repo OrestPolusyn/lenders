@@ -1,9 +1,8 @@
 .getInTouch {
   position: relative;
   width: 100%;
-  max-width: 1080px;
   margin-inline: auto;
-  padding-block: clamp(3rem, 3rem + 3vw, 4.5rem) clamp(3rem, 3rem + 4vw, 5rem);
+  padding-block: 0;
   isolation: isolate;
 
   &::before {
@@ -41,6 +40,18 @@
     margin-inline: auto;
     display: block;
   }
+
+  &.getInTouchHome {
+    padding-block: 80px;
+    color: var(--color-blue-500);
+    background-color: var(--color-white);
+    clip-path: var(--clip-path);
+
+    h2,
+    p {
+      color: var(--color-blue-500);
+    }
+  }
 }
 
 .getInTouchContent {
@@ -73,6 +84,11 @@
 }
 
 @media screen and (max-width: 575px) {
+  .getInTouch {
+    &::before {
+      display: none;
+    }
+  }
   .getInTouchActions {
     flex-direction: column;
     align-items: stretch;

@@ -33,10 +33,16 @@ const ogImageURL = new URL(ogImage, SEO_CONFIG.siteUrl).href
     <meta name='description' content={description} />
     <meta name='generator' content={Astro.generator} />
     <link rel='canonical' href={canonicalURL} />
-
+    
+    <!-- Performance & Security -->
+    <meta http-equiv='X-UA-Compatible' content='IE=edge' />
+    <meta name='theme-color' content='#0047AB' />
+    <meta name='format-detection' content='telephone=yes' />
+    
     <!-- Resource Hints -->
     <link rel='dns-prefetch' href='https://images.unsplash.com' />
-    <link rel='preconnect' href='https://fonts.googleapis.com' crossorigin />
+    <link rel='preconnect' href='https://fonts.googleapis.com' />
+    <link rel='preconnect' href='https://fonts.gstatic.com' crossorigin />
 
     <!-- Preload критичних ресурсів -->
     <link
@@ -74,22 +80,91 @@ const ogImageURL = new URL(ogImage, SEO_CONFIG.siteUrl).href
 
     <title>{title}</title>
 
-    <!-- Structured Data -->
+    <!-- Structured Data - Enhanced Schema.org for Mortgage Lender -->
     <script
       type='application/ld+json'
       set:html={JSON.stringify({
         '@context': 'https://schema.org',
-        '@type': 'FinancialService',
+        '@type': 'MortgageBroker',
+        '@id': SEO_CONFIG.siteUrl,
         name: BUSINESS_INFO.name,
         telephone: BUSINESS_INFO.phone,
+        email: BUSINESS_INFO.email,
         url: SEO_CONFIG.siteUrl,
+        logo: new URL('/images/logo-gradient.svg', SEO_CONFIG.siteUrl).href,
+        image: ogImageURL,
+        description: description,
         address: {
           '@type': 'PostalAddress',
           addressCountry: 'US',
+          addressRegion: 'MI',
         },
-        description: description,
+        priceRange: '$$',
+        openingHoursSpecification: [
+          {
+            '@type': 'OpeningHoursSpecification',
+            dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+            opens: '09:00',
+            closes: '18:00',
+          },
+        ],
+        sameAs: [
+          'https://www.facebook.com/thelenders',
+          'https://www.linkedin.com/company/thelenders',
+          'https://twitter.com/thelenders',
+        ],
+        hasOfferCatalog: {
+          '@type': 'OfferCatalog',
+          name: 'Mortgage Loan Programs',
+          itemListElement: [
+            {
+              '@type': 'Offer',
+              itemOffered: {
+                '@type': 'LoanOrCredit',
+                name: 'Conventional Loans',
+                description: 'Traditional home loans with competitive rates',
+              },
+            },
+            {
+              '@type': 'Offer',
+              itemOffered: {
+                '@type': 'LoanOrCredit',
+                name: 'FHA Loans',
+                description: 'Government-backed loans for first-time buyers',
+              },
+            },
+            {
+              '@type': 'Offer',
+              itemOffered: {
+                '@type': 'LoanOrCredit',
+                name: 'VA Loans',
+                description: 'Zero down payment loans for veterans',
+              },
+            },
+          ],
+        },
       })}
     />
+    
+    <!-- Organization Schema for better branding -->
+    <script
+      type='application/ld+json'
+      set:html={JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'Organization',
+        name: BUSINESS_INFO.name,
+        url: SEO_CONFIG.siteUrl,
+        logo: new URL('/images/logo-gradient.svg', SEO_CONFIG.siteUrl).href,
+        contactPoint: {
+          '@type': 'ContactPoint',
+          telephone: BUSINESS_INFO.phone,
+          contactType: 'Customer Service',
+          availableLanguage: ['en'],
+          areaServed: 'US',
+        },
+      })}
+    />
+
   </head>
   <body class='page__body'>
     <div class='site-container'>

@@ -92,12 +92,15 @@
 
   /* letter spacing  */
   --letter-spacing-none: 0;
+}
+
+:root {
   --top-padding: 20px;
 
   /* clip-path */
-  --clip-path: polygon(0 5%, 100% 0, 100% 95%, 0% 100%);
+  --clip-path: polygon(0 3%, 100% 0, 100% 97%, 0% 100%);
   --clip-path-bottom: polygon(0 0, 100% 0, 100% 0, 0 10%);
-  --clip-path-secondary: polygon(0 0, 100% 0, 100% 95%, 0% 100%);
+  --clip-path-secondary: polygon(0 0, 100% 0, 100% 96%, 0% 100%);
 
   @media screen and (max-width: 1440px) {
     --clip-path-bottom: polygon(0 0, 100% 0, 100% 0, 0 4%);
@@ -107,6 +110,7 @@
   @media screen and (max-width: 768px) {
     --clip-path: polygon(0 2%, 100% 0, 100% 98%, 0% 100%);
     --clip-path-bottom: polygon(0 0, 100% 0, 100% 0, 0 2%);
+    --clip-path-secondary: polygon(0 0, 100% 0, 100% 99%, 0% 100%);
   }
 }
 
@@ -269,6 +273,9 @@ h3 {
 
   &::after {
     display: none;
+  }
+  @media screen and (max-width: 768px) {
+    max-width: 80%;
   }
 }
 

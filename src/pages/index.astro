@@ -4,6 +4,7 @@ import Header from '../components/Header/Header.astro'
 import BaseLayout from '../layouts/BaseLayout.astro'
 
 // Import Astro components
+import GetInTouch from '@/components/GetInTouch/GetInTouch.astro'
 import AboutSection from '../components/AboutSection/AboutSection.astro'
 import Calculator from '../components/Home/Calculator/Calculator.astro'
 import Hero from '../components/Home/Hero/Hero.astro'
@@ -27,6 +28,7 @@ import Reviews from '../components/Home/Reviews/Reviews.astro'
     <Process />
     <Reviews />
     <News />
+    <GetInTouch homePage={true} />
   </main>
 
   <Footer />

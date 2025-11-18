@@ -1,6 +1,7 @@
 ---
 import LoansGrid from '@/components/LoansGrid/LoansGrid.astro'
 import LoanDescription from '../LoanDescription/LoanDescription.astro'
+import LoanCompare from '../LoanCompare/LoanCompare.astro'
 import styles from './LoanList.module.css'
 ---
 
@@ -19,6 +20,8 @@ import styles from './LoanList.module.css'
       <LoansGrid />
 
       <LoanDescription />
+
+      <LoanCompare />
     </div>
   </div>
 </section>
@@ -62,40 +65,49 @@ import styles from './LoanList.module.css'
         })
 
         grid.classList.add('hide-grid')
-        descriptionSection.classList.add('data-visible')
-
-        descriptionBlocks.forEach(block => {
-          const el = block as HTMLElement
-          const value = el.getAttribute('data-loan-block')
-          el.classList.toggle('loan-description-hidden', value !== loanSlug)
-        })
+        
+        // Hide grid completely after fade animation
         setTimeout(() => {
-          window.scrollTo({
-            top: loansContainer?.offsetTop || 0,
-            behavior: 'smooth',
+          grid.style.display = 'none'
+          descriptionSection.classList.add('data-visible')
+
+          descriptionBlocks.forEach(block => {
+            const el = block as HTMLElement
+            const value = el.getAttribute('data-loan-block')
+            el.classList.toggle('loan-description-hidden', value !== loanSlug)
           })
-        }, 1200)
+
+          setTimeout(() => {
+            window.scrollTo({
+              top: loansContainer?.offsetTop || 0,
+              behavior: 'smooth',
+            })
+          }, 100)
+        }, 500)
       }
 
       const showAllPrograms = () => {
-        // Show grid, hide description section and all description blocks
-        grid.querySelectorAll('li').forEach(item => {
-          item.classList.remove('hide-loan', 'active-loan')
-        })
-        grid.classList.remove('hide-grid')
-
+        // Hide description first
         descriptionSection.classList.remove('data-visible')
-
         descriptionBlocks.forEach(block => {
           ;(block as HTMLElement).classList.add('loan-description-hidden')
         })
 
+        // Show grid after description hides
         setTimeout(() => {
-          window.scrollTo({
-            top: loansContainer?.offsetTop - 200 || 0,
-            behavior: 'smooth',
+          grid.style.display = 'grid'
+          grid.querySelectorAll('li').forEach(item => {
+            item.classList.remove('hide-loan', 'active-loan')
           })
-        }, 1200)
+          grid.classList.remove('hide-grid')
+
+          setTimeout(() => {
+            window.scrollTo({
+              top: (loansContainer?.offsetTop || 0) - 200,
+              behavior: 'smooth',
+            })
+          }, 100)
+        }, 100)
       }
 
       // Open from query param on initial load, e.g. /loan-programs?loan=conventional

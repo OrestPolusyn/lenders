@@ -7,22 +7,6 @@
   overflow: hidden;
 }
 
-/* Легкий патерн / світіння, щоб секція не була плоскою */
-.history::before {
-  content: '';
-  position: absolute;
-  inset-inline: -20%;
-  top: -30%;
-  height: 60%;
-  background: radial-gradient(
-    circle at 20% 0%,
-    rgba(0, 71, 171, 0.08) 0%,
-    rgba(0, 71, 171, 0.02) 50%,
-    transparent 100%
-  );
-  z-index: -1;
-}
-
 .historyWrapper {
   display: grid;
   grid-template-columns: minmax(450px, 1fr) minmax(550px, 1fr);

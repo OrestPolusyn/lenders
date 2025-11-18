@@ -17,7 +17,6 @@
   pointer-events: none;
   z-index: 0;
 
-  /* Преміальний теплий золотий градієнт */
   background: radial-gradient(
     circle at 75% 25%,
     rgba(255, 180, 0, 0.7) 0%,
@@ -26,44 +25,17 @@
     transparent 100%
   );
 
-  mix-blend-mode: lighten; /* головне для контрасту */
   filter: blur(70px);
   opacity: 1;
   transform: translate(25%, 0);
 }
 
-/* ---------- PREMIUM GOLD GLOW (BOTTOM LEFT) ---------- */
-.hero::after {
-  content: '';
-  position: absolute;
-  bottom: -20%;
-  left: -20%;
-  width: 70%;
-  height: 70%;
-  pointer-events: none;
-  z-index: 0;
-
-  background: radial-gradient(
-    circle at 30% 75%,
-    rgba(255, 170, 0, 0.65) 0%,
-    rgba(255, 145, 0, 0.4) 35%,
-    rgba(255, 115, 0, 0.22) 68%,
-    transparent 100%
-  );
-
-  mix-blend-mode: lighten;
-  filter: blur(75px);
-  opacity: 0.85;
-}
-
-/* ---------- INNER CONTAINER FIX ---------- */
 :global(.container) {
   height: 100%;
   position: relative;
-  z-index: 2; /* контент над світінням */
+  z-index: 2;
 }
 
-/* ---------- LAYOUT ---------- */
 .heroWrapper {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -72,7 +44,6 @@
   gap: 40px;
 }
 
-/* ---------- LEFT SIDE CONTENT ---------- */
 .heroContent {
   position: relative;
   display: flex;

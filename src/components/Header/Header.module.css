@@ -13,16 +13,13 @@
   max-width: 1920px;
 
   background-color: rgba(255, 255, 255, 0.96);
-  backdrop-filter: blur(16px);
   box-shadow: 0 10px 32px rgba(0, 71, 171, 0.18);
-  border-radius: calc(var(--radius-main) * 1.2);
+  border-radius: var(--radius-main);
 
   transition: transform 0.3s ease-in-out, top 0.3s ease-in-out,
     box-shadow 0.3s ease-in-out;
-  overflow: hidden;
 }
 
-/* Градієнтний “клин” зліва + синій шар під ним */
 .header::before,
 .header::after {
   content: '';
@@ -33,6 +30,7 @@
   max-width: 285px;
   width: 100%;
   clip-path: polygon(0 0, 100% 0%, 80% 100%, 0% 100%);
+  border-radius: var(--radius-main) 0 0 var(--radius-main);
 }
 
 .header::before {
@@ -206,6 +204,7 @@
   position: relative;
   width: 30px;
   padding-block: clamp(1rem, 1.7vw, 2rem);
+  padding-inline: 0 !important;
   margin-inline-end: clamp(1rem, 1.5vw, 2rem);
   display: none;
   cursor: pointer;

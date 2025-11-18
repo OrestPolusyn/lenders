@@ -176,14 +176,14 @@
 @media screen and (max-width: 992px) {
   .aboutSectionWrapper {
     grid-template-columns: 1fr;
+
+    ul p {
+      text-align: start !important;
+    }
   }
 
   .aboutSectionContent {
     text-align: center;
-  }
-
-  ul p {
-    text-align: start !important;
   }
 
   .aboutSectionImages {

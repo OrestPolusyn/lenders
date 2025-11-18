@@ -1,8 +1,11 @@
 ---
 import styles from './GetInTouch.module.css'
+
+const homePage = Astro.props.homePage
+
 ---
 
-<section class={styles.getInTouch}>
+<section class={`${styles.getInTouch} ${homePage ? styles.getInTouchHome : ''}`}>
   <div class='container'>
     <div class={styles.getInTouchContent}>
       <svg
@@ -26,7 +29,7 @@ import styles from './GetInTouch.module.css'
 
       <h2>Begin your home loan process today!</h2>
 
-      <p>Get pre-approved with in as little as 3 minutes.</p>
+      <p>Get pre-approved with in as little as <br /> 3 minutes.</p>
 
       <div class={styles.getInTouchActions}>
         <a href='/contact' class='button button--reverse'>

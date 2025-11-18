@@ -3,7 +3,7 @@
   padding-block: clamp(3rem, 3rem + 5vw, 6rem);
   color: var(--color-blue-500);
   background-color: var(--color-white);
-  clip-path: var(--clip-path);
+  clip-path: var(--clip-path-secondary);
   overflow: hidden;
 }
 

@@ -101,8 +101,14 @@
   }
 }
 
-@media screen and (max-width:992px) {
+@media screen and (max-width: 992px) {
   .homeReviewsWrapper {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .homeReviewsGrid {
     grid-template-columns: repeat(1, 1fr);
   }
 }

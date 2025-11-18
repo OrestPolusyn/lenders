@@ -167,6 +167,10 @@
 @media screen and (max-width: 575px) {
   .homePhilosophyList {
     grid-template-columns: 1fr;
+
+    p {
+      text-align: center;
+    }
   }
 
   .homePhilosophyInfo {
