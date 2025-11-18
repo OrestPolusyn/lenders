@@ -1,0 +1,61 @@
+.loanCompare {
+  padding-block: clamp(3rem, 4vw, 4.5rem);
+  color: var(--color-blue-500);
+  background-color: var(--color-white);
+}
+
+.loanCompareHeader {
+  max-width: 720px;
+  margin: 0 auto clamp(2rem, 3vw, 2.5rem);
+  text-align: center;
+
+  p {
+    margin: 0;
+    color: var(--color-blue-400);
+    font-size: 0.95rem;
+  }
+}
+
+.loanCompareTableWrapper {
+  overflow-x: auto;
+}
+
+.loanCompareTable {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 640px;
+  background-color: var(--color-white);
+  border-radius: var(--radius-main);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.06);
+}
+
+.loanCompareTable thead {
+  background-color: rgba(0, 71, 171, 0.03);
+}
+
+.loanCompareTable th,
+.loanCompareTable td {
+  padding: 0.9rem 1.25rem;
+  font-size: 0.95rem;
+  text-align: left;
+  border-bottom: 1px solid rgba(15, 23, 42, 0.08);
+}
+
+.loanCompareTable th {
+  font-weight: var(--fw-700);
+  color: var(--color-blue-500);
+}
+
+.loanCompareTable tbody th[scope='row'] {
+  font-weight: var(--fw-700);
+}
+
+.loanCompareTable tbody tr:nth-child(even) {
+  background-color: rgba(15, 23, 42, 0.02);
+}
+
+@media screen and (max-width: 768px) {
+  .loanCompareTable {
+    min-width: 560px;
+  }
+}

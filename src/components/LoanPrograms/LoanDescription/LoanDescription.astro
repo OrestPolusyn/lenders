@@ -37,6 +37,7 @@ interface LoanProgram {
 const loans = loansData as LoanProgram[]
 ---
 
+
 <section class={styles.loanDescription} data-loan-description>
   <div class='container'>
     <button
@@ -76,7 +77,7 @@ const loans = loansData as LoanProgram[]
 
               {loan.content.idealFor?.list &&
                 loan.content.idealFor.list.length > 0 && (
-                  <ul>
+                  <ul class='loan-list'>
                     {loan.content.idealFor.list.map(item => (
                       <li>{item}</li>
                     ))}
@@ -96,7 +97,7 @@ const loans = loansData as LoanProgram[]
                   <h3>{loan.content.keyBenefits.title}</h3>
                 )}
 
-                <ul>
+                <ul class='loan-list'>
                   {loan.content.keyBenefits.benefits.map(benefit => (
                     <li>
                       {benefit.title && <strong>{benefit.title}</strong>}
@@ -117,7 +118,7 @@ const loans = loansData as LoanProgram[]
 
                 {loan.content.requirements.list &&
                   loan.content.requirements.list.length > 0 && (
-                    <ul>
+                    <ul class='loan-list'>
                       {loan.content.requirements.list.map(item => (
                         <li>{item}</li>
                       ))}

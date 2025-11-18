@@ -71,7 +71,18 @@
   --color-gold-400: #ffd700;
   --color-white: #fff;
   --color-black: #1a1a1a;
+
   --color-gradient-100: linear-gradient(135deg, #00d3f2 0%, #00b8db 100%);
+
+  /* text */
+  --text-main: rgba(255, 255, 255, 0.92);
+  --text-muted: rgba(255, 255, 255, 0.78);
+  --text-soft: rgba(255, 255, 255, 0.64);
+
+  /* glow (тепле золото, а не лимонний) */
+  --glow-gold-core: rgba(255, 180, 0, 0.75);
+  --glow-gold-mid: rgba(255, 150, 0, 0.45);
+  --glow-gold-soft: rgba(255, 120, 0, 0.22);
 
   /* radius */
   --radius-main: 8px;
@@ -81,12 +92,15 @@
 
   /* letter spacing  */
   --letter-spacing-none: 0;
+}
+
+:root {
   --top-padding: 20px;
 
   /* clip-path */
-  --clip-path: polygon(0 5%, 100% 0, 100% 95%, 0% 100%);
+  --clip-path: polygon(0 3%, 100% 0, 100% 97%, 0% 100%);
   --clip-path-bottom: polygon(0 0, 100% 0, 100% 0, 0 10%);
-  --clip-path-secondary: polygon(0 0, 100% 0, 100% 95%, 0% 100%);
+  --clip-path-secondary: polygon(0 0, 100% 0, 100% 96%, 0% 100%);
 
   @media screen and (max-width: 1440px) {
     --clip-path-bottom: polygon(0 0, 100% 0, 100% 0, 0 4%);
@@ -96,6 +110,7 @@
   @media screen and (max-width: 768px) {
     --clip-path: polygon(0 2%, 100% 0, 100% 98%, 0% 100%);
     --clip-path-bottom: polygon(0 0, 100% 0, 100% 0, 0 2%);
+    --clip-path-secondary: polygon(0 0, 100% 0, 100% 99%, 0% 100%);
   }
 }
 
@@ -106,7 +121,7 @@
   font-size: clamp(1rem, 1.1rem + 0.254vw, 1.3rem);
   line-height: var(--line-height-normal);
   letter-spacing: var(--letter-spacing-none);
-  color: var(--color-blue-100);
+  color: var(--text-main); /* було var(--color-blue-100) */
   background-color: rgba(43, 124, 237, 0.927);
   font-optical-sizing: auto;
   scroll-behavior: smooth;
@@ -259,6 +274,9 @@ h3 {
   &::after {
     display: none;
   }
+  @media screen and (max-width: 768px) {
+    max-width: 80%;
+  }
 }
 
 .slogan--reverse {
@@ -305,9 +323,9 @@ h3 {
   font-weight: var(--fw-600);
   font-size: clamp(0.7rem, 0.75rem + 0.254vw, 0.8rem);
   border-radius: var(--radius-main);
-  transition-property: color, border-color;
+  transition-property: color, border-color, box-shadow, transform;
   transition-duration: 0.3s;
-  transition-timing-function: linear;
+  transition-timing-function: ease-out;
   overflow: hidden;
   text-transform: capitalize;
 
@@ -319,7 +337,7 @@ h3 {
     width: 0;
     height: 100%;
     background-color: var(--color-blue-500);
-    transition: width 0.3s linear;
+    transition: width 0.3s ease-out;
     z-index: 1;
   }
 
@@ -335,12 +353,14 @@ h3 {
     background-color: currentColor;
     position: relative;
     z-index: 2;
-    transition: background-color 0.3s linear;
+    transition: background-color 0.3s ease-out, transform 0.3s ease-out;
   }
 
   &:hover {
     color: var(--color-white);
     border-color: var(--color-white);
+    box-shadow: 0 10px 26px rgba(0, 0, 0, 0.25);
+    transform: translateY(-1px);
 
     &::before {
       width: 100%;
@@ -348,6 +368,10 @@ h3 {
 
     span::before {
       background-color: currentColor;
+    }
+
+    &::after {
+      transform: translateX(2px);
     }
   }
 
@@ -363,31 +387,24 @@ h3 {
       width: 1px;
       height: 100%;
       background-color: currentColor;
-      transition: background-color 0.3s linear;
+      transition: background-color 0.3s ease-out;
     }
   }
 }
 
-.button--reverse[type='button'] {
-  border-color: var(--color-white);
-  color: var(--color-white);
-  background-color: rgba(43, 124, 237, 0.927);
+/* Варіант кнопки з золотим фоном */
+.button--colored {
+  background-color: var(--color-gold-400);
+  border-color: var(--color-gold-400);
+  color: var(--color-black);
 
   &::before {
-    background-color: var(--color-blue-100);
+    background-color: #ffb52a;
   }
 
   &:hover {
-    border-color: var(--color-blue-100);
-
-    span {
-      color: var(--color-white);
-    }
+    border-color: #ffb52a;
   }
-}
-
-.button--colored {
-  background-color: var(--color-gold-400);
 }
 
 .error404Wrapper {

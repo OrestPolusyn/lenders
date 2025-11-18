@@ -4,42 +4,45 @@
   color: var(--color-blue-500);
   background-color: var(--color-white);
   clip-path: var(--clip-path);
+  z-index: 1;
+}
 
-  &::after {
-    content: '';
-    position: absolute;
-    top: -1px;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(
-        30deg,
-        transparent 48%,
-        rgba(255, 255, 255, 0.05) 49%,
-        rgba(255, 255, 255, 0.05) 51%,
-        transparent 52%
-      ),
-      linear-gradient(
-        120deg,
-        transparent 48%,
-        rgba(255, 255, 255, 0.05) 49%,
-        rgba(255, 255, 255, 0.05) 51%,
-        transparent 52%
-      ),
-      rgba(0 71 171 / 1);
-    background-size: 81px 115px;
-    background-position: 69px 115px;
-    z-index: 1;
-    clip-path: polygon(0 0, 100% 0, 100% 0, 0 5%);
+/* Верхній “cap” з патерном і синім */
+.aboutSection::after {
+  content: '';
+  position: absolute;
+  top: -1px;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+      30deg,
+      transparent 48%,
+      rgba(255, 255, 255, 0.06) 49%,
+      rgba(255, 255, 255, 0.06) 51%,
+      transparent 52%
+    ),
+    linear-gradient(
+      120deg,
+      transparent 48%,
+      rgba(255, 255, 255, 0.06) 49%,
+      rgba(255, 255, 255, 0.06) 51%,
+      transparent 52%
+    ),
+    var(--color-blue-600);
+  background-size: 81px 115px;
+  background-position: 69px 115px;
+  z-index: 0;
+  clip-path: polygon(0 0, 100% 0, 100% 0, 0 5%);
 
-    @media screen and (max-width: 768px) {
-      clip-path: polygon(0 0, 100% 0, 100% 0, 0 2%);
-    }
+  @media screen and (max-width: 768px) {
+    clip-path: polygon(0 0, 100% 0, 100% 0, 0 2%);
   }
 }
 
 .aboutSectionWrapper {
   position: relative;
+  display: grid;
   align-items: center;
   margin-block-end: clamp(2rem, 2rem + 5vw, 4rem);
   grid-template-columns: 1fr 1.2fr;
@@ -59,49 +62,62 @@
 .aboutSectionImages {
   position: relative;
   align-self: flex-end;
-
-  .aboutSectionImageSecond {
-    position: absolute;
-    top: 0;
-    right: 0;
-    padding: 0 0 15px 15px;
-    max-width: 290px;
-    max-height: 200px;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    z-index: 1;
-    background-color: var(--color-white);
-  }
 }
 
+.aboutSectionImages img {
+  border-radius: var(--radius-main);
+}
+
+/* Маленьке накладене зображення */
+.aboutSectionImages .aboutSectionImageSecond {
+  position: absolute;
+  top: 10%;
+  right: 0;
+  padding: 0 0 15px 15px;
+  max-width: 290px;
+  max-height: 200px;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+  background-color: var(--color-white);
+  border-radius: calc(var(--radius-main) * 1.5);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.18);
+}
+
+/* Блок з info + experience */
 .aboutSectionInfo {
   position: absolute;
-  border-top: 15px solid var(--color-white);
-  border-right: 15px solid var(--color-white);
   bottom: 0;
   left: 0;
   z-index: 1;
+
   display: flex;
   background-color: var(--color-blue-500);
-
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: url('/images/shape-bg.png');
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-    z-index: 0;
-    mix-blend-mode: multiply;
-  }
+  border-top: 14px solid var(--color-white);
+  border-right: 14px solid var(--color-white);
+  border-radius: 0 18px 0 0;
+  overflow: hidden;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.22);
 }
 
+.aboutSectionInfo::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url('/images/shape-bg.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  z-index: 0;
+  mix-blend-mode: multiply;
+  opacity: 0.75;
+}
+
+/* Вертикальний “Experience” */
 .aboutSectionExperience {
+  position: relative;
+  z-index: 1;
   font-weight: var(--fw-600);
   font-size: clamp(1rem, 1rem + 0.254vw, 1.2rem);
   text-transform: uppercase;
@@ -113,31 +129,37 @@
   text-align: center;
 }
 
+/* Великий номер років */
 .aboutSectionExperienceNumber {
   position: relative;
+  z-index: 1;
   display: flex;
   justify-content: center;
   align-items: center;
   margin: auto;
+  padding: 18px 26px;
+  min-width: 180px;
+
   font-weight: var(--fw-800);
   font-size: clamp(50px, 1.4583rem + 3.2407vw, 70px);
-  min-width: 180px;
   color: var(--color-blue-500);
-  text-shadow: 2px 2px 0 var(--color-gold-400),
-    -1px -1px 0 var(--color-gold-400), 1px -1px 0 var(--color-gold-400),
-    -1px 1px 0 var(--color-gold-400), 1px 1px 0 var(--color-gold-400);
 
-  &::after {
-    content: '+';
-    padding-inline-start: 5px;
-    font-size: clamp(50px, 1.4583rem + 3.2407vw, 70px);
-    color: var(--color-blue-500);
-    text-shadow: 2px 2px 0 var(--color-gold-400),
-      -1px -1px 0 var(--color-gold-400), 1px -1px 0 var(--color-gold-400),
-      -1px 1px 0 var(--color-gold-400), 1px 1px 0 var(--color-gold-400);
-  }
+  background-color: rgba(255, 255, 255, 0.96);
+  border-radius: 0 0 0 16px;
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.18);
+
+  text-shadow: 0 0 0 var(--color-gold-400), 0 0 18px rgba(255, 215, 0, 0.6);
 }
 
+.aboutSectionExperienceNumber::after {
+  content: '+';
+  padding-inline-start: 5px;
+  font-size: inherit;
+  color: var(--color-blue-500);
+  text-shadow: 0 0 0 var(--color-gold-400), 0 0 18px rgba(255, 215, 0, 0.6);
+}
+
+/* Контент праворуч */
 .aboutSectionContent {
   p {
     font-weight: var(--fw-500);
@@ -149,17 +171,19 @@
   }
 }
 
+/* -------- Адаптив -------- */
+
 @media screen and (max-width: 992px) {
   .aboutSectionWrapper {
     grid-template-columns: 1fr;
+
+    ul p {
+      text-align: start !important;
+    }
   }
 
   .aboutSectionContent {
     text-align: center;
-  }
-
-  ul p {
-    text-align: start !important;
   }
 
   .aboutSectionImages {
@@ -179,11 +203,13 @@
   .aboutSectionInfo {
     position: relative;
     translate: 0 15px;
+    margin-top: 20px;
   }
 
-  .aboutSectionImageSecond {
+  .aboutSectionImages .aboutSectionImageSecond {
     max-height: 150px !important;
     padding: 0 !important;
     top: 40% !important;
+    right: 5%;
   }
 }

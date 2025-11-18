@@ -156,7 +156,7 @@
 }
 
 :global(.hide-grid) {
-  animation: gridHide 1s ease 1s forwards;
+  animation: gridHideFade 0.5s ease forwards;
 }
 
 @media screen and (max-width: 992px) {
@@ -200,15 +200,17 @@
 
 @keyframes gridHide {
   from {
-    transform: translateY(0);
     opacity: 1;
-    visibility: visible;
   }
   to {
-    transform: translateY(100px);
     opacity: 0;
-    visibility: hidden;
-    position: absolute;
+  }
+}
+
+@keyframes gridHideFade {
+  to {
+    opacity: 0;
+    display: none;
   }
 }
 

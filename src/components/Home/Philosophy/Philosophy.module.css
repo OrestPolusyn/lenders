@@ -3,7 +3,8 @@
   padding-block: clamp(3rem, 3rem + 5vw, 6rem);
   color: var(--color-blue-500);
   background-color: var(--color-white);
-  clip-path: var(--clip-path);
+  clip-path: var(--clip-path); /* залишено як є */
+  overflow: hidden; /* захист від артефактів */
 
   :global .button {
     margin: 0 auto;
@@ -14,65 +15,72 @@
   }
 }
 
+/* Контейнер */
 .homePhilosophyWrapper {
   position: relative;
-  z-index: 1;
+  z-index: 2;
+  display: grid;
   align-items: center;
   margin-block-end: clamp(1.5rem, 1.5rem + 5vw, 5rem);
   grid-template-columns: repeat(2, 1fr);
- gap: clamp(20px, 5vw, 70px);
+  gap: clamp(20px, 5vw, 70px);
 }
 
+/* Зображення */
 .homePhilosophyImages {
   position: relative;
   border-radius: var(--radius-main);
   overflow: hidden;
-  z-index: 1;
   height: 100%;
-
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(
-      0deg,
-      rgb(0 71 171 / 95%) 0%,
-      rgb(0 71 171 / 40%) 50%,
-      rgb(0 0 0 / 0%) 100%
-    );
-    z-index: 1;
-  }
-
-  img {
-    height: 100%;
-  }
+  z-index: 1;
 }
 
+.homePhilosophyImages::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    0deg,
+    rgba(0, 71, 171, 0.95) 0%,
+    rgba(0, 71, 171, 0.4) 50%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  z-index: 1;
+  pointer-events: none;
+}
+
+.homePhilosophyImages img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Блок з цитатою */
 .homePhilosophyInfo {
   position: absolute;
-  border-radius: var(--radius-main);
-  padding: clamp(20px, 20px + 5vw, 30px);
   bottom: 35px;
   left: 35px;
   right: 35px;
-  z-index: 1;
+  padding: clamp(20px, 20px + 5vw, 30px);
+  border-radius: var(--radius-main);
+  z-index: 2;
   display: flex;
-  box-shadow: 0 8px 10px -6px rgb(0 0 0 / 10%),
-    0 20px 25px -5px rgb(0 0 0 / 10%);
+
   background: linear-gradient(90deg, #00d3f2 0%, #00b8db 100%);
+  box-shadow: 0 8px 10px -6px rgba(0, 0, 0, 0.1),
+    0 20px 25px -5px rgba(0, 0, 0, 0.1);
 
   p {
     font-weight: var(--fw-500);
     font-style: italic;
-    font-size: clamp(1rem, 1rem + 5vw, 1.45rem);
+    font-size: clamp(1rem, 1rem + 0.8vw, 1.45rem);
     color: var(--color-white);
     line-height: 1.3;
+    margin: 0;
   }
 }
 
+/* Контент */
 .homePhilosophyContent {
   > p:last-of-type {
     margin-block-end: clamp(1.5rem, 1.5rem + 5vw, 2.4rem);
@@ -83,6 +91,7 @@
   }
 }
 
+/* Список */
 .homePhilosophyList {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -100,80 +109,74 @@
   &::before {
     content: '✓';
     display: flex;
-    flex-direction: column;
-    align-items: center;
     justify-content: center;
+    align-items: center;
     font-size: 27px;
+
     width: 50px;
     height: 50px;
+    border-radius: var(--radius-main);
+
     background: var(--color-blue-500);
     color: var(--color-white);
-    border-radius: var(--radius-main);
-    background-repeat: no-repeat;
-    background-size: 24px;
-    background-position: center;
+    box-shadow: 0 10px 18px rgba(0, 0, 0, 0.15);
   }
 
   h3 {
     font-size: 22px;
+    font-weight: var(--fw-600);
   }
 
-  /* stylelint-disable-next-line no-descending-specificity */
   p {
     margin: 0;
     font-size: 17px;
     font-weight: var(--fw-600);
   }
 
-  &:nth-child(n + 2) {
-    &::before {
-      background: linear-gradient(
-        135deg,
-        var(--color-blue-100) 0%,
-        var(--color-blue-500) 100%
-      );
-    }
+  &:nth-child(n + 2)::before {
+    background: linear-gradient(
+      135deg,
+      var(--color-blue-100) 0%,
+      var(--color-blue-500) 100%
+    );
   }
 
-  &:nth-child(3n + 1) {
-    &::before {
-      background: linear-gradient(
-        135deg,
-        var(--color-blue-500) 0%,
-        var(--color-blue-100) 100%
-      );
-    }
+  &:nth-child(3n + 1)::before {
+    background: linear-gradient(
+      135deg,
+      var(--color-blue-500) 0%,
+      var(--color-blue-100) 100%
+    );
   }
 }
 
-@media screen and (max-width:992px) {
-  .homePhilosophyWrapper {
-    grid-template-columns: repeat(1, 1fr);
-    align-items: center;
-  }
+/* --- Адаптив --- */
 
-  .homePhilosophyContent {
-   
-      text-align: center;
-   
+@media screen and (max-width: 992px) {
+  .homePhilosophyWrapper {
+    grid-template-columns: 1fr;
+    text-align: center;
   }
 
   .homePhilosophyImages {
-    max-height: 450px;
     order: 1;
+    max-height: 450px;
   }
 }
 
-@media screen and (max-width:575px) {
+@media screen and (max-width: 575px) {
   .homePhilosophyList {
-        grid-template-columns: 1fr
-  }
-  .homePhilosophyInfo {
+    grid-template-columns: 1fr;
 
+    p {
+      text-align: center;
+    }
+  }
+
+  .homePhilosophyInfo {
     bottom: 0;
     left: 0;
     right: 0;
-    padding: 10px;
-  
+    padding: 16px;
   }
 }

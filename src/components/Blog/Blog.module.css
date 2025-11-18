@@ -1,11 +1,15 @@
 .blog {
-  padding-block-end: clamp(5rem, 5rem + 5vw, 8rem) !important;
+  position: relative;
+  padding-block: clamp(2rem, 2rem + 5vw, 8rem);
   background-color: var(--color-white);
+  color: var(--color-blue-600);
   clip-path: var(--clip-path-secondary);
+  isolation: isolate;
 
   h2 {
     color: var(--color-blue-600);
     text-align: center;
+    margin-block-end: clamp(2rem, 2rem + 3vw, 3rem);
   }
 
   :global(.button) {
@@ -17,19 +21,27 @@
 
 .blogList {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2rem;
-  margin-block-end: 3.5rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(1.5rem, 2vw, 2.5rem);
+  margin-block-end: clamp(2.5rem, 3vw, 3.5rem);
 }
 
-.newsItemImage img {
-  height: 350px;
+/* Картки блогу – ізольовано в межах .blog */
+.blog .newsItemImage {
+  position: relative;
+  width: 100%;
+  height: 260px;
+  overflow: hidden;
+}
+
+.blog .newsItemImage img {
+  width: 100%;
+  height: 100%;
   object-fit: cover;
   transition: transform 0.3s ease;
 }
 
-
-.newsItem {
+.blog .newsItem {
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -37,10 +49,13 @@
   border-radius: var(--radius-main);
   color: var(--color-blue-600);
   overflow: hidden;
-  box-shadow: 0 5px 10px rgb(0 0 0 / 30%);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06), 0 18px 35px rgba(0, 0, 0, 0.12);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 
   &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08), 0 20px 40px rgba(0, 0, 0, 0.16);
+
     .newsItemImage img {
       transform: scale(1.05);
     }
@@ -53,12 +68,12 @@
   }
 }
 
-.newsItemCategory {
+.blog .newsItemCategory {
   position: absolute;
   top: 15px;
   right: 15px;
   background-color: var(--color-blue-100);
-  color: var(--color-blue-600);
+  color: var(--color-white);
   padding: 6px 14px;
   border-radius: calc(var(--radius-main) * 2);
   font-size: 12px;
@@ -67,36 +82,36 @@
   letter-spacing: 0.5px;
 }
 
-.newsItemContent {
+.blog .newsItemContent {
   display: flex;
   flex-direction: column;
-  padding: 25px;
+  padding: 22px 24px;
   height: 100%;
 
   h3 {
     font-size: clamp(1rem, 1.125rem + 0.254vw, 1.25rem);
     font-weight: var(--fw-700);
-    margin-bottom: 12px;
+    margin-bottom: 10px;
     line-height: 1.3;
     color: var(--color-blue-400);
   }
 
   p {
-    font-size: 18px;
-    margin-bottom: 20px;
+    font-size: 16px;
+    margin-bottom: 18px;
     flex: 1;
   }
 }
 
-.newsItemDate {
+.blog .newsItemDate {
   display: block;
   font-size: 13px;
   color: var(--color-blue-200);
   font-weight: var(--fw-600);
-  margin-bottom: 10px;
+  margin-bottom: 8px;
 }
 
-.newsItemButton {
+.blog .newsItemButton {
   display: inline-flex;
   align-items: center;
   gap: 3px;
@@ -125,9 +140,10 @@
   }
 }
 
+/* Адаптив */
 @media screen and (max-width: 992px) {
   .blogList {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 

@@ -1,0 +1,123 @@
+---
+import { loanList } from '@/const/loansPrograms'
+import styles from './LoanCompare.module.css'
+
+// Mapping деталей для кожного типу кредиту
+const loanDetails: Record<string, {
+  downPayment: string
+  idealFor: string
+  creditRange: string
+  maxLoanSize: string
+}> = {
+  'Conventional Loans': {
+    downPayment: '3–20%',
+    idealFor: 'Most buyers with good credit',
+    creditRange: '620+',
+    maxLoanSize: 'Standard',
+  },
+  'FHA Loans': {
+    downPayment: '3.5%',
+    idealFor: 'Lower credit, first-time buyers',
+    creditRange: '580+',
+    maxLoanSize: 'Standard',
+  },
+  'VA Loans': {
+    downPayment: '0%',
+    idealFor: 'Veterans & eligible service members',
+    creditRange: 'Flexible',
+    maxLoanSize: 'Standard',
+  },
+  'Jumbo Prime Loans': {
+    downPayment: '10–20%',
+    idealFor: 'High-value homes',
+    creditRange: '700+',
+    maxLoanSize: 'High',
+  },
+  'Refinance & Purchase Loans': {
+    downPayment: 'Varies',
+    idealFor: 'Homeowners refinancing or buying',
+    creditRange: '580+',
+    maxLoanSize: 'Flexible',
+  },
+  'Primary Home Loans': {
+    downPayment: '3–20%',
+    idealFor: 'Primary residence purchase',
+    creditRange: '620+',
+    maxLoanSize: 'Standard',
+  },
+  'Secondary Home Loans': {
+    downPayment: '10–25%',
+    idealFor: 'Vacation or secondary homes',
+    creditRange: '640+',
+    maxLoanSize: 'Standard',
+  },
+  'Investment Property Loans': {
+    downPayment: '15–25%',
+    idealFor: 'Rental property investors',
+    creditRange: '640+',
+    maxLoanSize: 'Flexible',
+  },
+  'Self-Employed Home Loans': {
+    downPayment: '10–20%',
+    idealFor: 'Self-employed borrowers',
+    creditRange: '620+',
+    maxLoanSize: 'Standard',
+  },
+  'First-Time Homebuyer Programs': {
+    downPayment: '0–5%',
+    idealFor: 'First-time home buyers',
+    creditRange: '580+',
+    maxLoanSize: 'Standard',
+  },
+  'Reverse Mortgage Loans': {
+    downPayment: 'N/A',
+    idealFor: 'Seniors 62+ extracting home equity',
+    creditRange: 'Flexible',
+    maxLoanSize: 'Based on home value',
+  },
+}
+---
+
+<section class={styles.loanCompare} aria-labelledby='loan-compare-heading'>
+  <div class='container'>
+    <div class={styles.loanCompareHeader}>
+      <h2 id='loan-compare-heading'>Compare all loan programs</h2>
+      <p>
+        See how each loan type differs by down payment, who it works best for,
+        and typical credit requirements.
+      </p>
+    </div>
+
+    <div class={styles.loanCompareTableWrapper}>
+      <table class={styles.loanCompareTable}>
+        <thead>
+          <tr>
+            <th scope='col'>Loan Type</th>
+            <th scope='col'>Down Payment</th>
+            <th scope='col'>Ideal For</th>
+            <th scope='col'>Credit Range</th>
+            <th scope='col'>Max Loan Size</th>
+          </tr>
+        </thead>
+        <tbody>
+          {
+            loanList.map((loan) => {
+              const details = loanDetails[loan.title]
+              if (!details) return null
+
+              return (
+                <tr>
+                  <th scope='row'>{loan.title}</th>
+                  <td>{details.downPayment}</td>
+                  <td>{details.idealFor}</td>
+                  <td>{details.creditRange}</td>
+                  <td>{details.maxLoanSize}</td>
+                </tr>
+              )
+            })
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>

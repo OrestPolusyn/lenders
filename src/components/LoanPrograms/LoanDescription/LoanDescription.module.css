@@ -47,46 +47,35 @@
     font-weight: var(--fw-500);
 
     &::before {
-      content: '';
+      content: '✓';
       position: absolute;
-      left: 0.1rem;
-      top: 0.45em;
-      width: 0.6rem;
-      height: 0.35rem;
-      border-left: 2px solid var(--color-gold-400);
-      border-bottom: 2px solid var(--color-gold-400);
-      transform: rotate(-45deg);
+      left: 0;
+      color: var(--color-gold-400);
+      font-weight: bold;
+      font-size: 1.25rem;
     }
   }
 }
 
 :global([data-loan-description]) {
-  position: absolute;
+  display: none;
   opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.3s ease;
+  transform: translateY(30px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
 
   &:global(.data-visible) {
-    animation: slideShow 1s ease 0.5s forwards;
+    display: block;
+    animation: fadeInUp 0.6s ease forwards;
   }
 }
 
 :global(.loan-description-hidden) {
-  opacity: 0;
-  visibility: hidden;
-  position: absolute;
+  display: none !important;
 }
 
-@keyframes slideShow {
-  from {
-    transform: translateY(100px);
-    opacity: 0;
-    visibility: hidden;
-  }
+@keyframes fadeInUp {
   to {
-    transform: translateY(0);
     opacity: 1;
-    visibility: visible;
-    position: relative;
+    transform: translateY(0);
   }
 }

@@ -1,9 +1,9 @@
 .getInTouch {
   position: relative;
-  padding-block: 0 50px;
   width: 100%;
-  max-width: 1080px;
   margin-inline: auto;
+  padding-block: 0;
+  isolation: isolate;
 
   &::before {
     content: '';
@@ -13,32 +13,44 @@
     width: 60%;
     height: 85%;
     pointer-events: none;
-    z-index: 0;
+    z-index: -1;
 
     background: radial-gradient(
       circle at 85% 25%,
-      rgba(255, 255, 255, 0.95) 0%,
-      rgba(255, 235, 180, 0.65) 35%,
-      rgba(255, 220, 120, 0.12) 70%,
+      rgba(255, 215, 0, 0.9) 0%,
+      rgba(255, 215, 0, 0.55) 30%,
+      rgba(255, 215, 0, 0.18) 65%,
       transparent 100%
     );
     mix-blend-mode: screen;
-
-    filter: blur(75px);
-    opacity: 0.7;
-    transform: translate(45%, -35%);
+    filter: blur(70px);
+    opacity: 0.8;
+    transform: translate(35%, -30%);
 
     @media screen and (max-width: 1100px) {
       width: 100%;
       height: 60%;
-      transform: translate(25%, -15%);
-      filter: blur(100px);
+      transform: translate(15%, -10%);
+      filter: blur(95px);
     }
   }
 
   svg {
     margin-block-end: 30px;
     margin-inline: auto;
+    display: block;
+  }
+
+  &.getInTouchHome {
+    padding-block: 80px;
+    color: var(--color-blue-500);
+    background-color: var(--color-white);
+    clip-path: var(--clip-path);
+
+    h2,
+    p {
+      color: var(--color-blue-500);
+    }
   }
 }
 
@@ -55,6 +67,7 @@
 
   p {
     margin-block-end: 35px;
+    max-width: 640px;
   }
 }
 
@@ -62,12 +75,26 @@
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
+  justify-content: center;
+
+  :global(.button) {
+    min-width: 190px;
+    justify-content: center;
+  }
 }
 
 @media screen and (max-width: 575px) {
+  .getInTouch {
+    &::before {
+      display: none;
+    }
+  }
   .getInTouchActions {
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    align-items: stretch;
+
+    :global(.button) {
+      width: 100%;
+    }
   }
 }

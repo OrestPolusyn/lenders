@@ -4,6 +4,7 @@ import processImageFirst from '/public/images/home/process-first.png'
 import processImageFourth from '/public/images/home/process-fourth.png'
 import processImageSecond from '/public/images/home/process-second.png'
 import processImageThird from '/public/images/home/process-third.png'
+import LazyImage from '../../UI/LazyImage/LazyImage.astro'
 ---
 
 <section class={styles.process}>
@@ -18,11 +19,12 @@ import processImageThird from '/public/images/home/process-third.png'
       <ul class={styles.processList}>
         <li class={styles.processItem}>
           <div class={styles.processItemIcons}>
-            <img
+            <LazyImage
               src={processImageFirst.src}
               alt='processImageFirst'
               width={130}
               height={130}
+              loading="lazy"
             />
 
             <span class={styles.processStepNumber}>step</span>
@@ -55,11 +57,12 @@ import processImageThird from '/public/images/home/process-third.png'
         </li>
         <li class={styles.processItem}>
           <div class={styles.processItemIcons}>
-            <img
+            <LazyImage
               src={processImageSecond.src}
               alt='processImageFirst'
               width={130}
               height={130}
+              loading="lazy"
             />
 
             <span class={styles.processStepNumber}>step</span>
@@ -95,11 +98,12 @@ import processImageThird from '/public/images/home/process-third.png'
         </li>
         <li class={styles.processItem}>
           <div class={styles.processItemIcons}>
-            <img
+            <LazyImage
               src={processImageThird.src}
               alt='processImageFirst'
               width={130}
               height={130}
+              loading="lazy"
             />
 
             <span class={styles.processStepNumber}>step</span>
@@ -132,11 +136,12 @@ import processImageThird from '/public/images/home/process-third.png'
         </li>
         <li class={styles.processItem}>
           <div class={styles.processItemIcons}>
-            <img
+            <LazyImage
               src={processImageFourth.src}
               alt='processImageFirst'
               width={130}
               height={130}
+              loading="lazy"
             />
 
             <span class={styles.processStepNumber}>step</span>

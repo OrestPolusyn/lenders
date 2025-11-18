@@ -10,7 +10,7 @@
   flex-direction: column;
   padding: clamp(1.3rem, 1.3rem + 3vw, 2rem);
   height: 100%;
-  background-color: rgba(43, 124, 237, 0.927);
+  background-color: var(--color-blue-500);
   border-radius: var(--radius-main);
 }
 
@@ -149,5 +149,11 @@
 @media screen and (max-width: 992px) {
   .reviewsSlider {
     max-width: 100%;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .reviewsSliderSocial {
+    flex-direction: column;
   }
 }

@@ -3,6 +3,7 @@ import Footer from "../components/Footer/Footer.astro";
 import Header from "../components/Header/Header.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import errorImage from "/public/images/404-error.png";
+import LazyImage from "../components/UI/LazyImage/LazyImage.astro";
 ---
 
 <BaseLayout
@@ -16,7 +17,7 @@ import errorImage from "/public/images/404-error.png";
       <div class="container">
         <div class="error404Wrapper">
           <div class="error404ImageWrap">
-            <img
+            <LazyImage
               class="error404Image"
               src={errorImage.src}
               alt="404 error"

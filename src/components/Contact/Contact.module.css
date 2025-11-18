@@ -1,12 +1,15 @@
 .contact {
-  padding: 80px 0;
-  padding-block-end: clamp(3rem, 3rem + 5vw, 6rem);
+  position: relative;
+  padding-block: clamp(3rem, 3rem + 5vw, 6rem);
   color: var(--color-blue-500);
   background-color: var(--color-white);
-  clip-path: var(--clip-path);
+  clip-path: var(--clip-path-secondary);
+  overflow: hidden;
 }
 
 .contactHeader {
+  position: relative;
+  z-index: 1;
   text-align: center;
   margin-bottom: 60px;
 }
@@ -19,25 +22,29 @@
 }
 
 .contactContent {
+  position: relative;
+  z-index: 1;
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 40px;
   align-items: start;
 }
 
-/* Left Side - Form */
+/* LEFT SIDE – FORM */
+
 .contactForm {
   background-color: rgba(43, 124, 237, 0.927);
   border-radius: var(--radius-main);
-  padding: clamp(1rem, 2.5rem + 1vw, 2.2rem);
+  padding: clamp(1.5rem, 2.5rem + 1vw, 2.4rem);
   color: var(--color-white);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
 }
 
 .formHeader {
   margin-bottom: 30px;
 
   h3 {
-    font-size: 28px;
+    font-size: 26px;
     font-weight: var(--fw-700);
     margin-bottom: 10px;
   }
@@ -69,7 +76,7 @@
     font-family: var(--font-family);
     background-color: var(--color-white);
     color: var(--color-blue-600);
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
 
     &::placeholder {
       color: var(--color-blue-600);
@@ -79,6 +86,7 @@
       outline: none;
       color: var(--color-white);
       background-color: var(--color-blue-100);
+      box-shadow: 0 0 0 1px var(--color-blue-100);
 
       &::placeholder {
         color: var(--color-white);
@@ -86,7 +94,6 @@
     }
   }
 
-  /* stylelint-disable-next-line no-descending-specificity */
   textarea {
     resize: none;
     min-height: 100px;
@@ -95,12 +102,12 @@
 
 .submitButton[type='submit'] {
   width: 100%;
-  padding: 10px 20px;
+  padding: 12px 20px;
   background-color: var(--color-white);
   color: var(--color-blue-600);
   border: none;
   border-radius: calc(var(--radius-main) / 2);
-  font-size: 18px;
+  font-size: 17px;
   font-weight: var(--fw-600);
   display: flex;
   align-items: center;
@@ -117,7 +124,7 @@
     background-color: var(--color-blue-100);
     color: var(--color-white);
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgb(0 0 0 / 20%);
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.25);
 
     svg {
       transform: translateX(4px);
@@ -130,16 +137,16 @@
   align-items: center;
   gap: 8px;
   font-size: 13px;
-  opacity: 0.8;
+  opacity: 0.85;
   margin: 0;
 
-  /* stylelint-disable-next-line no-descending-specificity */
   svg {
     flex-shrink: 0;
   }
 }
 
-/* Right Side - Contact Info */
+/* RIGHT SIDE – INFO */
+
 .contactInfo {
   display: flex;
   flex-direction: column;
@@ -147,8 +154,10 @@
   height: 100%;
 }
 
+/* MAP */
+
 .mapContainer {
-  background: linear-gradient(135deg, #e8f4f8 0%, #f5f5f5 100%);
+  background: linear-gradient(135deg, rgba(0, 71, 171, 0.06) 0%, #f5f8ff 100%);
   margin-block-end: auto;
   border-radius: var(--radius-main);
   padding: 30px;
@@ -164,10 +173,11 @@
     position: absolute;
     inset: 0;
     background: url('/images/map.png'),
-      radial-gradient(circle, rgb(0 211 242 / 10%) 0%, transparent 70%);
+      radial-gradient(circle, rgba(0, 211, 242, 0.18) 0%, transparent 70%);
     background-size: auto;
     background-position: center;
     background-repeat: no-repeat;
+    opacity: 0.9;
   }
 }
 
@@ -189,13 +199,11 @@
   height: 60px;
 }
 
-.buildingInfo {
-  p {
-    font-size: 18px;
-    color: var(--color-blue-600);
-    font-weight: var(--fw-700);
-    margin-bottom: 10px;
-  }
+.buildingInfo p {
+  font-size: 18px;
+  color: var(--color-blue-600);
+  font-weight: var(--fw-700);
+  margin-bottom: 10px;
 }
 
 .rating {
@@ -207,10 +215,12 @@
   color: var(--color-blue-600);
 
   span {
-    font-size: 25px;
+    font-size: 22px;
     color: var(--color-gold-400);
   }
 }
+
+/* CONTACT CARDS */
 
 .contactCards {
   display: flex;
@@ -221,22 +231,23 @@
 .contactCard {
   background-color: rgba(43, 124, 237, 0.927);
   border-radius: var(--radius-main);
-  padding: 25px;
+  padding: 22px 24px;
   display: flex;
   align-items: flex-start;
-  gap: 20px;
+  gap: 18px;
   transition: all 0.3s ease;
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.22);
 
   &:hover {
     transform: translateY(-4px);
-    box-shadow: 0 8px 20px rgb(0 211 242 / 30%);
+    box-shadow: 0 16px 34px rgba(0, 0, 0, 0.3);
   }
 }
 
 .contactCardIcon {
   width: 50px;
   height: 50px;
-  background-color: rgb(255 255 255 / 20%);
+  background-color: rgba(255, 255, 255, 0.16);
   border-radius: var(--radius-main);
   display: flex;
   align-items: center;
@@ -278,6 +289,8 @@
     }
   }
 }
+
+/* RESPONSIVE */
 
 @media screen and (max-width: 992px) {
   .contactContent {

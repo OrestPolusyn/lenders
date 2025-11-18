@@ -1,6 +1,7 @@
 ---
 import styles from './Faq.module.css'
 import faqImage from '/public/images/faq-bg.jpg'
+import LazyImage from '../UI/LazyImage/LazyImage.astro'
 ---
 
 <section class={styles.faq}>
@@ -11,7 +12,7 @@ import faqImage from '/public/images/faq-bg.jpg'
 
     <div class={`${styles.faqWrapper} wrapper`}>
       <div class={styles.FaqImage}>
-        <img
+        <LazyImage
           src={faqImage.src}
           alt='Faq'
           width={faqImage.width}

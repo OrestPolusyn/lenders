@@ -1,4 +1,4 @@
-.ProgressLines {
+.progressLines {
   display: flex;
   flex-direction: column;
   gap: 50px;
@@ -11,15 +11,15 @@
   }
 }
 
-.ProgressLine {
+.progressLine {
   position: relative;
   display: block;
   width: 100%;
   height: 3px;
-  background-color: var(--color-white);
+  background-color: var(--color-blue-100);
 }
 
-.ProgressLine {
+.progressLine {
   position: relative;
 
   &:before {
@@ -32,19 +32,27 @@
     width: var(--percent, 0%);
     transform: scaleX(0);
     transform-origin: left;
-    transition: transform 2s ease-in-out;
+    transition: transform 1s ease-out;
   }
 }
 
-.ProgressLine span {
+.progressLine span {
   position: absolute;
   top: 10px;
   right: 0;
   font-weight: var(--fw-700);
 }
 
-.ProgressLine:global(.animate):before {
+.progressLine:global(.animate):before {
   transform: scaleX(1);
+}
+
+/* Disable progress animation on small screens for smoother performance */
+@media screen and (max-width: 768px) {
+  .progressLine:global(.animate):before {
+    transition: none;
+    transform: scaleX(1);
+  }
 }
 
 @keyframes moveImageSquare {

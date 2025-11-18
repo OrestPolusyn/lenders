@@ -1,42 +1,32 @@
 .homeCalculator {
   position: relative;
   color: var(--color-white);
-
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 75%;
-    height: 85%;
-    pointer-events: none;
-    z-index: -1;
-
-    background: radial-gradient(
-      circle at 85% 25%,
-      rgba(255, 255, 255, 0.95) 0%,
-      rgba(255, 235, 180, 0.65) 35%,
-      rgba(255, 220, 120, 0.12) 70%,
-      transparent 100%
-    );
-    mix-blend-mode: screen;
-
-    filter: blur(75px);
-    opacity: 0.7;
-    transform: translate(10%, -45%);
-
-    @media screen and (max-width: 1100px) {
-      width: 100%;
-      height: 60%;
-      filter: blur(90px);
-      transform: translate(0%, -20%);
-    }
-  }
-
-  :global(.loanGrid) {
-    grid-template-columns: repeat(auto-fill, minmax(256px, 1fr));
-  }
 }
+
+/* ПРЕМІУМ ЗОЛОТЕ СВІТІННЯ */
+.homeCalculator::before {
+  content: '';
+  position: absolute;
+  top: -10%;
+  right: -15%;
+  width: 65%;
+  height: 85%;
+  pointer-events: none;
+  z-index: 0;
+
+  background: radial-gradient(
+    circle at 80% 25%,
+    rgba(255, 180, 0, 0.7) 0%,
+    rgba(255, 150, 0, 0.45) 35%,
+    rgba(255, 120, 0, 0.22) 70%,
+    transparent 100%
+  );
+
+  filter: blur(80px);
+  opacity: 1;
+  transform: translate(25%, -20%);
+}
+
 .homeLoanPrograms {
   h3 {
     margin-bottom: 20px;
@@ -45,6 +35,10 @@
 
   :global(.button) {
     margin-inline: auto;
+  }
+
+  :global(.loanGrid) {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   }
 }
 
@@ -55,6 +49,7 @@
   align-items: center;
   margin-block-end: clamp(2rem, 2rem + 5vw, 3rem);
   text-align: center;
+  z-index: 2;
 
   h2 {
     margin-block-end: 40px;
@@ -67,12 +62,15 @@
 }
 
 .homeCalculatorWrapper {
+  position: relative;
+  z-index: 2;
   display: grid;
   grid-template-columns: minmax(408px, 1fr) minmax(586px, 1fr);
   justify-content: center;
   gap: clamp(20px, 5vw, 70px);
 }
 
+/* АДАПТИВ */
 @media screen and (max-width: 1100px) {
   .homeCalculatorWrapper {
     gap: 70px;
@@ -89,6 +87,10 @@
 
   .homeCalculatorContent > p {
     width: 100%;
+  }
+
+  .homeCalculator::before {
+    display: none;
   }
 }
 

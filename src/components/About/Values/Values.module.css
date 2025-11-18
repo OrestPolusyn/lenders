@@ -1,10 +1,10 @@
-.Values {
+.values {
   color: var(--color-blue-500);
   background-color: var(--color-white);
   clip-path: var(--clip-path);
 }
 
-.ValuesContent {
+.valuesContent {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -16,7 +16,7 @@
   }
 }
 
-.ValuesList {
+.valuesList {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;
@@ -44,7 +44,7 @@
   }
 }
 
-.ValuesListItem {
+.valuesListItem {
   position: relative;
 
   &::before {
@@ -74,44 +74,44 @@
   }
 }
 
-.ValuesListItem--client {
+.valuesListItem--client {
   &::before {
     background-image: url("data:image/svg+xml,%3Csvg width='32' height='32' viewBox='0 0 32 32' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M15.75 28.875C22.9987 28.875 28.875 22.9987 28.875 15.75C28.875 8.50126 22.9987 2.625 15.75 2.625C8.50126 2.625 2.625 8.50126 2.625 15.75C2.625 22.9987 8.50126 28.875 15.75 28.875Z' stroke='gold' stroke-width='2.625' stroke-linecap='round' stroke-linejoin='round' /%3E%3Cpath d='M15.75 23.625C20.0992 23.625 23.625 20.0992 23.625 15.75C23.625 11.4008 20.0992 7.875 15.75 7.875C11.4008 7.875 7.875 11.4008 7.875 15.75C7.875 20.0992 11.4008 23.625 15.75 23.625Z' stroke='gold' stroke-width='2.625' stroke-linecap='round' stroke-linejoin='round' /%3E%3Cpath d='M15.75 18.375C17.1997 18.375 18.375 17.1997 18.375 15.75C18.375 14.3003 17.1997 13.125 15.75 13.125C14.3003 13.125 13.125 14.3003 13.125 15.75C13.125 17.1997 14.3003 18.375 15.75 18.375Z' stroke='gold' stroke-width='2.625' stroke-linecap='round' stroke-linejoin='round' /%3E%3C/svg%3E");
   }
 }
 
-.ValuesListItem--expert {
+.valuesListItem--expert {
   &::before {
     background-image: url("data:image/svg+xml,%3Csvg width='36' height='36' viewBox='0 0 36 36' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M23.2155 19.335L25.488 32.124C25.5134 32.2746 25.4923 32.4293 25.4274 32.5676C25.3625 32.7058 25.257 32.821 25.1249 32.8977C24.9928 32.9743 24.8404 33.0088 24.6882 32.9965C24.536 32.9842 24.3911 32.9258 24.273 32.829L18.903 28.7985C18.6438 28.6048 18.3288 28.5001 18.0052 28.5001C17.6816 28.5001 17.3667 28.6048 17.1075 28.7985L11.7285 32.8275C11.6105 32.9241 11.4658 32.9825 11.3137 32.9948C11.1617 33.0071 11.0095 32.9727 10.8775 32.8963C10.7455 32.8198 10.6399 32.705 10.5749 32.567C10.5098 32.429 10.4884 32.2744 10.5135 32.124L12.7845 19.335' stroke='gold' stroke-width='3' stroke-linecap='round' stroke-linejoin='round' /%3E%3Cpath d='M18 21C22.9706 21 27 16.9706 27 12C27 7.02944 22.9706 3 18 3C13.0294 3 9 7.02944 9 12C9 16.9706 13.0294 21 18 21Z' stroke='gold' stroke-width='3' stroke-linecap='round' stroke-linejoin='round' /%3E%3C/svg%3E");
   }
 }
 
-.ValuesListItem--excellence {
+.valuesListItem--excellence {
   &::before {
     background-image: url("data:image/svg+xml,%3Csvg width='32' height='32' viewBox='0 0 32 32' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20.3126 16.9181L22.3011 28.1085C22.3233 28.2402 22.3048 28.3757 22.2481 28.4966C22.1913 28.6176 22.0989 28.7184 21.9833 28.7854C21.8678 28.8525 21.7345 28.8827 21.6012 28.872C21.468 28.8612 21.3413 28.8101 21.2379 28.7253L16.5392 25.1987C16.3124 25.0292 16.0368 24.9376 15.7537 24.9376C15.4705 24.9376 15.195 25.0292 14.9681 25.1987L10.2615 28.724C10.1582 28.8086 10.0316 28.8597 9.89859 28.8704C9.76554 28.8812 9.63238 28.8511 9.51687 28.7842C9.40136 28.7173 9.30899 28.6168 9.25208 28.4961C9.19518 28.3754 9.17644 28.2401 9.19838 28.1085L11.1855 16.9181' stroke='gold' stroke-width='2.625' stroke-linecap='round' stroke-linejoin='round' /%3E%3Cpath d='M15.75 18.375C20.0992 18.375 23.625 14.8492 23.625 10.5C23.625 6.15076 20.0992 2.625 15.75 2.625C11.4008 2.625 7.875 6.15076 7.875 10.5C7.875 14.8492 11.4008 18.375 15.75 18.375Z' stroke='gold' stroke-width='2.625' stroke-linecap='round' stroke-linejoin='round' /%3E%3C/svg%3E");
   }
 }
 
-.ValuesListItem--innovation {
+.valuesListItem--innovation {
   &::before {
     background-image: url("data:image/svg+xml,%3Csvg width='32' height='32' viewBox='0 0 32 32' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M21 9.1875H28.875V17.0625' stroke='gold' stroke-width='2.625' stroke-linecap='round' stroke-linejoin='round' /%3E%3Cpath d='M28.875 9.1875L17.7188 20.3438L11.1562 13.7812L2.625 22.3125' stroke='gold' stroke-width='2.625' stroke-linecap='round' stroke-linejoin='round' /%3E%3C/svg%3E");
   }
 }
 
-.ValuesListItem--community {
+.valuesListItem--community {
   &::before {
     background-image: url("data:image/svg+xml,%3Csvg width='32' height='32' viewBox='0 0 32 32' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M2.625 12.4687C2.62503 11.0082 3.06809 9.58198 3.89567 8.37852C4.72326 7.17506 5.89643 6.25095 7.26024 5.72824C8.62404 5.20552 10.1143 5.10879 11.5343 5.45083C12.9542 5.79287 14.237 6.55758 15.2132 7.64396C15.2819 7.71748 15.3651 7.77609 15.4574 7.81616C15.5498 7.85623 15.6493 7.87691 15.75 7.87691C15.8507 7.87691 15.9502 7.85623 16.0426 7.81616C16.1349 7.77609 16.2181 7.71748 16.2868 7.64396C17.26 6.55052 18.543 5.77938 19.9653 5.43319C21.3875 5.087 22.8815 5.18217 24.2483 5.70603C25.6151 6.2299 26.7899 7.15762 27.6165 8.36571C28.443 9.5738 28.882 11.005 28.875 12.4687C28.875 15.4743 26.9062 17.7187 24.9375 19.6875L17.7293 26.6608C17.4847 26.9417 17.1832 27.1673 16.8447 27.3227C16.5062 27.4781 16.1386 27.5596 15.7661 27.562C15.3937 27.5644 15.025 27.4874 14.6846 27.3364C14.3442 27.1853 14.0398 26.9635 13.7918 26.6857L6.5625 19.6875C4.59375 17.7187 2.625 15.4875 2.625 12.4687Z' stroke='gold' stroke-width='2.625' stroke-linecap='round' stroke-linejoin='round' /%3E%3C/svg%3E");
   }
 }
 
 @media screen and (max-width: 768px) {
-  .ValuesList {
+  .valuesList {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
 @media screen and (max-width: 575px) {
-  .ValuesList {
+  .valuesList {
     grid-template-columns: 1fr;
   }
 }
