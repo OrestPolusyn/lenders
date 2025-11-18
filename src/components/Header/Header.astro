@@ -3,12 +3,13 @@ import styles from './Header.module.css'
 import { BUSINESS_INFO } from '@/config/constants'
 import MobileMenuWrapper from '../MobileMenu/MobileMenuWrapper'
 import { navLinks } from '@/const/navLinks'
+import LazyImage from '../UI/LazyImage/LazyImage.astro'
 ---
 
 <header class={`${styles.header} header ${styles.headerVisible}`} id='header'>
   <nav class={styles.headerNav}>
     <a class={styles.headerLogo} href='/'>
-      <img
+      <LazyImage
         src='/images/logo-white.svg'
         alt='The Lenders'
         width='240'

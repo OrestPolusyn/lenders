@@ -1,5 +1,8 @@
 ---
 import styles from './Footer.module.css'
+import LazyImage from '../UI/LazyImage/LazyImage.astro'
+
+
 
 const currentYear = new Date().getFullYear()
 ---
@@ -11,7 +14,7 @@ const currentYear = new Date().getFullYear()
         <!-- Company Info -->
         <div class={styles.footerBrand}>
           <div class={styles.footerLogo}>
-            <img
+            <LazyImage
               src='/images/logo_white.svg'
               alt='The Lenders'
               width='240'
@@ -137,3 +140,26 @@ const currentYear = new Date().getFullYear()
     </div>
   </div>
 </footer>
+
+<script>
+  // Initialize Sienna Accessibility Widget
+  window.addEventListener('DOMContentLoaded', function() {
+    // Load Sienna widget script
+    const script = document.createElement('script');
+    script.src = 'https://cdn.jsdelivr.net/npm/sienna-accessibility@latest/dist/sienna-accessibility.umd.js';
+    script.async = true;
+    script.onload = function() {
+      // Initialize Sienna widget
+      if (typeof Sienna !== 'undefined') {
+        Sienna.init({
+          position: 'right',
+          showOnLoad: false,
+          primaryColor: '#2563eb'
+        });
+      }
+    };
+    document.head.appendChild(script);
+  });
+</script>
+
+

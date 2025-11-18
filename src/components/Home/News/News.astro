@@ -1,6 +1,7 @@
 ---
 import newsData from '@/data/news.json'
 import styles from './News.module.css'
+import LazyImage from '../../UI/LazyImage/LazyImage.astro'
 
 interface NewsItem {
   id: number
@@ -39,7 +40,7 @@ const formatDate = (dateString: string) => {
             news.map(item => (
               <article class={styles.newsItem}>
                 <div class={styles.newsItemImage}>
-                  <img src={item.image} alt={item.title} />
+                  <LazyImage src={item.image} alt={item.title} width="400" height="250" loading="lazy" />
                   <span class={styles.newsItemCategory}>{item.category}</span>
                 </div>
 

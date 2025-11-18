@@ -3,13 +3,14 @@ import ProgressLines from '../ProgressLines/ProgressLines.astro'
 import styles from './AboutSection.module.css'
 import aboutImage from '/public/images/home/about-men.jpg'
 import calculateImage from '/public/images/home/calculate.jpg'
+import LazyImage from '../UI/LazyImage/LazyImage.astro'
 ---
 
 <section class={styles.aboutSection}>
   <div class='container'>
     <div class={`${styles.aboutSectionWrapper} wrapper`}>
       <div class={styles.aboutSectionImages}>
-        <img
+        <LazyImage
           class={styles.aboutSectionImageFirst}
           src={aboutImage.src}
           alt='About'
@@ -17,7 +18,7 @@ import calculateImage from '/public/images/home/calculate.jpg'
           height={aboutImage.height}
           loading='lazy'
         />
-        <img
+        <LazyImage
           class={styles.aboutSectionImageSecond}
           src={calculateImage.src}
           alt='About'

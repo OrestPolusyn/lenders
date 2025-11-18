@@ -1,13 +1,14 @@
 ---
 import styles from './Philosophy.module.css'
 import philosophyImage from '/public/images/home/philosophy-women.jpg'
+import LazyImage from '../../UI/LazyImage/LazyImage.astro'
 ---
 
 <section class={styles.homePhilosophy}>
   <div class='container'>
     <div class={`${styles.homePhilosophyWrapper} wrapper`}>
       <div class={styles.homePhilosophyImages}>
-        <img
+        <LazyImage
           class={styles.homePhilosophyImage}
           src={philosophyImage.src}
           alt='Philosophy'

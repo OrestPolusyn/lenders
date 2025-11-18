@@ -6,6 +6,8 @@ import reviewsImage from '/public/images/home/happy-customers.jpg'
 import secondReviewsImage from '/public/images/home/total-funded.jpg'
 import styles from './Reviews.module.css'
 import sliderStyles from './ReviewsSlider.module.css'
+import LazyImage from '../../UI/LazyImage/LazyImage.astro'
+
 
 type Review = {
   id: number
@@ -100,11 +102,12 @@ const avatars = [avatar1, avatar2, avatar3]
               {
                 avatars.map((avatar, index) => (
                   <div key={index} class={sliderStyles.reviewsSliderAvatar}>
-                    <img
+                    <LazyImage
                       src={avatar.src}
                       alt={`Customer ${index + 1}`}
                       width={40}
                       height={40}
+                      loading="lazy"
                     />
                   </div>
                 ))
@@ -177,7 +180,7 @@ const avatars = [avatar1, avatar2, avatar3]
 
       <div class={styles.homeReviewsGrid}>
         <div class={styles.homeReviewsImage}>
-          <img
+          <LazyImage
             src={reviewsImage.src}
             alt='Business consultation'
             width={400}
@@ -202,7 +205,7 @@ const avatars = [avatar1, avatar2, avatar3]
         </div>
 
         <div class={styles.homeReviewsImageBottom}>
-          <img
+          <LazyImage
             src={secondReviewsImage.src}
             alt='Team meeting'
             width={400}

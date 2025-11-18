@@ -5,7 +5,6 @@ import 'react-toastify/dist/ReactToastify.css'
 import '../styles/global.css'
 import '../styles/normalize.css'
 import '../styles/accessibility.css'
-import AccessibilityWidget from '../components/AccessibilityWidget/AccessibilityWidget.astro'
 
 interface Props {
   title?: string
@@ -171,6 +170,5 @@ const ogImageURL = new URL(ogImage, SEO_CONFIG.siteUrl).href
       <slot />
     </div>
     <ToastContainer client:only='react' />
-    <AccessibilityWidget position="right" />
   </body>
 </html>
