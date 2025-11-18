@@ -1,0 +1,41 @@
+.glossary {
+  position: relative;
+  color: var(--color-blue-600);
+  background-color: var(--color-white);
+}
+
+.glossaryContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-block-end: clamp(1rem, 1rem + 5vw, 2rem);
+  text-align: center;
+
+  h2 {
+    margin-block-end: 20px;
+  }
+}
+
+.glossaryLetters {
+  display: flex;
+flex-wrap: wrap;
+  gap: 10px;
+  margin-block-end: clamp(1rem, 1rem + 5vw, 2rem);
+  font-weight: var(--fw-800);
+}
+
+.glossaryLettersList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.glossaryLettersListItem {
+  strong {
+    font-weight: var(--fw-700);
+  }
+
+  &:not(:last-child) {
+    margin-block-end: 1rem;
+  }
+}
