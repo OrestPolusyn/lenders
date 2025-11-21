@@ -16,6 +16,14 @@ const WORDPRESS_URL =
 const WORDPRESS_API_URL =
   import.meta.env.PUBLIC_WORDPRESS_API_URL || `${WORDPRESS_URL}/wp-json/wp/v2`
 
+// Перевірка наявності WordPress URL в production
+if (import.meta.env.PROD && !import.meta.env.PUBLIC_WORDPRESS_URL) {
+  console.error('⚠️ PUBLIC_WORDPRESS_URL is not set in environment variables!')
+  console.error(
+    'Please add it in Vercel Dashboard → Settings → Environment Variables'
+  )
+}
+
 /**
  * Будує query string з параметрів
  */
