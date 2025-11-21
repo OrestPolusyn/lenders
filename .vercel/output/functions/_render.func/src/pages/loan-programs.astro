@@ -1,0 +1,40 @@
+---
+import Footer from '@/components/Footer/Footer.astro'
+import GetInTouch from '@/components/GetInTouch/GetInTouch.astro'
+import Header from '@/components/Header/Header.astro'
+import LoanList from '@/components/LoanPrograms/LoanList/LoanList.astro'
+import PageHeader from '@/components/PageHeader/PageHeader.astro'
+import BaseLayout from '@/layouts/BaseLayout.astro'
+import { getPageBySlug } from '@/lib/wordpress'
+
+// Fetch Loan Programs page з WordPress ACF Repeater
+const loanProgramsPage = await getPageBySlug('loan-programs')
+
+const pageTitle =
+  loanProgramsPage?.acf?.page_title ||
+  'Mortgage Programs Designed for Every Homebuyer'
+const pageDescription =
+  loanProgramsPage?.acf?.page_description ||
+  'At The Lenders, we offer a comprehensive suite of mortgage solutions built to match your goals, lifestyle, and financial path.'
+
+// Loan Programs з ACF Repeater
+const loanPrograms = loanProgramsPage?.acf?.loan_programs || []
+
+const metaTitle = pageTitle + ' - The Lenders | Mortgage & Loan Solutions'
+const metaDescription =
+  'Explore our comprehensive range of mortgage and lending services. From home loans to business financing, we provide tailored solutions for your financial needs.'
+---
+
+<BaseLayout title={metaTitle} description={metaDescription}>
+  <Header />
+
+  <main class='main'>
+    <PageHeader title={pageTitle} />
+
+    <LoanList description={pageDescription} loanPrograms={loanPrograms} />
+
+    <GetInTouch />
+  </main>
+
+  <Footer />
+</BaseLayout>

@@ -1,0 +1,23 @@
+# Robots.txt for The Lenders - Mortgage Lending Website
+
+User-agent: *
+Allow: /
+
+# Disallow admin/test pages
+Disallow: /headers
+Disallow: /header-variants
+
+# Allow all other pages
+Allow: /loan-programs
+Allow: /calculator
+Allow: /about
+Allow: /contact
+Allow: /blog
+Allow: /faq
+
+# Crawl-delay for respectful crawling
+Crawl-delay: 1
+
+# Sitemap location
+Sitemap: https://thelenders.com/sitemap-index.xml
+Sitemap: https://thelenders.com/sitemap-0.xml

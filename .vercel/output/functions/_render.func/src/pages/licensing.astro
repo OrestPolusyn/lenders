@@ -1,0 +1,89 @@
+---
+import Footer from '@/components/Footer/Footer.astro'
+import GetInTouch from '@/components/GetInTouch/GetInTouch.astro'
+import Header from '@/components/Header/Header.astro'
+import PageHeader from '@/components/PageHeader/PageHeader.astro'
+import BaseLayout from '@/layouts/BaseLayout.astro'
+import { getPageBySlug } from '@/lib/wordpress'
+
+// Fetch WordPress page
+const licensingPage = await getPageBySlug('licensing-and-disclosures')
+
+const pageTitle = licensingPage?.title?.rendered || 'Licensing and Disclosures'
+const metaTitle =
+  licensingPage?.title?.rendered || 'The Lenders | Licensing and Disclosures'
+const metaDescription =
+  licensingPage?.excerpt?.rendered ||
+  'Review The Lenders licensing and disclosures to see our NMLS registration, state licenses, Equal Housing Lender statement, and other regulatory information.'
+const pageContent = licensingPage?.content?.rendered || ''
+---
+
+<style>
+  .wordpress-content {
+    color: var(--color-blue-500);
+    line-height: 1.7;
+  }
+
+  .wordpress-content h2 {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    font-size: 1.75rem;
+    font-weight: 700;
+  }
+
+  .wordpress-content h2:first-child {
+    margin-top: 0;
+  }
+
+  .wordpress-content h3 {
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+    font-size: 1.35rem;
+    font-weight: 600;
+  }
+
+  .wordpress-content p,
+  .wordpress-content ul {
+    margin-block: 1rem;
+  }
+
+  .wordpress-content ul,
+  .wordpress-content ol {
+    margin: 1rem 0;
+    padding-left: 2rem;
+  }
+
+  .wordpress-content li {
+    margin-bottom: 0.5rem;
+  }
+
+  .wordpress-content a {
+    color: var(--color-blue-400);
+    text-decoration: underline;
+  }
+
+  .wordpress-content strong {
+    font-weight: 600;
+  }
+</style>
+
+<BaseLayout title={metaTitle} description={metaDescription}>
+  <Header />
+
+  <main class='main'>
+    <PageHeader title={pageTitle} />
+
+    <section
+      class='terms-policy'
+      style='padding-block: clamp(3rem, 4vw, 5rem); background-color: var(--color-white);'
+    >
+      <div class='container' style='max-width: 920px;'>
+        <div class='wordpress-content' set:html={pageContent} />
+      </div>
+    </section>
+
+    <GetInTouch />
+  </main>
+
+  <Footer />
+</BaseLayout>

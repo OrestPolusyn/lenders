@@ -2,12 +2,12 @@
 import react from '@astrojs/react'
 import sitemap from '@astrojs/sitemap'
 import vercel from '@astrojs/vercel'
-import compress from 'astro-compress'
+// import compress from 'astro-compress' // Disabled for Vercel SSR
 import { defineConfig } from 'astro/config'
 
 // https://astro.build/config
 export default defineConfig({
-  output: 'hybrid', // Hybrid mode: static by default, SSR on demand
+  output: 'server', // Server-side rendering for dynamic WordPress data
   adapter: vercel(),
   site: 'https://leanders.markupers.com.ua',
   integrations: [
@@ -19,13 +19,7 @@ export default defineConfig({
       filter: page =>
         !page.includes('/headers') && !page.includes('/header-variants'),
     }),
-    compress({
-      CSS: true,
-      HTML: true,
-      Image: true,
-      JavaScript: true,
-      SVG: true,
-    }),
+    // Compress disabled for Vercel SSR - causes module bundling issues
   ],
   build: {
     inlineStylesheets: 'auto',
