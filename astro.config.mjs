@@ -1,16 +1,14 @@
 // @ts-check
-import node from '@astrojs/node'
 import react from '@astrojs/react'
 import sitemap from '@astrojs/sitemap'
+import vercel from '@astrojs/vercel/serverless'
 import compress from 'astro-compress'
 import { defineConfig } from 'astro/config'
 
 // https://astro.build/config
 export default defineConfig({
   output: 'server', // Server-side rendering enabled
-  adapter: node({
-    mode: 'standalone',
-  }),
+  adapter: vercel(),
   site: 'https://leanders.markupers.com.ua',
   integrations: [
     react(),
