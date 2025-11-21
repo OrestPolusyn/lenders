@@ -1,14 +1,14 @@
 // @ts-check
+import netlify from '@astrojs/netlify'
 import react from '@astrojs/react'
 import sitemap from '@astrojs/sitemap'
-import vercel from '@astrojs/vercel'
-// import compress from 'astro-compress' // Disabled for Vercel SSR
+// import compress from 'astro-compress' // Disabled for SSR
 import { defineConfig } from 'astro/config'
 
 // https://astro.build/config
 export default defineConfig({
   output: 'server', // Server-side rendering for dynamic WordPress data
-  adapter: vercel(),
+  adapter: netlify(),
   site: 'https://leanders.markupers.com.ua',
   integrations: [
     react(),

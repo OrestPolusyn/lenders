@@ -1,0 +1,50 @@
+---
+import Footer from '../components/Footer/Footer.astro'
+import Header from '../components/Header/Header.astro'
+import BaseLayout from '../layouts/BaseLayout.astro'
+
+// Import Astro components
+import GetInTouch from '@/components/GetInTouch/GetInTouch.astro'
+import AboutSection from '../components/AboutSection/AboutSection.astro'
+import Calculator from '../components/Home/Calculator/Calculator.astro'
+import Hero from '../components/Home/Hero/Hero.astro'
+import News from '../components/Home/News/News.astro'
+import Philosophy from '../components/Home/Philosophy/Philosophy.astro'
+import Process from '../components/Home/Process/Process.astro'
+import Reviews from '../components/Home/Reviews/Reviews.astro'
+
+// Import WordPress functions
+import { getPageBySlug } from '@/lib/wordpress'
+
+// Отримати дані Home Page з WordPress
+let homeData: any = {}
+try {
+  const homePage = await getPageBySlug('home')
+  if (homePage && homePage.acf) {
+    homeData = homePage.acf
+    console.log('✅ Loaded Home page data from WordPress')
+  }
+} catch (error) {
+  console.error('❌ Failed to load Home page from WordPress:', error)
+}
+---
+
+<BaseLayout
+  title='The Lenders - Best Mortgage Rates & Home Loans'
+  description='Find the best mortgage rates and home loan solutions with The Lenders. Expert guidance for your home financing needs.'
+>
+  <Header />
+
+  <main class='main'>
+    <Hero data={homeData} />
+    <AboutSection data={homeData} />
+    <Calculator data={homeData} />
+    <Philosophy data={homeData} />
+    <Process data={homeData} />
+    <Reviews data={homeData} />
+    <News data={homeData} />
+    <GetInTouch homePage={true} data={homeData} />
+  </main>
+
+  <Footer />
+</BaseLayout>
