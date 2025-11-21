@@ -1,31 +1,57 @@
 ---
 import LazyImage from '@/components/UI/LazyImage/LazyImage.astro'
 import styles from './Choose.module.css'
+
+interface Benefit {
+  text: string
+  icon: string
+}
+
+interface Props {
+  data?: {
+    about_choose_slogan?: string
+    about_choose_title?: string
+    about_choose_description?: string
+    about_choose_benefits?: Benefit[]
+  }
+}
+
+const { data = {} } = Astro.props
+
+const chooseData = {
+  slogan: data.about_choose_slogan || 'our benefits',
+  title: data.about_choose_title || 'Why Choose Us',
+  description:
+    data.about_choose_description ||
+    "We're more than a mortgage company — we're your financial partner. With a focus on clarity, education, and speed, we help you make confident home-financing decisions.",
+  benefits: data.about_choose_benefits || [
+    { text: 'lower rates', icon: 'rates' },
+    { text: 'quick and easy', icon: 'quick' },
+  ],
+}
 ---
 
 <section class={styles.choose}>
   <div class='container'>
     <div class={styles.chooseWrapper}>
       <div class={styles.chooseContent}>
-        <span class='slogan slogan--double'>our benefits</span>
+        <span class='slogan slogan--double'>{chooseData.slogan}</span>
 
-        <h2>Why Choose Us</h2>
+        <h2>{chooseData.title}</h2>
 
-        <p>
-          We’re more than a mortgage company — we’re your financial partner.
-          With a focus on clarity, education, and speed, we help you make
-          confident home-financing decisions.
-        </p>
+        <p>{chooseData.description}</p>
 
         <ul class={styles.chooseList}>
-          <li class={styles.chooseItem + ' ' + styles.chooseItemRates}>
-            <span></span>
-            <p>lower rates</p>
-          </li>
-          <li class={styles.chooseItem + ' ' + styles.chooseItemQuick}>
-            <span></span>
-            <p>quick and easy</p>
-          </li>
+          {
+            chooseData.benefits.map(benefit => (
+              <li
+                class={`${styles.chooseItem} ${styles[`chooseItem${benefit.icon.charAt(0).toUpperCase() + benefit.icon.slice(1)}`]}`}
+              >
+                <span />
+                <p>{benefit.text}</p>
+              </li>
+            ))
+          }
         </ul>
       </div>
 

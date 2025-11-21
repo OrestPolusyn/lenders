@@ -2,33 +2,52 @@
 import LoansGrid from '@/components/LoansGrid/LoansGrid.astro'
 import MortgageCalculator from '@/components/MortgageCalculator/MortgageCalculator.astro'
 import styles from './Calculator.module.css'
+
+interface Props {
+  data?: {
+    calculator_slogan?: string
+    calculator_title?: string
+    calculator_description?: string
+    calculator_programs_title?: string
+    calculator_button_text?: string
+  }
+}
+
+const { data = {} } = Astro.props
+
+const calculatorData = {
+  slogan: data.calculator_slogan || 'calculate your loan',
+  title: data.calculator_title || 'Mortgage Programs Tailored for Every Dream',
+  description:
+    data.calculator_description ||
+    'Use our calculator to estimate your monthly payments and explore our flexible mortgage programs designed to match your unique needs.',
+  programsTitle: data.calculator_programs_title || 'Top Programs',
+  buttonText: data.calculator_button_text || 'view all programs',
+}
 ---
 
 <section class={styles.homeCalculator}>
   <div class='container'>
     <div class={styles.homeCalculatorContent}>
       <div class='slogan slogan--double'>
-        <span>calculate your loan</span>
+        <span>{calculatorData.slogan}</span>
       </div>
 
-      <h2>Mortgage Programs Tailored for Every Dream</h2>
+      <h2>{calculatorData.title}</h2>
 
-      <p>
-        Use our calculator to estimate your monthly payments and explore our
-        flexible mortgage programs designed to match your unique needs.
-      </p>
+      <p>{calculatorData.description}</p>
     </div>
 
     <div class={styles.homeCalculatorWrapper}>
       <MortgageCalculator />
 
       <div class={styles.homeLoanPrograms}>
-        <h3>Top Programs</h3>
+        <h3>{calculatorData.programsTitle}</h3>
 
         <LoansGrid numberOfItems={4} linkToLoanPrograms={true} />
 
         <a href='/loan-programs' class='button'>
-          <span>view all programs</span>
+          <span>{calculatorData.buttonText}</span>
         </a>
       </div>
     </div>

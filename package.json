@@ -17,6 +17,9 @@
     "fix-permissions": "chmod -R 755 dist"
   },
   "dependencies": {
+    "@astrojs/check": "^0.9.5",
+    "@astrojs/cloudflare": "^12.6.11",
+    "@astrojs/node": "^9.5.1",
     "@astrojs/react": "^4.4.2",
     "@astrojs/sitemap": "^3.6.0",
     "@hookform/resolvers": "^5.2.2",
@@ -28,6 +31,7 @@
     "react-hook-form": "^7.66.0",
     "react-toastify": "^11.0.5",
     "swiper": "^12.0.3",
+    "typescript": "^5.9.3",
     "zod": "^3.25.76"
   },
   "devDependencies": {

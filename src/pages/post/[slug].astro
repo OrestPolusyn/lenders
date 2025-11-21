@@ -1,0 +1,83 @@
+---
+import Footer from '@/components/Footer/Footer.astro'
+import GetInTouch from '@/components/GetInTouch/GetInTouch.astro'
+import Header from '@/components/Header/Header.astro'
+import PageHeader from '@/components/PageHeader/PageHeader.astro'
+import LazyImage from '@/components/UI/LazyImage/LazyImage.astro'
+import BaseLayout from '@/layouts/BaseLayout.astro'
+import {
+  formatDate,
+  getCategories,
+  getFeaturedImageUrl,
+  getPostBySlug,
+} from '@/lib/wordpress'
+
+// SSR mode: posts rendered on-demand
+const { slug } = Astro.params
+
+if (!slug) {
+  return Astro.redirect('/blog')
+}
+
+const post = await getPostBySlug(slug)
+
+// Redirect if post not found
+if (!post) {
+  return Astro.redirect('/blog')
+}
+
+const pageTitle = post.title?.rendered || 'Post'
+const metaDescription = post.excerpt?.rendered?.replace(/<[^>]*>/g, '') || ''
+const postContent = post.content?.rendered || ''
+const featuredImage =
+  getFeaturedImageUrl(post, 'large') || '/images/news/default-post.jpg'
+const categories = getCategories(post)
+const categoryName = categories[0]?.name || 'News'
+const formattedDate = formatDate(post.date, 'en-US')
+---
+
+<BaseLayout title={pageTitle} description={metaDescription}>
+  <Header />
+
+  <main class='main'>
+    <PageHeader title={pageTitle} />
+
+    <section class='singlepost'>
+      <div class='container'>
+        <article class='singlepost__article'>
+          <a class='button button--back' href='/blog'>
+            <span>Back to blog</span>
+          </a>
+
+          <h2>{pageTitle}</h2>
+
+          <div class='singlepost__media'>
+            <LazyImage
+              src={featuredImage}
+              alt={pageTitle}
+              width={1600}
+              height={450}
+              class='singlepost__image'
+            />
+            <span class='singlepost__category'>{categoryName}</span>
+          </div>
+
+          <div class='singlepost__meta'>
+            <time class='singlepost__date' datetime={post.date}>
+              {formattedDate}
+            </time>
+          </div>
+
+          <div
+            class='singlepost__content wordpress-content'
+            set:html={postContent}
+          />
+        </article>
+      </div>
+    </section>
+
+    <GetInTouch />
+  </main>
+
+  <Footer />
+</BaseLayout>

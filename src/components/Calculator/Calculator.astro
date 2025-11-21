@@ -1,17 +1,52 @@
 ---
 import styles from './Calculator.module.css'
 import { BUSINESS_INFO } from '@/config/constants'
+
+interface Props {
+  data?: {
+    calculator_title?: string
+    calculator_description?: string
+    calculator_disclaimer_title?: string
+    calculator_disclaimer_text?: string
+    calculator_button_calculate?: string
+    calculator_button_send?: string
+    calculator_monthly_payment_label?: string
+    calculator_snapshot_title?: string
+    calculator_lifetime_title?: string
+    calculator_legend_principal?: string
+    calculator_legend_interest?: string
+  }
+}
+
+const { data = {} } = Astro.props
+
+const calculatorData = {
+  title: data.calculator_title || 'Mortgage & Loan Payment Calculator',
+  description:
+    data.calculator_description ||
+    'Compare different mortgage programs, estimate your monthly payment, and see how much goes toward principal versus interest over the life of the loan.',
+  disclaimerTitle: data.calculator_disclaimer_title || 'Disclaimer',
+  disclaimerText:
+    data.calculator_disclaimer_text ||
+    'Information and interactive calculators are made available to you as self-help tools for your independent use and are not intended to provide investment advice. We cannot and do not guarantee their applicability or accuracy in regards to your individual circumstances. All examples are hypothetical and are for illustrative purposes. We encourage you to seek personalized advice from qualified professionals regarding all personal finance issues.',
+  buttonCalculate: data.calculator_button_calculate || 'Update calculation',
+  buttonSend: data.calculator_button_send || 'Send my results',
+  monthlyPaymentLabel:
+    data.calculator_monthly_payment_label || 'Estimated monthly payment',
+  snapshotTitle: data.calculator_snapshot_title || 'Loan snapshot',
+  lifetimeTitle: data.calculator_lifetime_title || 'Lifetime cost overview',
+  legendPrincipal: data.calculator_legend_principal || 'Principal',
+  legendInterest: data.calculator_legend_interest || 'Interest',
+}
 ---
 
 <section class={styles.calculator} aria-labelledby='loan-calculator-heading'>
   <div class='container'>
     <div class={styles.calculatorInner}>
       <div class={styles.calculatorHeader}>
-        <h2 id='loan-calculator-heading'>Mortgage & Loan Payment Calculator</h2>
+        <h2 id='loan-calculator-heading'>{calculatorData.title}</h2>
         <p>
-          Compare different mortgage programs, estimate your monthly payment,
-          and see how much goes toward principal versus interest over the life
-          of the loan.
+          {calculatorData.description}
         </p>
       </div>
 
@@ -170,7 +205,7 @@ import { BUSINESS_INFO } from '@/config/constants'
 
           <div class={styles.formActions}>
             <button type='button' class='button' data-calc-submit>
-              <span>Update calculation</span>
+              <span>{calculatorData.buttonCalculate}</span>
             </button>
 
             <button
@@ -178,7 +213,7 @@ import { BUSINESS_INFO } from '@/config/constants'
               class={`button button--reverse ${styles.sendButton}`}
               data-send-results
             >
-              <span>Send my results</span>
+              <span>{calculatorData.buttonSend}</span>
             </button>
           </div>
         </form>
@@ -190,9 +225,9 @@ import { BUSINESS_INFO } from '@/config/constants'
                 <span class={styles.donutAmount} data-monthly-payment>
                   $0
                 </span>
-                <span class={styles.donutCaption}
-                  >Estimated monthly payment</span
-                >
+                <span class={styles.donutCaption}>
+                  {calculatorData.monthlyPaymentLabel}
+                </span>
               </div>
 
               <svg
@@ -221,21 +256,21 @@ import { BUSINESS_INFO } from '@/config/constants'
                   <span
                     class={`${styles.legendDot} ${styles.legendDotPrincipal}`}
                   ></span>
-                  <span>Principal</span>
+                  <span>{calculatorData.legendPrincipal}</span>
                   <strong data-legend-principal>$0</strong>
                 </div>
                 <div class={styles.legendItem}>
                   <span
                     class={`${styles.legendDot} ${styles.legendDotInterest}`}
                   ></span>
-                  <span>Interest</span>
+                  <span>{calculatorData.legendInterest}</span>
                   <strong data-legend-interest>$0</strong>
                 </div>
               </div>
             </div>
 
             <div class={styles.resultsSummary}>
-              <h3>Loan snapshot</h3>
+              <h3>{calculatorData.snapshotTitle}</h3>
               <dl>
                 <div>
                   <dt>Loan amount</dt>
@@ -262,7 +297,7 @@ import { BUSINESS_INFO } from '@/config/constants'
           </div>
 
           <div class={styles.resultsDetails}>
-            <h3>Lifetime cost overview</h3>
+            <h3>{calculatorData.lifetimeTitle}</h3>
             <div class={styles.resultsDetailsGrid}>
               <div>
                 <p class={styles.resultsLabel}>Total paid over the term</p>
@@ -277,24 +312,13 @@ import { BUSINESS_INFO } from '@/config/constants'
                 <p class={styles.resultsValue} data-total-interest>$0</p>
               </div>
             </div>
-
-          
           </div>
         </div>
 
-          <div class={styles.disclaimer}>
-
-              <h3>Disclaimer</h3>
-              <p> Information and interactive calculators are made
-              available to you as self-help tools for your independent use and
-              are not intended to provide investment advice. We cannot and do
-              not guarantee their applicability or accuracy in regards to your
-              individual circumstances. All examples are hypothetical and are
-              for illustrative purposes. We encourage you to seek personalized
-              advice from qualified professionals regarding all personal finance
-              issues.
-              </p>
-            </div>
+        <div class={styles.disclaimer}>
+          <h3>{calculatorData.disclaimerTitle}</h3>
+          <p set:html={calculatorData.disclaimerText} />
+        </div>
       </div>
     </div>
   </div>

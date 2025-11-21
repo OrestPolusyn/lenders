@@ -1,0 +1,53 @@
+/*
+Theme Name: The Lenders
+Theme URI: https://thelenders.com
+Author: The Lenders Team
+Author URI: https://thelenders.com
+Description: Custom headless WordPress theme for The Lenders with ACF integration. Frontend is built with Astro.
+Version: 1.0.0
+Requires at least: 5.9
+Tested up to: 6.4
+Requires PHP: 7.4
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: lenders
+Tags: headless, acf, rest-api, astro
+*/
+
+/**
+ * This is a headless WordPress theme.
+ * All frontend styles and functionality are in the Astro application.
+ * 
+ * This theme provides:
+ * - ACF field groups for all pages
+ * - REST API configuration
+ * - Custom endpoints for menus
+ * - CORS support for Astro frontend
+ * 
+ * See documentation in wordpress-structure/ folder for setup instructions.
+ */
+
+/* WordPress Admin Styles */
+body.wp-admin {
+  font-family:
+    -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu,
+    Cantarell, 'Helvetica Neue', sans-serif;
+}
+
+/* ACF Field Group Styling */
+.acf-field-group {
+  margin-bottom: 20px;
+}
+
+/* Help text for editors */
+.headless-notice {
+  background: #e7f5fe;
+  border-left: 4px solid #00a0d2;
+  padding: 12px;
+  margin: 20px 0;
+}
+
+.headless-notice p {
+  margin: 0;
+  color: #0073aa;
+}

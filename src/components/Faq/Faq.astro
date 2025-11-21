@@ -2,19 +2,83 @@
 import styles from './Faq.module.css'
 import faqImage from '/public/images/faq-bg.jpg'
 import LazyImage from '../UI/LazyImage/LazyImage.astro'
+
+interface FaqItem {
+  id: number
+  question: string
+  answer: string
+  category?: string
+  order?: number
+  featured?: boolean
+}
+
+interface Props {
+  faqItems?: FaqItem[]
+  sectionTitle?: string
+}
+
+const {
+  faqItems = [],
+  sectionTitle = 'Your top questions about home loans, answered',
+} = Astro.props
+
+// Fallback FAQ items if WordPress data not available
+const defaultFaqItems: FaqItem[] = [
+  {
+    id: 1,
+    question: 'What is a mortgage?',
+    answer:
+      'A mortgage is a loan used to buy a home. Once approved for a mortgage, you make monthly payments with interest until you pay off the loan. There are a variety of mortgage options, each with different benefits and features designed to fit your unique needs.',
+    order: 1,
+  },
+  {
+    id: 2,
+    question: 'How much mortgage can I afford?',
+    answer:
+      "For many people, starting with 25% of their gross monthly income is a helpful way to estimate a manageable monthly payment. Our home affordability calculator can help you decide on a loan amount and monthly payment you'd be comfortable with. What you can afford may also be impacted by down payment amount, and how much you want to budget for other housing costs such as repairs and furniture.",
+    order: 2,
+  },
+  {
+    id: 3,
+    question: 'What is a jumbo loan?',
+    answer:
+      'A jumbo loan (also known as a nonconforming loan) is a mortgage typically used to finance properties where the price exceeds the limits of a conventional conforming loan.',
+    order: 3,
+  },
+  {
+    id: 4,
+    question: 'What is a VA mortgage loan?',
+    answer:
+      'Eligible veterans may qualify for the Veterans Affairs (VA) home loan program, designed to help veterans get favorable mortgage terms and a competitive interest rate when buying a home.',
+    order: 4,
+  },
+  {
+    id: 5,
+    question: 'When is the best time to buy a home?',
+    answer:
+      'Choosing when to buy a home is a very personal decision that will depend on many factors.',
+    order: 5,
+  },
+]
+
+// Use WordPress data if available, otherwise use fallback
+const faqs = faqItems.length > 0 ? faqItems : defaultFaqItems
+
+// Sort by order field
+const sortedFaqs = faqs.sort((a, b) => (a.order || 0) - (b.order || 0))
 ---
 
 <section class={styles.faq}>
   <div class='container'>
     <div class={styles.faqContent}>
-      <h2>Your top questions about home loans, answered</h2>
+      <h2>{sectionTitle}</h2>
     </div>
 
     <div class={`${styles.faqWrapper} wrapper`}>
       <div class={styles.FaqImage}>
         <LazyImage
           src={faqImage.src}
-          alt='Faq'
+          alt='FAQ'
           width={faqImage.width}
           height={faqImage.height}
           loading='lazy'
@@ -22,96 +86,40 @@ import LazyImage from '../UI/LazyImage/LazyImage.astro'
       </div>
 
       <ul class={styles.faqList}>
-        <li class={styles.faqItem}>
-          <details open>
-            <summary>
-              <span>What is a mortgage?</span>
-            </summary>
-            <div>
-              <p>
-                A mortgage is a loan used to buy a home. Once approved for a
-                mortgage, you make monthly payments with interest until you pay
-                off the loan. There are a variety of mortgage options, each with
-                different benefits and features designed to fit your unique
-                needs.
-              </p>
-            </div>
-          </details>
-        </li>
-
-        <li class={styles.faqItem}>
-          <details>
-            <summary>How much mortgage can I afford?</summary>
-            <div>
-              <p>
-                For many people, starting with 25% of their gross monthly income
-                is a helpful way to estimate a manageable monthly payment. Our
-                home affordability calculator can help you decide on a loan
-                amount and monthly payment you’d be comfortable with. What you
-                can afford may also be impacted by down payment amount, and how
-                much you want to budget for other housing costs such as repairs
-                and furniture.
-              </p>
-            </div>
-          </details>
-        </li>
-
-        <li class={styles.faqItem}>
-          <details>
-            <summary>What is a jumbo loan?</summary>
-            <div>
-              <p>
-                A jumbo loan (also known as a nonconforming loan) is a mortgage
-                typically used to finance properties where the price exceeds the
-                limits of a conventional conforming loan.
-              </p>
-            </div>
-          </details>
-        </li>
-
-        <li class={styles.faqItem}>
-          <details>
-            <summary>What is a VA mortgage loan?</summary>
-            <div>
-              <p>
-                Eligible veterans may qualify for the Veterans Affairs (VA) home
-                loan program, designed to help veterans get favorable mortgage
-                terms and a competitive interest rate when buying a home.
-              </p>
-            </div>
-          </details>
-        </li>
-
-        <li class={styles.faqItem}>
-          <details>
-            <summary>When is the best time to buy a home?</summary>
-            <div>
-              <p>
-                Choosing when to buy a home is a very personal decision that
-                will depend on many factors.
-              </p>
-            </div>
-          </details>
-        </li>
+        {
+          sortedFaqs.map((faq, index) => (
+            <li class={styles.faqItem}>
+              <details open={index === 0}>
+                <summary>
+                  <span>{faq.question}</span>
+                </summary>
+                <div>
+                  <div set:html={faq.answer} />
+                </div>
+              </details>
+            </li>
+          ))
+        }
       </ul>
     </div>
   </div>
 
   <script>
     export default class Accordion {
-      constructor(element) {
+      [x: string]: any
+      constructor(element: HTMLDetailsElement) {
         this.element = element
         this.summary = element.querySelector('summary')
         this.content = element.querySelector('summary + div')
         this.animation = null
         this.isClosing = false
         this.isExpanding = false
-        this.summary.addEventListener('click', e => {
+        this.summary.addEventListener('click', (e: any) => {
           this.onClick(e)
         })
       }
 
-      onClick(e) {
+      onClick(e: { preventDefault: () => void }) {
         e.preventDefault()
         this.element.style.overflow = 'hidden'
 
@@ -146,7 +154,7 @@ import LazyImage from '../UI/LazyImage/LazyImage.astro'
         window.requestAnimationFrame(() => this.expand())
       }
 
-      animationElement(startHeight, endHeight) {
+      animationElement(startHeight: string, endHeight: string) {
         this.animation = this.element.animate(
           {
             height: [startHeight, endHeight],
@@ -158,7 +166,7 @@ import LazyImage from '../UI/LazyImage/LazyImage.astro'
         )
       }
 
-      onAnimationFinish(open) {
+      onAnimationFinish(open: boolean) {
         this.element.open = open
         this.animation = null
         this.isClosing = false

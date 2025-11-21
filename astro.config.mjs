@@ -1,4 +1,5 @@
 // @ts-check
+import node from '@astrojs/node'
 import react from '@astrojs/react'
 import sitemap from '@astrojs/sitemap'
 import compress from 'astro-compress'
@@ -6,7 +7,11 @@ import { defineConfig } from 'astro/config'
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://thelenders.com',
+  output: 'server', // Server-side rendering enabled
+  adapter: node({
+    mode: 'standalone',
+  }),
+  site: 'https://leanders.markupers.com.ua',
   integrations: [
     react(),
     sitemap({

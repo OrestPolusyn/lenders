@@ -1,0 +1,201 @@
+---
+/**
+ * ПРИКЛАД використання FAQ з WordPress
+ *
+ * Щоб використати:
+ * 1. Переіменуйте файл на Faq.astro
+ * 2. Налаштуйте WordPress та створіть FAQ custom post type
+ * 3. Додайте FAQ елементи в WordPress
+ * 4. Налаштуйте .env з WordPress URLs
+ */
+
+import { getAllFaqItems } from '@/lib/wordpress'
+import styles from './Faq.module.css'
+import faqImage from '/public/images/faq-bg.jpg'
+import LazyImage from '../UI/LazyImage/LazyImage.astro'
+
+// Спроба завантажити FAQ з WordPress
+let faqItems = []
+try {
+  const wpFaqItems = await getAllFaqItems()
+
+  // Трансформація WordPress даних у потрібний формат
+  faqItems = wpFaqItems.map(item => ({
+    id: item.id,
+    question: item.acf?.question || item.title.rendered,
+    answer: item.acf?.answer || item.content.rendered,
+  }))
+
+  console.log(`✅ Завантажено ${faqItems.length} FAQ з WordPress`)
+} catch (error) {
+  console.error('❌ Помилка завантаження FAQ з WordPress:', error)
+
+  // Fallback до статичних даних якщо WordPress недоступний
+  faqItems = [
+    {
+      id: 1,
+      question: 'What is a mortgage?',
+      answer:
+        'A mortgage is a loan used to buy a home. Once approved for a mortgage, you make monthly payments with interest until you pay off the loan.',
+    },
+    {
+      id: 2,
+      question: 'How much mortgage can I afford?',
+      answer:
+        'For many people, starting with 25% of their gross monthly income is a helpful way to estimate a manageable monthly payment.',
+    },
+    {
+      id: 3,
+      question: 'What is a jumbo loan?',
+      answer:
+        'A jumbo loan is a mortgage typically used to finance properties where the price exceeds the limits of a conventional conforming loan.',
+    },
+    {
+      id: 4,
+      question: 'What is a VA mortgage loan?',
+      answer:
+        'Eligible veterans may qualify for the Veterans Affairs (VA) home loan program, designed to help veterans get favorable mortgage terms.',
+    },
+    {
+      id: 5,
+      question: 'When is the best time to buy a home?',
+      answer:
+        'Choosing when to buy a home is a very personal decision that will depend on many factors including your financial situation and life goals.',
+    },
+  ]
+}
+---
+
+<section class={styles.faq}>
+  <div class='container'>
+    <div class={styles.faqContent}>
+      <h2>Your top questions about home loans, answered</h2>
+    </div>
+
+    <div class={`${styles.faqWrapper} wrapper`}>
+      <div class={styles.FaqImage}>
+        <LazyImage
+          src={faqImage.src}
+          alt='Faq'
+          width={faqImage.width}
+          height={faqImage.height}
+          loading='lazy'
+        />
+      </div>
+
+      <ul class={styles.faqList}>
+        {
+          faqItems.map((faq, index) => (
+            <li class={styles.faqItem}>
+              <details open={index === 0}>
+                <summary>
+                  <span>{faq.question}</span>
+                </summary>
+                <div>
+                  <div
+                    set:html={
+                      faq.answer.includes('<')
+                        ? faq.answer
+                        : `<p>${faq.answer}</p>`
+                    }
+                  />
+                </div>
+              </details>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
+</section>
+
+<script>
+  export default class Accordion {
+    constructor(element) {
+      this.element = element
+      this.summary = element.querySelector('summary')
+      this.content = element.querySelector('summary + div')
+      this.animation = null
+      this.isClosing = false
+      this.isExpanding = false
+      this.summary.addEventListener('click', e => {
+        this.onClick(e)
+      })
+    }
+
+    onClick(e) {
+      e.preventDefault()
+      this.element.style.overflow = 'hidden'
+
+      if (this.isClosing || !this.element.open) {
+        this.open()
+      } else if (this.isExpanding || this.element.open) {
+        this.shrink()
+      }
+    }
+
+    shrink() {
+      this.isClosing = true
+
+      const startHeight = `${this.element.offsetHeight}px`
+      const endHeight = `${this.summary.offsetHeight}px`
+
+      if (this.animation) {
+        this.animation.cancel()
+      }
+
+      this.animationElement(startHeight, endHeight)
+      this.animation.onfinish = () => this.onAnimationFinish(false)
+      this.animation.oncancel = () => (this.isClosing = false)
+    }
+
+    open() {
+      this.shrink()
+
+      this.element.style.height = `${this.element.offsetHeight}px`
+
+      this.element.open = true
+      window.requestAnimationFrame(() => this.expand())
+    }
+
+    animationElement(startHeight, endHeight) {
+      this.animation = this.element.animate(
+        {
+          height: [startHeight, endHeight],
+        },
+        {
+          duration: 400,
+          easing: 'ease',
+        }
+      )
+    }
+
+    onAnimationFinish(open) {
+      this.element.open = open
+      this.animation = null
+      this.isClosing = false
+      this.isExpanding = false
+      this.element.style.height = this.element.style.overflow = ''
+    }
+
+    expand() {
+      this.isExpanding = true
+      const startHeight = `${this.element.offsetHeight}px`
+      const endHeight = `${
+        this.summary.offsetHeight + this.content.offsetHeight
+      }px`
+
+      if (this.animation) {
+        this.animation.cancel()
+      }
+
+      this.animationElement(startHeight, endHeight)
+      this.animation.onfinish = () => this.onAnimationFinish(true)
+      this.animation.oncancel = () => (this.isExpanding = false)
+    }
+  }
+
+  ;[...document.querySelectorAll('details')].forEach(el => {
+    new Accordion(el)
+  })
+</script>

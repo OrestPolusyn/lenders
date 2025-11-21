@@ -3,25 +3,32 @@ import LoansGrid from '@/components/LoansGrid/LoansGrid.astro'
 import LoanDescription from '../LoanDescription/LoanDescription.astro'
 import LoanCompare from '../LoanCompare/LoanCompare.astro'
 import styles from './LoanList.module.css'
+
+interface Props {
+  description?: string
+  loanPrograms: any[]
+}
+
+const { description, loanPrograms } = Astro.props
+
+// Fallback description
+const pageDescription =
+  description ||
+  "At The Lenders, we offer a comprehensive suite of mortgage solutions built to match your goals, lifestyle, and financial path. Whether you're buying your first home, upgrading, investing, or refinancing — we provide guidance where homeownership begins."
 ---
 
 <section class={styles.loanList}>
   <div class='container'>
     <div class={styles.loanListWrapper} data-loans>
-      <p>
-        At The Lenders, we offer a comprehensive suite of mortgage solutions
-        built to match your goals, lifestyle, and financial path. Whether you're
-        buying your first home, upgrading, investing, or refinancing — we
-        provide guidance where homeownership begins.
-      </p>
+      <p>{pageDescription}</p>
     </div>
 
     <div class={styles.loanListInner}>
-      <LoansGrid />
+      <LoansGrid loanPrograms={loanPrograms} />
 
-      <LoanDescription />
+      <LoanDescription loanPrograms={loanPrograms} />
 
-      <LoanCompare />
+      <LoanCompare loanPrograms={loanPrograms} />
     </div>
   </div>
 </section>
@@ -65,7 +72,7 @@ import styles from './LoanList.module.css'
         })
 
         grid.classList.add('hide-grid')
-        
+
         // Hide grid completely after fade animation
         setTimeout(() => {
           grid.style.display = 'none'

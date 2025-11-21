@@ -4,6 +4,38 @@ import styles from './AboutSection.module.css'
 import aboutImage from '/public/images/home/about-men.jpg'
 import calculateImage from '/public/images/home/calculate.jpg'
 import LazyImage from '../UI/LazyImage/LazyImage.astro'
+
+interface ProgressItem {
+  title: string
+  percent: number
+  label: string
+}
+
+interface Props {
+  data?: {
+    about_slogan?: string
+    about_title?: string
+    about_description?: string
+    about_years?: number
+    about_button_text?: string
+    about_button_url?: string
+    about_progress_lines?: ProgressItem[]
+  }
+}
+
+const { data = {} } = Astro.props
+
+const aboutData = {
+  slogan: data.about_slogan || 'Welcome to The Lenders',
+  title: data.about_title || 'our loans will fill yourdreams come true',
+  description:
+    data.about_description ||
+    'We provide simple, transparent, and stress-free mortgage solutions tailored to your financial goals. Choose from Conventional, FHA, VA, Jumbo, First-Time Buyer loans — with expert support at every step.',
+  years: data.about_years || 25,
+  buttonText: data.about_button_text || 'Explore Loans',
+  buttonUrl: data.about_button_url || '/loans',
+  progressLines: data.about_progress_lines || [],
+}
 ---
 
 <section class={styles.aboutSection}>
@@ -33,7 +65,10 @@ import LazyImage from '../UI/LazyImage/LazyImage.astro'
             experience
           </span>
 
-          <span class={styles.aboutSectionExperienceNumber} data-value='25'>
+          <span
+            class={styles.aboutSectionExperienceNumber}
+            data-value={aboutData.years}
+          >
             0
           </span>
         </div>
@@ -41,23 +76,21 @@ import LazyImage from '../UI/LazyImage/LazyImage.astro'
 
       <div class={styles.aboutSectionContent}>
         <div class='slogan slogan--reverse'>
-          <span>Welcome to The Lenders</span>
+          <span>{aboutData.slogan}</span>
         </div>
 
-        <h2>our loans will fill yourdreams come true</h2>
+        <h2>{aboutData.title}</h2>
 
-        <p>
-          We provide simple, transparent, and stress-free mortgage solutions
-          tailored to your financial goals. Choose from Conventional, FHA, VA,
-          Jumbo, First-Time Buyer loans — with expert support at every step.
-        </p>
+        <div>
+          <p set:html={aboutData.description} />
+        </div>
 
-        <ProgressLines />
+        <ProgressLines items={aboutData.progressLines} />
       </div>
     </div>
 
-    <a class='button' href='/loans'>
-      <span>Explore Loans</span>
+    <a class='button' href={aboutData.buttonUrl}>
+      <span>{aboutData.buttonText}</span>
     </a>
   </div>
 </section>

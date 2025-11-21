@@ -1,7 +1,49 @@
 ---
+import LazyImage from '../../UI/LazyImage/LazyImage.astro'
 import styles from './Philosophy.module.css'
 import philosophyImage from '/public/images/home/philosophy-women.jpg'
-import LazyImage from '../../UI/LazyImage/LazyImage.astro'
+
+interface Props {
+  data?: {
+    philosophy_quote?: string
+    philosophy_slogan?: string
+    philosophy_title?: string
+    philosophy_description?: string
+    philosophy_values?: Array<{ title: string; description: string }>
+    philosophy_button_text?: string
+    philosophy_button_url?: string
+  }
+}
+
+const { data = {} } = Astro.props
+
+const philosophyData = {
+  quote:
+    data.philosophy_quote ||
+    '"We believe everyone deserves a chance to be approved."',
+  slogan: data.philosophy_slogan || 'Mortgage Lending, Elevated.',
+  title: data.philosophy_title || 'Why Choose The Lenders',
+  description:
+    data.philosophy_description ||
+    'At The Lenders, we believe every borrower deserves clarity, trust, and a personalized lending experience. Our team combines industry expertise with premium customer care to help you make informed decisions at every stage of the mortgage process.',
+  values: data.philosophy_values || [
+    { title: 'Transparency', description: 'no hidden fees, no surprises' },
+    {
+      title: 'Flexibility',
+      description: 'loan options designed around your lifestyle',
+    },
+    {
+      title: 'Guidance',
+      description: 'expert support from application to closing',
+    },
+    {
+      title: 'Efficiency',
+      description: 'faster approvals and streamlined processing',
+    },
+  ],
+  buttonText: data.philosophy_button_text || 'Read Our Story',
+  buttonUrl: data.philosophy_button_url || '/about',
+}
 ---
 
 <section class={styles.homePhilosophy}>
@@ -18,49 +60,34 @@ import LazyImage from '../../UI/LazyImage/LazyImage.astro'
         />
 
         <div class={styles.homePhilosophyInfo}>
-          <p>"We believe everyone deserves a chance to be approved."</p>
+          <p>{philosophyData.quote}</p>
         </div>
       </div>
 
       <div class={styles.homePhilosophyContent}>
         <div class='slogan slogan--reverse'>
-          <span>Mortgage Lending, Elevated.</span>
+          <span>{philosophyData.slogan}</span>
         </div>
 
-        <h2>Why Choose The Lenders</h2>
+        <h2>{philosophyData.title}</h2>
 
-        <p>
-          At The Lenders, we believe every borrower deserves clarity, trust, and
-          a personalized lending experience. Our team combines industry
-          expertise with premium customer care to help you make informed
-          decisions at every stage of the mortgage process.
-        </p>
+        <p set:html={philosophyData.description} />
 
         <ul class={styles.homePhilosophyList}>
-          <li class={styles.homePhilosophyListItem}>
-            <h3>Transparency</h3>
-            <p>no hidden fees, no surprises</p>
-          </li>
-
-          <li class={styles.homePhilosophyListItem}>
-            <h3>Flexibility</h3>
-            <p>loan options designed around your lifestyle</p>
-          </li>
-
-          <li class={styles.homePhilosophyListItem}>
-            <h3>Guidance</h3>
-            <p>expert support from application to closing</p>
-          </li>
-          <li class={styles.homePhilosophyListItem}>
-            <h3>Efficiency</h3>
-            <p>faster approvals and streamlined processing</p>
-          </li>
+          {
+            philosophyData.values.map(value => (
+              <li class={styles.homePhilosophyListItem}>
+                <h3>{value.title}</h3>
+                <p>{value.description}</p>
+              </li>
+            ))
+          }
         </ul>
       </div>
     </div>
 
-    <a class='button' href='/about'>
-      <span>Read Our Story</span>
+    <a class='button' href={philosophyData.buttonUrl}>
+      <span>{philosophyData.buttonText}</span>
     </a>
   </div>
 </section>

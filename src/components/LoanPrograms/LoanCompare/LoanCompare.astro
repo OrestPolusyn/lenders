@@ -2,80 +2,95 @@
 import { loanList } from '@/const/loansPrograms'
 import styles from './LoanCompare.module.css'
 
-// Mapping деталей для кожного типу кредиту
-const loanDetails: Record<string, {
-  downPayment: string
-  idealFor: string
-  creditRange: string
-  maxLoanSize: string
-}> = {
-  'Conventional Loans': {
-    downPayment: '3–20%',
-    idealFor: 'Most buyers with good credit',
-    creditRange: '620+',
-    maxLoanSize: 'Standard',
-  },
-  'FHA Loans': {
-    downPayment: '3.5%',
-    idealFor: 'Lower credit, first-time buyers',
-    creditRange: '580+',
-    maxLoanSize: 'Standard',
-  },
-  'VA Loans': {
-    downPayment: '0%',
-    idealFor: 'Veterans & eligible service members',
-    creditRange: 'Flexible',
-    maxLoanSize: 'Standard',
-  },
-  'Jumbo Prime Loans': {
-    downPayment: '10–20%',
-    idealFor: 'High-value homes',
-    creditRange: '700+',
-    maxLoanSize: 'High',
-  },
-  'Refinance & Purchase Loans': {
-    downPayment: 'Varies',
-    idealFor: 'Homeowners refinancing or buying',
-    creditRange: '580+',
-    maxLoanSize: 'Flexible',
-  },
-  'Primary Home Loans': {
-    downPayment: '3–20%',
-    idealFor: 'Primary residence purchase',
-    creditRange: '620+',
-    maxLoanSize: 'Standard',
-  },
-  'Secondary Home Loans': {
-    downPayment: '10–25%',
-    idealFor: 'Vacation or secondary homes',
-    creditRange: '640+',
-    maxLoanSize: 'Standard',
-  },
-  'Investment Property Loans': {
-    downPayment: '15–25%',
-    idealFor: 'Rental property investors',
-    creditRange: '640+',
-    maxLoanSize: 'Flexible',
-  },
-  'Self-Employed Home Loans': {
-    downPayment: '10–20%',
-    idealFor: 'Self-employed borrowers',
-    creditRange: '620+',
-    maxLoanSize: 'Standard',
-  },
-  'First-Time Homebuyer Programs': {
-    downPayment: '0–5%',
-    idealFor: 'First-time home buyers',
-    creditRange: '580+',
-    maxLoanSize: 'Standard',
-  },
-  'Reverse Mortgage Loans': {
-    downPayment: 'N/A',
-    idealFor: 'Seniors 62+ extracting home equity',
-    creditRange: 'Flexible',
-    maxLoanSize: 'Based on home value',
-  },
+interface Props {
+  loanPrograms?: any[]
 }
+
+const { loanPrograms } = Astro.props
+
+// Map WordPress programs to comparison format
+const comparisonData =
+  loanPrograms && loanPrograms.length > 0
+    ? loanPrograms.map((program: any) => ({
+        title: program.title,
+        downPayment: program.comparison?.down_payment || 'N/A',
+        idealFor: program.comparison?.ideal_for_short || '',
+        creditRange: program.comparison?.credit_range || 'Flexible',
+        maxLoanSize: program.comparison?.max_loan_size || 'Standard',
+      }))
+    : loanList.map(loan => {
+        // Fallback to static data
+        const staticDetails: Record<string, any> = {
+          'Conventional Loans': {
+            downPayment: '3–20%',
+            idealFor: 'Most buyers with good credit',
+            creditRange: '620+',
+            maxLoanSize: 'Standard',
+          },
+          'FHA Loans': {
+            downPayment: '3.5%',
+            idealFor: 'Lower credit, first-time buyers',
+            creditRange: '580+',
+            maxLoanSize: 'Standard',
+          },
+          'VA Loans': {
+            downPayment: '0%',
+            idealFor: 'Veterans & eligible service members',
+            creditRange: 'Flexible',
+            maxLoanSize: 'Standard',
+          },
+          'Jumbo Prime Loans': {
+            downPayment: '10–20%',
+            idealFor: 'High-value homes',
+            creditRange: '700+',
+            maxLoanSize: 'High',
+          },
+          'Refinance & Purchase Loans': {
+            downPayment: 'Varies',
+            idealFor: 'Homeowners refinancing or buying',
+            creditRange: '580+',
+            maxLoanSize: 'Flexible',
+          },
+          'Primary Home Loans': {
+            downPayment: '3–20%',
+            idealFor: 'Primary residence purchase',
+            creditRange: '620+',
+            maxLoanSize: 'Standard',
+          },
+          'Secondary Home Loans': {
+            downPayment: '10–25%',
+            idealFor: 'Vacation or secondary homes',
+            creditRange: '640+',
+            maxLoanSize: 'Standard',
+          },
+          'Investment Property Loans': {
+            downPayment: '15–25%',
+            idealFor: 'Rental property investors',
+            creditRange: '640+',
+            maxLoanSize: 'Flexible',
+          },
+          'Self-Employed Home Loans': {
+            downPayment: '10–20%',
+            idealFor: 'Self-employed borrowers',
+            creditRange: '620+',
+            maxLoanSize: 'Standard',
+          },
+          'First-Time Homebuyer Programs': {
+            downPayment: '0–5%',
+            idealFor: 'First-time home buyers',
+            creditRange: '580+',
+            maxLoanSize: 'Standard',
+          },
+          'Reverse Mortgage Loans': {
+            downPayment: 'N/A',
+            idealFor: 'Seniors 62+ extracting home equity',
+            creditRange: 'Flexible',
+            maxLoanSize: 'Based on home value',
+          },
+        }
+        const details = staticDetails[loan.title] || {}
+        return { title: loan.title, ...details }
+      })
 ---
 
 <section class={styles.loanCompare} aria-labelledby='loan-compare-heading'>
@@ -101,20 +116,15 @@ const loanDetails: Record<string, {
         </thead>
         <tbody>
           {
-            loanList.map((loan) => {
-              const details = loanDetails[loan.title]
-              if (!details) return null
-
-              return (
-                <tr>
-                  <th scope='row'>{loan.title}</th>
-                  <td>{details.downPayment}</td>
-                  <td>{details.idealFor}</td>
-                  <td>{details.creditRange}</td>
-                  <td>{details.maxLoanSize}</td>
-                </tr>
-              )
-            })
+            comparisonData.map((loan: any) => (
+              <tr>
+                <th scope='row'>{loan.title}</th>
+                <td>{loan.downPayment}</td>
+                <td>{loan.idealFor}</td>
+                <td>{loan.creditRange}</td>
+                <td>{loan.maxLoanSize}</td>
+              </tr>
+            ))
           }
         </tbody>
       </table>

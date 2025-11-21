@@ -1,177 +1,115 @@
 ---
+import LazyImage from '../../UI/LazyImage/LazyImage.astro'
 import styles from './Process.module.css'
 import processImageFirst from '/public/images/home/process-first.png'
 import processImageFourth from '/public/images/home/process-fourth.png'
 import processImageSecond from '/public/images/home/process-second.png'
 import processImageThird from '/public/images/home/process-third.png'
-import LazyImage from '../../UI/LazyImage/LazyImage.astro'
+
+interface Props {
+  data?: {
+    process_slogan?: string
+    process_title?: string
+    process_description?: string
+    process_steps?: Array<{
+      step_number: number
+      step_title: string
+      step_description: string
+    }>
+  }
+}
+
+const { data = {} } = Astro.props
+
+const processImages = [
+  processImageFirst,
+  processImageSecond,
+  processImageThird,
+  processImageFourth,
+]
+
+const processData = {
+  slogan: data.process_slogan || 'how it works',
+  title: data.process_title || 'Our Working Process',
+  description: data.process_description || '',
+  steps: data.process_steps || [
+    {
+      step_number: 1,
+      step_title: 'Application Submission',
+      step_description:
+        'Start your mortgage journey with a quick, secure online form.',
+    },
+    {
+      step_number: 2,
+      step_title: 'Review & Verification',
+      step_description:
+        'Our team analyzes your financial profile and helps you choose the best loan.',
+    },
+    {
+      step_number: 3,
+      step_title: 'Loan Clearance',
+      step_description:
+        'We guide you through final steps and ensure full approval.',
+    },
+    {
+      step_number: 4,
+      step_title: 'Closing Day',
+      step_description:
+        'Sign your documents and move confidently into your new home.',
+    },
+  ],
+}
 ---
 
 <section class={styles.process}>
   <div class='container'>
     <div class={styles.processContent}>
       <div class={styles.processHeader}>
-        <p class='slogan slogan--double'>how it works</p>
+        <p class='slogan slogan--double'>{processData.slogan}</p>
 
-        <h2>Our Working Process</h2>
+        <h2>{processData.title}</h2>
+        {processData.description && <p>{processData.description}</p>}
       </div>
 
       <ul class={styles.processList}>
-        <li class={styles.processItem}>
-          <div class={styles.processItemIcons}>
-            <LazyImage
-              src={processImageFirst.src}
-              alt='processImageFirst'
-              width={130}
-              height={130}
-              loading="lazy"
-            />
+        {
+          processData.steps.map((step, index) => (
+            <li class={styles.processItem}>
+              <div class={styles.processItemIcons}>
+                <LazyImage
+                  src={processImages[index]?.src || processImageFirst.src}
+                  alt={step.step_title}
+                  width={130}
+                  height={130}
+                  loading='lazy'
+                />
 
-            <span class={styles.processStepNumber}>step</span>
-            <svg
-              class={styles.processItemIconsArrow}
-              viewBox='0 0 242 67'
-              fill='none'
-              xmlns='http://www.w3.org/2000/svg'
-            >
-              <path
-                d='M239.497 33.8939L207.961 65.4318H4L35.5698 33.8939L4 2.35596H207.961L239.497 33.8939Z'
-              ></path>
-            </svg>
-            <svg
-              class={styles.processItemIconsCircle}
-              width='136'
-              height='32'
-              viewBox='0 0 136 32'
-              fill='none'
-              xmlns='http://www.w3.org/2000/svg'
-            >
-              <path
-                d='M67.9555 0.758301C105.486 0.758301 135.894 7.52133 135.894 15.8938C135.894 24.2491 105.469 31.0292 67.9555 31.0292C30.425 31.0292 7.21871e-06 24.2491 7.21871e-06 15.8938C-0.0171143 7.53845 30.425 0.758301 67.9555 0.758301Z'
-              ></path>
-            </svg>
-          </div>
+                <span class={styles.processStepNumber}>step</span>
+                <svg
+                  class={styles.processItemIconsArrow}
+                  viewBox='0 0 242 67'
+                  fill='none'
+                  xmlns='http://www.w3.org/2000/svg'
+                >
+                  <path d='M239.497 33.8939L207.961 65.4318H4L35.5698 33.8939L4 2.35596H207.961L239.497 33.8939Z' />
+                </svg>
+                <svg
+                  class={styles.processItemIconsCircle}
+                  width='136'
+                  height='32'
+                  viewBox='0 0 136 32'
+                  fill='none'
+                  xmlns='http://www.w3.org/2000/svg'
+                >
+                  <path d='M67.9555 0.758301C105.486 0.758301 135.894 7.52133 135.894 15.8938C135.894 24.2491 105.469 31.0292 67.9555 31.0292C30.425 31.0292 7.21871e-06 24.2491 7.21871e-06 15.8938C-0.0171143 7.53845 30.425 0.758301 67.9555 0.758301Z' />
+                </svg>
+              </div>
 
-          <h3>Application Submission</h3>
-          <p>Start your mortgage journey with a quick, secure online form.</p>
-        </li>
-        <li class={styles.processItem}>
-          <div class={styles.processItemIcons}>
-            <LazyImage
-              src={processImageSecond.src}
-              alt='processImageFirst'
-              width={130}
-              height={130}
-              loading="lazy"
-            />
-
-            <span class={styles.processStepNumber}>step</span>
-            <svg
-              class={styles.processItemIconsArrow}
-              viewBox='0 0 242 67'
-              fill='none'
-              xmlns='http://www.w3.org/2000/svg'
-            >
-              <path
-                d='M239.497 33.8939L207.961 65.4318H4L35.5698 33.8939L4 2.35596H207.961L239.497 33.8939Z'
-              ></path>
-            </svg>
-            <svg
-              class={styles.processItemIconsCircle}
-              width='136'
-              height='32'
-              viewBox='0 0 136 32'
-              fill='none'
-              xmlns='http://www.w3.org/2000/svg'
-            >
-              <path
-                d='M67.9555 0.758301C105.486 0.758301 135.894 7.52133 135.894 15.8938C135.894 24.2491 105.469 31.0292 67.9555 31.0292C30.425 31.0292 7.21871e-06 24.2491 7.21871e-06 15.8938C-0.0171143 7.53845 30.425 0.758301 67.9555 0.758301Z'
-              ></path>
-            </svg>
-          </div>
-
-          <h3>Review & Verification</h3>
-          <p>
-            Our team analyzes your financial profile and helps you choose the
-            best loan.
-          </p>
-        </li>
-        <li class={styles.processItem}>
-          <div class={styles.processItemIcons}>
-            <LazyImage
-              src={processImageThird.src}
-              alt='processImageFirst'
-              width={130}
-              height={130}
-              loading="lazy"
-            />
-
-            <span class={styles.processStepNumber}>step</span>
-            <svg
-              class={styles.processItemIconsArrow}
-              viewBox='0 0 242 67'
-              fill='none'
-              xmlns='http://www.w3.org/2000/svg'
-            >
-              <path
-                d='M239.497 33.8939L207.961 65.4318H4L35.5698 33.8939L4 2.35596H207.961L239.497 33.8939Z'
-              ></path>
-            </svg>
-            <svg
-              class={styles.processItemIconsCircle}
-              width='136'
-              height='32'
-              viewBox='0 0 136 32'
-              fill='none'
-              xmlns='http://www.w3.org/2000/svg'
-            >
-              <path
-                d='M67.9555 0.758301C105.486 0.758301 135.894 7.52133 135.894 15.8938C135.894 24.2491 105.469 31.0292 67.9555 31.0292C30.425 31.0292 7.21871e-06 24.2491 7.21871e-06 15.8938C-0.0171143 7.53845 30.425 0.758301 67.9555 0.758301Z'
-              ></path>
-            </svg>
-          </div>
-
-          <h3>Loan Clearance</h3>
-          <p>We guide you through final steps and ensure full approval.</p>
-        </li>
-        <li class={styles.processItem}>
-          <div class={styles.processItemIcons}>
-            <LazyImage
-              src={processImageFourth.src}
-              alt='processImageFirst'
-              width={130}
-              height={130}
-              loading="lazy"
-            />
-
-            <span class={styles.processStepNumber}>step</span>
-            <svg
-              class={styles.processItemIconsArrow}
-              viewBox='0 0 242 67'
-              fill='none'
-              xmlns='http://www.w3.org/2000/svg'
-            >
-              <path
-                d='M239.497 33.8939L207.961 65.4318H4L35.5698 33.8939L4 2.35596H207.961L239.497 33.8939Z'
-              ></path>
-            </svg>
-            <svg
-              class={styles.processItemIconsCircle}
-              width='136'
-              height='32'
-              viewBox='0 0 136 32'
-              fill='none'
-              xmlns='http://www.w3.org/2000/svg'
-            >
-              <path
-                d='M67.9555 0.758301C105.486 0.758301 135.894 7.52133 135.894 15.8938C135.894 24.2491 105.469 31.0292 67.9555 31.0292C30.425 31.0292 7.21871e-06 24.2491 7.21871e-06 15.8938C-0.0171143 7.53845 30.425 0.758301 67.9555 0.758301Z'
-              ></path>
-            </svg>
-          </div>
-
-          <h3>Closing Day</h3>
-          <p>Sign your documents and move confidently into your new home.</p>
-        </li>
+              <h3>{step.step_title}</h3>
+              <p>{step.step_description}</p>
+            </li>
+          ))
+        }
       </ul>
     </div>
   </div>

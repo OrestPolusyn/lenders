@@ -1,5 +1,33 @@
 ---
 import styles from './Hero.module.css'
+
+interface Props {
+  data?: {
+    hero_slogan?: string
+    hero_title?: string
+    hero_subtitle?: string
+    hero_button_1_text?: string
+    hero_button_1_url?: string
+    hero_button_2_text?: string
+    hero_button_2_url?: string
+  }
+}
+
+const { data = {} } = Astro.props
+
+// Fallback до статичних даних якщо WordPress недоступний
+const heroData = {
+  slogan: data.hero_slogan || 'Leading the way in Home Loans',
+  title: data.hero_title || 'THE AMERICAN DREAM',
+  subtitle:
+    data.hero_subtitle ||
+    'We Build Dreams, Nurture Families, and Change Lives-One Mortgage at a Time',
+  button1Text: data.hero_button_1_text || 'Get Pre-Approved',
+  button1Url:
+    data.hero_button_1_url || 'https://1665272.my1003app.com/134607/register',
+  button2Text: data.hero_button_2_text || 'Explore Loan Options',
+  button2Url: data.hero_button_2_url || '/loan-programs',
+}
 ---
 
 <script
@@ -10,25 +38,25 @@ import styles from './Hero.module.css'
   <div class='container'>
     <div class={styles.heroWrapper}>
       <div class={styles.heroContent}>
-        <p class='slogan'>Leading the way in Home Loans</p>
+        <p class='slogan'>{heroData.slogan}</p>
 
-        <h1>THE AMERICAN DREAM</h1>
+        <h1>{heroData.title}</h1>
 
         <p>
           <span>The Lenders - </span>
-          We Build Dreams, Nurture Families, and Change Lives-One Mortgage at a Time
+          {heroData.subtitle}
         </p>
 
         <div class={styles.heroActions}>
           <a
             class='button'
-            target='_blank'
-            href='https://1665272.my1003app.com/134607/register'
+            target={heroData.button1Url.startsWith('http') ? '_blank' : '_self'}
+            href={heroData.button1Url}
           >
-            <span>Get Pre-Approved</span>
+            <span>{heroData.button1Text}</span>
           </a>
-          <a class='button button--reverse' href='/loan-programs'>
-            <span>Explore Loan Options</span>
+          <a class='button button--reverse' href={heroData.button2Url}>
+            <span>{heroData.button2Text}</span>
           </a>
         </div>
       </div>

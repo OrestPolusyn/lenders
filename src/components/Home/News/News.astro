@@ -1,7 +1,24 @@
 ---
 import newsData from '@/data/news.json'
-import styles from './News.module.css'
+import { getAllPosts } from '@/lib/wordpress'
 import LazyImage from '../../UI/LazyImage/LazyImage.astro'
+import styles from './News.module.css'
+
+interface Props {
+  data?: {
+    news_slogan?: string
+    news_title?: string
+    news_button_text?: string
+  }
+}
+
+const { data = {} } = Astro.props
+
+const newsContentData = {
+  slogan: data.news_slogan || 'Smart mortgage tips and rate trends.',
+  title: data.news_title || 'news & insights',
+  buttonText: data.news_button_text || 'View All News',
+}
 
 interface NewsItem {
   id: number
@@ -10,9 +27,36 @@ interface NewsItem {
   date: string
   category: string
   image: string
+  slug?: string
 }
 
-const news: NewsItem[] = newsData
+let news: NewsItem[] = []
+
+// Спробувати завантажити з WordPress
+try {
+  const wpPosts = await getAllPosts({ per_page: 3, _embed: true })
+  if (wpPosts && wpPosts.length > 0) {
+    news = wpPosts.map(post => ({
+      id: post.id,
+      title: post.title.rendered,
+      description:
+        post.excerpt.rendered.replace(/<[^>]*>/g, '').substring(0, 150) + '...',
+      date: post.date,
+      category: post._embedded?.['wp:term']?.[0]?.[0]?.name || 'General',
+      image:
+        post._embedded?.['wp:featuredmedia']?.[0]?.source_url ||
+        '/images/placeholder.jpg',
+      slug: post.slug,
+    }))
+  }
+} catch (error) {
+  console.log('📰 Using static news data (WordPress unavailable)')
+}
+
+// Fallback до JSON якщо WordPress не працює
+if (news.length === 0) {
+  news = newsData
+}
 
 const formatDate = (dateString: string) => {
   const date = new Date(dateString)
@@ -29,9 +73,9 @@ const formatDate = (dateString: string) => {
     <div class={styles.newsContent}>
       <div class={styles.newsHeader}>
         <p class='slogan slogan--double'>
-          Smart mortgage tips and rate trends.
+          {newsContentData.slogan}
         </p>
-        <h2>news & insights</h2>
+        <h2>{newsContentData.title}</h2>
       </div>
 
       <div class={styles.newsSliderWrapper}>
@@ -40,7 +84,13 @@ const formatDate = (dateString: string) => {
             news.map(item => (
               <article class={styles.newsItem}>
                 <div class={styles.newsItemImage}>
-                  <LazyImage src={item.image} alt={item.title} width="400" height="250" loading="lazy" />
+                  <LazyImage
+                    src={item.image}
+                    alt={item.title}
+                    width={400}
+                    height={250}
+                    loading='lazy'
+                  />
                   <span class={styles.newsItemCategory}>{item.category}</span>
                 </div>
 
@@ -50,7 +100,10 @@ const formatDate = (dateString: string) => {
                   </time>
                   <h3>{item.title}</h3>
                   <p>{item.description}</p>
-                  <a class={styles.newsItemButton} href={`/post/${item.id}`}>
+                  <a
+                    class={styles.newsItemButton}
+                    href={item.slug ? `/post/${item.slug}` : `/post/${item.id}`}
+                  >
                     Read More
                     <svg
                       width='20'
@@ -75,8 +128,8 @@ const formatDate = (dateString: string) => {
         </div>
       </div>
 
-      <a href='/news' class='button'>
-        <span>View All News</span>
+      <a href='/blog' class='button'>
+        <span>{newsContentData.buttonText}</span>
       </a>
     </div>
   </div>

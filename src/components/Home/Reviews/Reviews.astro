@@ -8,6 +8,22 @@ import styles from './Reviews.module.css'
 import sliderStyles from './ReviewsSlider.module.css'
 import LazyImage from '../../UI/LazyImage/LazyImage.astro'
 
+interface Props {
+  data?: {
+    reviews_slogan?: string
+    reviews_title?: string
+    reviews_description?: string
+    reviews_list?: Array<{
+      reviewer_name: string
+      reviewer_position: string
+      reviewer_avatar?: string
+      review_text: string
+      review_rating: number
+    }>
+  }
+}
+
+const { data = {} } = Astro.props
 
 type Review = {
   id: number
@@ -17,7 +33,7 @@ type Review = {
   rating: number
 }
 
-const reviews: Review[] = [
+const defaultReviews: Review[] = [
   {
     id: 1,
     text: 'Working with this team made our dream home a reality. The entire process was smooth, transparent, and faster than we expected. They found us the perfect loan program with an incredible rate!',
@@ -41,6 +57,24 @@ const reviews: Review[] = [
   },
 ]
 
+const reviews: Review[] = data.reviews_list
+  ? data.reviews_list.map((r, i) => ({
+      id: i + 1,
+      text: r.review_text,
+      author: r.reviewer_name,
+      role: r.reviewer_position,
+      rating: r.review_rating,
+    }))
+  : defaultReviews
+
+const reviewsData = {
+  slogan: data.reviews_slogan || 'our reviews',
+  title: data.reviews_title || 'What Our Clients Say',
+  description:
+    data.reviews_description ||
+    "Don't just take our word for it. Hear from homeowners who trusted us with their mortgage journey.",
+}
+
 const avatars = [avatar1, avatar2, avatar3]
 ---
 
@@ -48,15 +82,12 @@ const avatars = [avatar1, avatar2, avatar3]
   <div class='container'>
     <div class={styles.homeReviewsContent}>
       <div class='slogan slogan--double slogan--reverse'>
-        <span>our reviews</span>
+        <span>{reviewsData.slogan}</span>
       </div>
 
-      <h2>What Our Clients Say</h2>
+      <h2>{reviewsData.title}</h2>
 
-      <p>
-        Don't just take our word for it. Hear from homeowners who trusted us
-        with their mortgage journey.
-      </p>
+      <p>{reviewsData.description}</p>
     </div>
 
     <div class={`${styles.homeReviewsWrapper} wrapper`}>
@@ -107,7 +138,7 @@ const avatars = [avatar1, avatar2, avatar3]
                       alt={`Customer ${index + 1}`}
                       width={40}
                       height={40}
-                      loading="lazy"
+                      loading='lazy'
                     />
                   </div>
                 ))

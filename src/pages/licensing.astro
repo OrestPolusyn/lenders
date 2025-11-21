@@ -4,72 +4,81 @@ import GetInTouch from '@/components/GetInTouch/GetInTouch.astro'
 import Header from '@/components/Header/Header.astro'
 import PageHeader from '@/components/PageHeader/PageHeader.astro'
 import BaseLayout from '@/layouts/BaseLayout.astro'
+import { getPageBySlug } from '@/lib/wordpress'
+
+// Fetch WordPress page
+const licensingPage = await getPageBySlug('licensing-and-disclosures')
+
+const pageTitle = licensingPage?.title?.rendered || 'Licensing and Disclosures'
+const metaTitle =
+  licensingPage?.title?.rendered || 'The Lenders | Licensing and Disclosures'
+const metaDescription =
+  licensingPage?.excerpt?.rendered ||
+  'Review The Lenders licensing and disclosures to see our NMLS registration, state licenses, Equal Housing Lender statement, and other regulatory information.'
+const pageContent = licensingPage?.content?.rendered || ''
 ---
 
-<BaseLayout
-  title='The Lenders | licensing and disclosures'
-  description='Review The Lenders licensing and disclosures to see our NMLS registration, state licenses, Equal Housing Lender statement, and other regulatory information.'
->
+<style>
+  .wordpress-content {
+    color: var(--color-blue-500);
+    line-height: 1.7;
+  }
+
+  .wordpress-content h2 {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    font-size: 1.75rem;
+    font-weight: 700;
+  }
+
+  .wordpress-content h2:first-child {
+    margin-top: 0;
+  }
+
+  .wordpress-content h3 {
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+    font-size: 1.35rem;
+    font-weight: 600;
+  }
+
+  .wordpress-content p,
+  .wordpress-content ul {
+    margin-block: 1rem;
+  }
+
+  .wordpress-content ul,
+  .wordpress-content ol {
+    margin: 1rem 0;
+    padding-left: 2rem;
+  }
+
+  .wordpress-content li {
+    margin-bottom: 0.5rem;
+  }
+
+  .wordpress-content a {
+    color: var(--color-blue-400);
+    text-decoration: underline;
+  }
+
+  .wordpress-content strong {
+    font-weight: 600;
+  }
+</style>
+
+<BaseLayout title={metaTitle} description={metaDescription}>
   <Header />
 
   <main class='main'>
-    <PageHeader title='licensing and disclosures' />
+    <PageHeader title={pageTitle} />
 
-    <section class='privacy'>
-      <div class='container'>
-        <div class='privacy__content'>
-          <h2>Licensing disclosure</h2>
-
-          <p>
-            <strong>The Lenders is an Equal Housing Lender.</strong>
-            As prohibited by federal law, we do not engage in business practices
-            that discriminate on the basis of race, color, religion, national origin,
-            sex, marital status, age (provided you have the capacity to enter into
-            a binding contract), because all or part of your income may be derived
-            from any public assistance program, or because you have, in good faith,
-            exercised any right under the Consumer Credit Protection Act. The federal
-            agency that administers our compliance with these federal laws is the
-            Federal Trade Commission, Equal Credit Opportunity, Washington, DC 20580.
-          </p>
-
-          <h3>State licensing information</h3>
-
-          <p>Below is a summary of state licenses held by The Lenders:</p>
-
-          <ul>
-            <li>
-              <strong>ALABAMA</strong><br />
-              Alabama Consumer Credit License (#<span>[LICENSE-NUMBER-AL]</span
-              >)
-            </li>
-            <li>
-              <strong>ALASKA</strong><br />
-              Alaska Mortgage Broker/Lender License (#<span
-                >[LICENSE-NUMBER-AK]</span
-              >)
-            </li>
-            <li>
-              <strong>ARIZONA</strong><br />
-              Arizona Mortgage Banker License (#<span>[LICENSE-NUMBER-AZ]</span
-              >)
-            </li>
-            <li>
-              <strong>CALIFORNIA</strong><br />
-              California Finance Lender License (#<span
-                >[LICENSE-NUMBER-CA]</span
-              >)
-            </li>
-            <li>
-              <strong>COLORADO</strong><br />
-              Loans made or arranged pursuant to Mortgage Company Registration with
-              the Colorado Division of Real Estate (#<span
-                >[LICENSE-NUMBER-CO]</span
-              >)
-            </li>
-          </ul>
-
-          <p><strong>Last Updated: April 2025</strong></p>
-        </div>
+    <section
+      class='terms-policy'
+      style='padding-block: clamp(3rem, 4vw, 5rem); background-color: var(--color-white);'
+    >
+      <div class='container' style='max-width: 920px;'>
+        <div class='wordpress-content' set:html={pageContent} />
       </div>
     </section>
 
@@ -78,9 +87,3 @@ import BaseLayout from '@/layouts/BaseLayout.astro'
 
   <Footer />
 </BaseLayout>
-
-<style is:global>
-  .privacy {
-    clip-path: var(--clip-path-secondary);
-  }
-</style>

@@ -1,11 +1,31 @@
 ---
 import styles from './GetInTouch.module.css'
 
-const homePage = Astro.props.homePage
+interface Props {
+  homePage?: boolean
+  data?: {
+    cta_title?: string
+    cta_description?: string
+    cta_button_text?: string
+    cta_button_url?: string
+  }
+}
 
+const { homePage = false, data = {} } = Astro.props
+
+const ctaData = {
+  title: data.cta_title || 'Begin your home loan process today!',
+  description:
+    data.cta_description ||
+    'Get pre-approved with in as little as <br /> 3 minutes.',
+  buttonText: data.cta_button_text || 'Get a Quote Now',
+  buttonUrl: data.cta_button_url || '/contact',
+}
 ---
 
-<section class={`${styles.getInTouch} ${homePage ? styles.getInTouchHome : ''}`}>
+<section
+  class={`${styles.getInTouch} ${homePage ? styles.getInTouchHome : ''}`}
+>
   <div class='container'>
     <div class={styles.getInTouchContent}>
       <svg
@@ -27,13 +47,13 @@ const homePage = Astro.props.homePage
           stroke-linejoin='round'></path>
       </svg>
 
-      <h2>Begin your home loan process today!</h2>
+      <h2>{ctaData.title}</h2>
 
-      <p>Get pre-approved with in as little as <br /> 3 minutes.</p>
+      <p set:html={ctaData.description} />
 
       <div class={styles.getInTouchActions}>
-        <a href='/contact' class='button button--reverse'>
-          <span>Get a Quote Now</span>
+        <a href={ctaData.buttonUrl} class='button button--reverse'>
+          <span>{ctaData.buttonText}</span>
         </a>
       </div>
     </div>

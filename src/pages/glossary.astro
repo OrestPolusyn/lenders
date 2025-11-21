@@ -4,17 +4,46 @@ import GlossarySection from '@/components/Glossary/Glossary.astro'
 import Header from '@/components/Header/Header.astro'
 import PageHeader from '@/components/PageHeader/PageHeader.astro'
 import BaseLayout from '@/layouts/BaseLayout.astro'
+import { getPageBySlug } from '@/lib/wordpress'
+
+// Fetch WordPress Glossary page data
+const glossaryPage = await getPageBySlug('glossary')
+
+const pageTitle = glossaryPage?.title?.rendered || 'Glossary of terms'
+const metaTitle = glossaryPage?.title?.rendered || 'The Lenders - Glossary'
+const metaDescription =
+  glossaryPage?.excerpt?.rendered ||
+  'Find the definitions of common mortgage and home loan terms with The Lenders Glossary. Learn about interest rates, loan types, and more to make informed decisions about your home financing.'
+
+// Get page settings from ACF
+const acf = glossaryPage?.acf || {}
+const sectionTitle = acf.glossary_section_title || 'Mortgage terms explained'
+const sectionSubtitle =
+  acf.glossary_section_subtitle ||
+  'Please click on the letter below to skip to the definition of the word you are looking for.'
+
+// Get glossary terms from ACF repeater
+const glossaryTermsRaw = acf.glossary_terms || []
+
+// Map to component format
+const glossaryTerms = glossaryTermsRaw.map((item: any, index: number) => ({
+  id: index + 1,
+  term: item.term || '',
+  letter: item.letter?.toUpperCase() || '',
+  definition: item.definition || '',
+}))
 ---
 
-<BaseLayout
-  title='The Lenders - Glossary'
-  description='Find the definitions of common mortgage and home loan terms with The Lenders Glossary. Learn about interest rates, loan types, and more to make informed decisions about your home financing.'
->
+<BaseLayout title={metaTitle} description={metaDescription}>
   <Header />
 
   <main class='main'>
-    <PageHeader title='Glossary of terms' />
-    <GlossarySection />
+    <PageHeader title={pageTitle} />
+    <GlossarySection
+      terms={glossaryTerms}
+      sectionTitle={sectionTitle}
+      sectionSubtitle={sectionSubtitle}
+    />
   </main>
 
   <Footer />

@@ -1,18 +1,23 @@
 ---
-import newsData from '@/data/news.json'
-import styles from './Blog.module.css'
 import LazyImage from '../UI/LazyImage/LazyImage.astro'
+import styles from './Blog.module.css'
 
-interface NewsItem {
+interface BlogPost {
   id: number
   title: string
   description: string
   date: string
   category: string
   image: string
+  slug: string
 }
 
-const news: NewsItem[] = newsData
+interface Props {
+  initialPosts: BlogPost[]
+  hasMore?: boolean
+}
+
+const { initialPosts, hasMore = true } = Astro.props
 
 const formatDate = (dateString: string) => {
   const date = new Date(dateString)
@@ -28,27 +33,36 @@ const formatDate = (dateString: string) => {
   <div class='container'>
     <h2>Recent Articles</h2>
 
-    <ul class={styles.blogList}>
+    <ul
+      class={styles.blogList}
+      id='blog-list'
+      data-news-item-class={styles.newsItem}
+      data-news-image-class={styles.newsItemImage}
+      data-news-category-class={styles.newsItemCategory}
+      data-news-content-class={styles.newsItemContent}
+      data-news-date-class={styles.newsItemDate}
+      data-news-button-class={styles.newsItemButton}
+    >
       {
-        news.map(item => (
+        initialPosts.map((post: BlogPost) => (
           <li class={styles.newsItem}>
             <article>
               <div class={styles.newsItemImage}>
                 <LazyImage
-                  src={item.image}
-                  alt={item.title}
+                  src={post.image}
+                  alt={post.title}
                   width={300}
                   height={200}
                   loading='lazy'
                 />
-                <span class={styles.newsItemCategory}>{item.category}</span>
+                <span class={styles.newsItemCategory}>{post.category}</span>
               </div>
 
               <div class={styles.newsItemContent}>
-                <time class={styles.newsItemDate}>{formatDate(item.date)}</time>
-                <h3>{item.title}</h3>
-                <p>{item.description}</p>
-                <a class={styles.newsItemButton} href={`/post/${item.id}`}>
+                <time class={styles.newsItemDate}>{formatDate(post.date)}</time>
+                <h3>{post.title}</h3>
+                <p>{post.description}</p>
+                <a class={styles.newsItemButton} href={`/post/${post.slug}`}>
                   Read More
                   <svg
                     width='20'
@@ -73,8 +87,125 @@ const formatDate = (dateString: string) => {
       }
     </ul>
 
-    <button class='button'>
-      <span>View more</span>
-    </button>
+    {
+      hasMore && (
+        <button class='button' id='load-more-btn' data-page='1'>
+          <span>Load more</span>
+        </button>
+      )
+    }
   </div>
 </section>
+
+<script>
+  let currentPage = 1
+  let isLoading = false
+
+  const loadMoreBtn = document.getElementById('load-more-btn')
+  const blogList = document.getElementById('blog-list')
+
+  // Debug: log initial state
+  const initialPostsCount = blogList?.children.length || 0
+  console.log(`Initial posts loaded: ${initialPostsCount}`)
+  console.log(`Load more button visible: ${loadMoreBtn ? 'yes' : 'no'}`)
+
+  // Get CSS classes from data attributes
+  const newsItemClass = blogList?.dataset.newsItemClass || ''
+  const newsImageClass = blogList?.dataset.newsImageClass || ''
+  const newsCategoryClass = blogList?.dataset.newsCategoryClass || ''
+  const newsContentClass = blogList?.dataset.newsContentClass || ''
+  const newsDateClass = blogList?.dataset.newsDateClass || ''
+  const newsButtonClass = blogList?.dataset.newsButtonClass || ''
+
+  function formatDate(dateString: string): string {
+    const date = new Date(dateString)
+    return date.toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+    })
+  }
+
+  function createPostElement(post: any): HTMLElement {
+    const li = document.createElement('li')
+    li.className = newsItemClass
+
+    li.innerHTML = `
+      <article>
+        <div class="${newsImageClass}">
+          <img
+            src="${post.image}"
+            alt="${post.title}"
+            width="300"
+            height="200"
+            loading="lazy"
+          />
+          <span class="${newsCategoryClass}">${post.category}</span>
+        </div>
+        <div class="${newsContentClass}">
+          <time class="${newsDateClass}">${formatDate(post.date)}</time>
+          <h3>${post.title}</h3>
+          <p>${post.description}</p>
+          <a class="${newsButtonClass}" href="/post/${post.slug}">
+            Read More
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M7.5 15L12.5 10L7.5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+      </article>
+    `
+
+    return li
+  }
+
+  async function loadMorePosts() {
+    if (isLoading || !loadMoreBtn) return
+
+    isLoading = true
+    loadMoreBtn.setAttribute('disabled', 'true')
+    const span = loadMoreBtn.querySelector('span')
+    if (span) span.textContent = 'Loading...'
+
+    try {
+      currentPage += 1
+      console.log(`Loading page ${currentPage}...`)
+
+      const response = await fetch(
+        `/api/posts.json?page=${currentPage}&per_page=6`
+      )
+      const data = await response.json()
+
+      console.log(
+        `Received ${data.posts?.length || 0} posts, hasMore: ${data.hasMore}`
+      )
+
+      if (data.posts && data.posts.length > 0) {
+        data.posts.forEach((post: any) => {
+          const postElement = createPostElement(post)
+          blogList?.appendChild(postElement)
+        })
+      }
+
+      // Hide button if no more posts OR if received less than 6 posts
+      if (!data.hasMore || !data.posts || data.posts.length < 6) {
+        console.log('No more posts - hiding button')
+        loadMoreBtn.style.display = 'none'
+      } else {
+        loadMoreBtn.removeAttribute('disabled')
+        if (span) span.textContent = 'Load more'
+      }
+    } catch (error) {
+      console.error('Error loading posts:', error)
+      // Re-enable button on error
+      loadMoreBtn.removeAttribute('disabled')
+      if (span) span.textContent = 'Load more'
+    } finally {
+      isLoading = false
+    }
+  }
+
+  if (loadMoreBtn) {
+    loadMoreBtn.addEventListener('click', loadMorePosts)
+  }
+</script>

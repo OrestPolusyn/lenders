@@ -12,6 +12,21 @@ import News from '../components/Home/News/News.astro'
 import Philosophy from '../components/Home/Philosophy/Philosophy.astro'
 import Process from '../components/Home/Process/Process.astro'
 import Reviews from '../components/Home/Reviews/Reviews.astro'
+
+// Import WordPress functions
+import { getPageBySlug } from '@/lib/wordpress'
+
+// Отримати дані Home Page з WordPress
+let homeData: any = {}
+try {
+  const homePage = await getPageBySlug('home')
+  if (homePage && homePage.acf) {
+    homeData = homePage.acf
+    console.log('✅ Loaded Home page data from WordPress')
+  }
+} catch (error) {
+  console.error('❌ Failed to load Home page from WordPress:', error)
+}
 ---
 
 <BaseLayout
@@ -21,14 +36,14 @@ import Reviews from '../components/Home/Reviews/Reviews.astro'
   <Header />
 
   <main class='main'>
-    <Hero />
-    <AboutSection />
-    <Calculator />
-    <Philosophy />
-    <Process />
-    <Reviews />
-    <News />
-    <GetInTouch homePage={true} />
+    <Hero data={homeData} />
+    <AboutSection data={homeData} />
+    <Calculator data={homeData} />
+    <Philosophy data={homeData} />
+    <Process data={homeData} />
+    <Reviews data={homeData} />
+    <News data={homeData} />
+    <GetInTouch homePage={true} data={homeData} />
   </main>
 
   <Footer />

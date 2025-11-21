@@ -3,16 +3,24 @@ import ContactComponent from '@/components/Contact/Contact.astro'
 import Footer from '@/components/Footer/Footer.astro'
 import Header from '@/components/Header/Header.astro'
 import BaseLayout from '@/layouts/BaseLayout.astro'
+import { getPageBySlug } from '@/lib/wordpress'
+
+// Fetch WordPress data for Contact page
+const contactPage = await getPageBySlug('contact')
+const acf = contactPage?.acf || {}
+
+const pageTitle = contactPage?.title?.rendered || 'Contact Us'
+const metaTitle = contactPage?.title?.rendered || 'Contact Us - The Lenders'
+const metaDescription =
+  contactPage?.excerpt?.rendered ||
+  'Contact The Lenders for mortgage rates and home loan solutions. Expert guidance for your home financing needs.'
 ---
 
-<BaseLayout
-  title='Contact Us - The Lenders - Best Mortgage Rates & Home Loans'
-  description='Contact The Lenders for mortgage rates and home loan solutions. Expert guidance for your home financing needs.'
->
+<BaseLayout title={metaTitle} description={metaDescription}>
   <Header />
 
   <main class='main'>
-    <ContactComponent />
+    <ContactComponent data={acf} />
   </main>
 
   <Footer />

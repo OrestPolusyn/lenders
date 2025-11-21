@@ -8,21 +8,29 @@ import Header from '@/components/Header/Header.astro'
 import NumbersSection from '@/components/NumbersSection/NumbersSection.astro'
 import PageHeader from '@/components/PageHeader/PageHeader.astro'
 import BaseLayout from '@/layouts/BaseLayout.astro'
+import { getPageBySlug } from '@/lib/wordpress'
+
+// Fetch WordPress data for About page
+const aboutPage = await getPageBySlug('about')
+const acf = aboutPage?.acf || {}
+
+const pageTitle = aboutPage?.title?.rendered || 'About Us'
+const metaTitle = aboutPage?.title?.rendered || 'The Lenders - About Us'
+const metaDescription =
+  aboutPage?.excerpt?.rendered ||
+  'Learn about The Lenders - your trusted mortgage partner. Expert guidance for your home financing needs.'
 ---
 
-<BaseLayout
-  title='The Lenders - Best Mortgage Rates & Home Loans'
-  description='Find the best mortgage rates and home loan solutions with The Lenders. Expert guidance for your home financing needs.'
->
+<BaseLayout title={metaTitle} description={metaDescription}>
   <Header />
 
   <main class='main'>
-    <PageHeader title='About Us' />
-    <History />
-    <NumbersSection />
-    <Choose />
-    <Values />
-    <GetInTouch />
+    <PageHeader title={pageTitle} />
+    <History data={acf} />
+    <NumbersSection numbers={acf.about_numbers} />
+    <Choose data={acf} />
+    <Values data={acf} />
+    {acf.about_cta_enabled !== false && <GetInTouch data={acf} />}
   </main>
 
   <Footer />

@@ -3,153 +3,85 @@ import Footer from '@/components/Footer/Footer.astro'
 import Header from '@/components/Header/Header.astro'
 import PageHeader from '@/components/PageHeader/PageHeader.astro'
 import BaseLayout from '@/layouts/BaseLayout.astro'
+import { getPageBySlug } from '@/lib/wordpress'
+
+// Fetch WordPress page
+const accessibilityPage = await getPageBySlug('accessibility')
+
+const pageTitle =
+  accessibilityPage?.title?.rendered || 'Accessibility Statement'
+const metaTitle =
+  accessibilityPage?.title?.rendered || 'Accessibility Statement - The Lenders'
+const metaDescription =
+  accessibilityPage?.excerpt?.rendered ||
+  'The Lenders is committed to ensuring digital accessibility for people with disabilities.'
+const pageContent = accessibilityPage?.content?.rendered || ''
 ---
 
-<BaseLayout
-  title='Accessibility Statement - The Lenders'
-  description='The Lenders is committed to ensuring digital accessibility for people with disabilities. Learn about our accessibility features and commitment.'
->
+<style>
+  .wordpress-content {
+    color: var(--color-blue-500);
+    line-height: 1.7;
+  }
+
+  .wordpress-content h2 {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    font-size: 1.75rem;
+    font-weight: 700;
+  }
+
+  .wordpress-content h2:first-child {
+    margin-top: 0;
+  }
+
+  .wordpress-content p,
+  .wordpress-content ul {
+    margin-bottom: 1rem;
+  }
+
+  .wordpress-content ul,
+  .wordpress-content ol {
+    margin: 1rem 0;
+    padding-left: 2rem;
+  }
+
+  .wordpress-content li {
+    margin-bottom: 0.5rem;
+  }
+
+  .wordpress-content a {
+    color: var(--color-blue-400);
+    text-decoration: underline;
+  }
+
+  .wordpress-content strong {
+    font-weight: 600;
+  }
+
+  .wordpress-content li:before {
+    content: '✓';
+    color: var(--color-gold-400);
+    font-weight: bold;
+    font-size: 1.25rem;
+    margin-right: 0.5rem;
+  }
+</style>
+
+<BaseLayout title={metaTitle} description={metaDescription}>
   <Header />
 
   <main class='main'>
-    <PageHeader title='Accessibility Statement' />
+    <PageHeader title={pageTitle} />
 
-    <section style='padding-block: clamp(3rem, 4vw, 5rem); background-color: var(--color-white); color: var(--color-blue-500);'>
-      <style>
-        .accessibility-list {
-          list-style: none;
-          padding-left: 0;
-          display: flex;
-          flex-direction: column;
-          gap: 0.75rem;
-        }
-        .accessibility-list li {
-          position: relative;
-          padding-left: 2rem;
-        }
-        .accessibility-list li::before {
-          content: '✓';
-          position: absolute;
-          left: 0;
-          color: var(--color-gold-400);
-          font-weight: bold;
-          font-size: 1.25rem;
-        }
-      </style>
+    <section
+      style='padding-block: clamp(3rem, 4vw, 5rem); background-color: var(--color-white); color: var(--color-blue-500);'
+    >
       <div class='container' style='max-width: 920px;'>
-        <div style='display: flex; flex-direction: column; gap: 2rem;'>
-          <div>
-            <h2>Our Commitment to Accessibility</h2>
-            <p>
-              The Lenders is committed to ensuring digital accessibility for people with disabilities. 
-              We are continually improving the user experience for everyone and applying the relevant 
-              accessibility standards to ensure we provide equal access to all of our users.
-            </p>
-          </div>
-
-          <div>
-            <h2>Conformance Status</h2>
-            <p>
-              We strive to conform to the Web Content Accessibility Guidelines (WCAG) 2.1 Level AA. 
-              These guidelines explain how to make web content more accessible for people with disabilities 
-              and more user-friendly for everyone.
-            </p>
-          </div>
-
-          <div>
-            <h2>Accessibility Features</h2>
-            <p>Our website includes the following accessibility features:</p>
-            <ul class='accessibility-list' style='margin-top: 1rem;'>
-              <li>Semantic HTML markup for better screen reader compatibility</li>
-              <li>Keyboard navigation support throughout the site</li>
-              <li>Alternative text for images and graphics</li>
-              <li>Clear heading structure for easy navigation</li>
-              <li>Sufficient color contrast ratios for text and interactive elements</li>
-              <li>Responsive design that works across different devices and screen sizes</li>
-              <li>Forms with proper labels and error messages</li>
-              <li>Skip navigation links for keyboard users</li>
-            </ul>
-          </div>
-
-          <div>
-            <h2>Known Limitations</h2>
-            <p>
-              Despite our best efforts to ensure accessibility, there may be some limitations. 
-              We are actively working to identify and address any accessibility barriers on our website.
-            </p>
-          </div>
-
-          <div>
-            <h2>Third-Party Content</h2>
-            <p>
-              Some pages on our website may contain content provided by third parties. While we strive 
-              to ensure all content meets accessibility standards, we cannot always control the accessibility 
-              of third-party content.
-            </p>
-          </div>
-
-          <div>
-            <h2>Feedback</h2>
-            <p>
-              We welcome your feedback on the accessibility of The Lenders website. If you encounter 
-              accessibility barriers or have suggestions for improvement, please contact us:
-            </p>
-            <ul class='accessibility-list' style='margin-top: 1rem;'>
-              <li><strong>Email:</strong> <a href='mailto:accessibility@thelenders.com' style='color: var(--color-blue-400); text-decoration: underline;'>accessibility@thelenders.com</a></li>
-              <li><strong>Phone:</strong> <a href='tel:1-800-123-4567' style='color: var(--color-blue-400); text-decoration: underline;'>1-800-123-4567</a></li>
-            </ul>
-            <p style='margin-top: 1rem;'>
-              We aim to respond to accessibility feedback within 5 business days and to provide 
-              a solution or alternative within 10 business days.
-            </p>
-          </div>
-
-          <div>
-            <h2>Technical Specifications</h2>
-            <p>
-              The accessibility of The Lenders website relies on the following technologies to work 
-              with the particular combination of web browser and any assistive technologies or plugins 
-              installed on your computer:
-            </p>
-            <ul class='accessibility-list' style='margin-top: 1rem;'>
-              <li>HTML5</li>
-              <li>CSS3</li>
-              <li>JavaScript</li>
-              <li>ARIA (Accessible Rich Internet Applications)</li>
-            </ul>
-          </div>
-
-          <div>
-            <h2>Assessment and Testing</h2>
-            <p>
-              The Lenders assesses the accessibility of its website through:
-            </p>
-            <ul class='accessibility-list' style='margin-top: 1rem;'>
-              <li>Self-evaluation and internal testing</li>
-              <li>Automated accessibility testing tools</li>
-              <li>Manual testing with assistive technologies</li>
-              <li>User feedback and reports</li>
-            </ul>
-          </div>
-
-          <div>
-            <h2>Date</h2>
-            <p>
-              This accessibility statement was last reviewed and updated on <strong>November 17, 2025</strong>.
-            </p>
-          </div>
-
-          <div style='padding: 1.5rem; background-color: rgba(0, 71, 171, 0.05); border-radius: 8px; margin-top: 1rem;'>
-            <p style='margin: 0; font-size: 0.95rem;'>
-              <strong>Note:</strong> We are continuously working to improve the accessibility of our website. 
-              This statement reflects our ongoing commitment and will be updated as we make improvements.
-            </p>
-          </div>
-        </div>
+        <div class='wordpress-content' set:html={pageContent} />
       </div>
     </section>
   </main>
 
   <Footer />
 </BaseLayout>
-

@@ -5,16 +5,27 @@ import './LoansGrid.module.css'
 interface Props {
   numberOfItems?: number
   linkToLoanPrograms?: boolean
+  loanPrograms?: any[]
 }
 
-const { numberOfItems = loanList.length, linkToLoanPrograms = false } =
-  Astro.props
+const { numberOfItems, linkToLoanPrograms = false, loanPrograms } = Astro.props
+
+// Використовуємо WordPress дані якщо є, інакше fallback на статичні
+const loans =
+  loanPrograms && loanPrograms.length > 0
+    ? loanPrograms.map(program => ({
+        title: program.title,
+        icon: program.slug,
+      }))
+    : loanList
+
+const itemsToShow = numberOfItems || loans.length
 ---
 
 <ul class='loanGrid'>
   {
-    loanList.map((loan, index) => {
-      if (index < numberOfItems) {
+    loans.map((loan, index) => {
+      if (index < itemsToShow) {
         const href = linkToLoanPrograms
           ? `/loan-programs?loan=${loan.icon}`
           : undefined

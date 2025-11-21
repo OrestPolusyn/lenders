@@ -1,58 +1,84 @@
 ---
-import styles from "./Values.module.css";
+import styles from './Values.module.css'
 
-const valueList = [
+interface Value {
+  title: string
+  text: string
+  icon: string
+}
+
+interface Props {
+  data?: {
+    about_values_slogan?: string
+    about_values_title?: string
+    about_values_description?: string
+    about_values_list?: Value[]
+  }
+}
+
+const { data = {} } = Astro.props
+
+const defaultValues: Value[] = [
   {
-    title: "Trust & Integrity",
-    icon: "trust",
-    text: "We operate with complete transparency and honesty in every interaction.",
+    title: 'Trust & Integrity',
+    icon: 'trust',
+    text: 'We operate with complete transparency and honesty in every interaction.',
   },
   {
-    title: "Client-Focused",
-    icon: "client",
-    text: "Your financial goals are our priority. We tailor solutions to fit your unique needs.",
+    title: 'Client-Focused',
+    icon: 'client',
+    text: 'Your financial goals are our priority. We tailor solutions to fit your unique needs.',
   },
   {
-    title: "Expert Guidance",
-    icon: "expert",
-    text: "Our team of experienced professionals provides expert advice every step of the way.",
+    title: 'Expert Guidance',
+    icon: 'expert',
+    text: 'Our team of experienced professionals provides expert advice every step of the way.',
   },
   {
-    title: "Excellence",
-    icon: "excellence",
-    text: "We strive for excellence in service, delivering the best mortgage solutions.",
+    title: 'Excellence',
+    icon: 'excellence',
+    text: 'We strive for excellence in service, delivering the best mortgage solutions.',
   },
   {
-    title: "Innovation",
-    icon: "innovation",
-    text: "We leverage the latest technology to streamline your mortgage experience.",
+    title: 'Innovation',
+    icon: 'innovation',
+    text: 'We leverage the latest technology to streamline your mortgage experience.',
   },
   {
-    title: "Community",
-    icon: "community",
-    text: "We're committed to helping families in our community achieve homeownership."
+    title: 'Community',
+    icon: 'community',
+    text: "We're committed to helping families in our community achieve homeownership.",
   },
-];
+]
+
+const valuesData = {
+  slogan: data.about_values_slogan || 'Our Values',
+  title: data.about_values_title || 'What Drives Us Forward',
+  description:
+    data.about_values_description ||
+    'Our core values guide everything we do, ensuring we provide the best service to our clients.',
+  valueList:
+    data.about_values_list && data.about_values_list.length > 0
+      ? data.about_values_list
+      : defaultValues,
+}
 ---
 
-<section class={styles.Values}>
-  <div class="container">
-    <div class={styles.ValuesContent}>
-      <div class="slogan slogan--double">
-        <span>Our Values</span>
+<section class={styles.values}>
+  <div class='container'>
+    <div class={styles.valuesContent}>
+      <div class='slogan slogan--double'>
+        <span>{valuesData.slogan}</span>
       </div>
 
-      <h2>What Drives Us Forward</h2>
+      <h2>{valuesData.title}</h2>
 
-      <p>
-        Our core values guide everything we do, ensuring we provide the best
-        service to our clients.
-      </p>
+      <p>{valuesData.description}</p>
     </div>
 
-    <ul class={styles.ValuesList}>
+    <ul class={styles.valuesList}>
       {
-        valueList.map((value) => (
+        valuesData.valueList.map(value => (
           <li>
             <span
               class={`${styles.valuesListItem} ${styles[`valuesListItem--${value.icon}`]}`}

@@ -18,10 +18,35 @@
 
 .glossaryLetters {
   display: flex;
-flex-wrap: wrap;
+  flex-wrap: wrap;
   gap: 10px;
   margin-block-end: clamp(1rem, 1rem + 5vw, 2rem);
   font-weight: var(--fw-800);
+}
+
+.glossaryLetter {
+  display: inline-block;
+  padding: 8px 12px;
+  color: var(--color-blue-400);
+  text-decoration: none;
+  transition:
+    color 0.2s ease,
+    background-color 0.2s ease;
+  border-radius: 4px;
+  cursor: pointer;
+
+  &:hover {
+    color: var(--color-blue-600);
+    background-color: var(--color-blue-50);
+  }
+}
+
+.glossaryLetterDisabled {
+  display: inline-block;
+  padding: 8px 12px;
+  color: #ccc;
+  cursor: not-allowed;
+  opacity: 0.4;
 }
 
 .glossaryLettersList {

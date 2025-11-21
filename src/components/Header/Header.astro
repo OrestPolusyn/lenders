@@ -4,13 +4,57 @@ import { BUSINESS_INFO } from '@/config/constants'
 import MobileMenuWrapper from '../MobileMenu/MobileMenuWrapper'
 import { navLinks } from '@/const/navLinks'
 import LazyImage from '../UI/LazyImage/LazyImage.astro'
+import { getMenuByLocation, type WPMenuItem } from '@/lib/wordpress'
+
+// Fetch WordPress menu or use fallback
+const wordpressMenu = await getMenuByLocation('primary')
+
+// Convert WordPress menu to navLinks format
+interface NavLink {
+  title: string
+  href?: string
+  children?: NavLink[]
+}
+
+function convertMenuToNavLinks(menuItems: WPMenuItem[]): NavLink[] {
+  return menuItems.map(item => {
+    // Replace WordPress subdomain URLs with main site URLs
+    let url = item.url
+
+    // Convert WordPress URLs to site-relative URLs
+    if (url) {
+      // Remove WordPress domain and keep only path
+      url = url.replace('https://wp.leanders.markupers.com.ua', '')
+      url = url.replace('http://wp.leanders.markupers.com.ua', '')
+      url = url.replace('https://leanders.markupers.com.ua', '')
+      url = url.replace('http://leanders.markupers.com.ua', '')
+
+      // Ensure leading slash
+      if (!url.startsWith('/')) {
+        url = '/' + url
+      }
+    }
+
+    return {
+      title: item.title,
+      href: url,
+      children:
+        item.children && item.children.length > 0
+          ? convertMenuToNavLinks(item.children)
+          : undefined,
+    }
+  })
+}
+
+const menu: NavLink[] =
+  wordpressMenu.length > 0 ? convertMenuToNavLinks(wordpressMenu) : navLinks
 ---
 
 <header class={`${styles.header} header ${styles.headerVisible}`} id='header'>
   <nav class={styles.headerNav}>
     <a class={styles.headerLogo} href='/'>
       <LazyImage
-        src='/images/logo-white.svg'
+        src='/images/logo.png'
         alt='The Lenders'
         width='240'
         height='70'
@@ -20,7 +64,7 @@ import LazyImage from '../UI/LazyImage/LazyImage.astro'
 
     <ul class={styles.headerList}>
       {
-        navLinks.map(link => (
+        menu.map(link => (
           <li
             class={`${styles.headerListItem} ${
               link.children ? styles.headerListItemHasDropdown : ''

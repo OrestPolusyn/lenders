@@ -353,7 +353,9 @@ h3 {
     background-color: currentColor;
     position: relative;
     z-index: 2;
-    transition: background-color 0.3s ease-out, transform 0.3s ease-out;
+    transition:
+      background-color 0.3s ease-out,
+      transform 0.3s ease-out;
   }
 
   &:hover {
@@ -439,6 +441,7 @@ h3 {
 .singlepost {
   color: var(--color-blue-600);
   background-color: var(--color-white);
+  clip-path: var(--clip-path-secondary);
 }
 
 .button--back {
@@ -506,6 +509,7 @@ h2 {
       }
       &::marker {
         content: '✓';
+        color: var(--color-gold-400);
         margin-right: 15px;
       }
     }
@@ -574,7 +578,35 @@ h2 {
       &::marker {
         content: '✓';
         margin-right: 15px;
+        color: var(--color-gold-400);
       }
     }
   }
+}
+
+.wordpress-content li:before {
+  content: '✓';
+  color: var(--color-gold-400);
+  font-weight: bold;
+  font-size: 1.25rem;
+  margin-right: 0.5rem;
+}
+
+.wordpress-content h2,
+.wordpress-content h3,
+.wordpress-content p:not(ul li p) {
+  margin-block: 1rem;
+}
+
+.wordpress-content strong {
+  font-weight: var(--fw-600);
+}
+
+.wordpress-content-privacy-policy ul li,
+.wordpress-content-privacy-policy ul li {
+  display: flex;
+}
+
+.terms-policy {
+  clip-path: polygon(0 0, 100% 0, 100% 98%, 0% 100%);
 }
