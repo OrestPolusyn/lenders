@@ -12,10 +12,18 @@ import {
 } from '@/lib/wordpress'
 
 // Fetch initial 6 posts from WordPress
-const initialPosts = await getAllPosts({
-  per_page: 6,
-  _embed: true,
-})
+let initialPosts = []
+try {
+  initialPosts =
+    (await getAllPosts({
+      per_page: 6,
+      _embed: true,
+    })) || []
+  console.log(`✅ Loaded ${initialPosts.length} posts from WordPress`)
+} catch (error) {
+  console.error('❌ Failed to load posts from WordPress:', error)
+  initialPosts = []
+}
 
 // Format posts for BlogSection
 const posts = initialPosts.map(post => {
