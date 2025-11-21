@@ -7,7 +7,7 @@ import { defineConfig } from 'astro/config'
 
 // https://astro.build/config
 export default defineConfig({
-  output: 'server', // Server-side rendering enabled
+  output: 'hybrid', // Hybrid mode: static by default, SSR on demand
   adapter: vercel(),
   site: 'https://leanders.markupers.com.ua',
   integrations: [
