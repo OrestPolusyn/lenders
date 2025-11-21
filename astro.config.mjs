@@ -1,14 +1,14 @@
 // @ts-check
-import netlify from '@astrojs/netlify'
 import react from '@astrojs/react'
 import sitemap from '@astrojs/sitemap'
-// import compress from 'astro-compress' // Disabled for SSR
+// SSR causes bundling issues on both Vercel and Netlify
+// Using static build + webhook for updates
 import { defineConfig } from 'astro/config'
 
 // https://astro.build/config
 export default defineConfig({
-  output: 'server', // Server-side rendering for dynamic WordPress data
-  adapter: netlify(),
+  output: 'static', // Static build - fast and reliable
+  // No adapter needed for static
   site: 'https://leanders.markupers.com.ua',
   integrations: [
     react(),

@@ -7,18 +7,22 @@ import LazyImage from '@/components/UI/LazyImage/LazyImage.astro'
 import BaseLayout from '@/layouts/BaseLayout.astro'
 import {
   formatDate,
+  getAllPosts,
   getCategories,
   getFeaturedImageUrl,
   getPostBySlug,
 } from '@/lib/wordpress'
 
-// SSR mode: posts rendered on-demand
-const { slug } = Astro.params
+// Static build: generate pages at build time
+export async function getStaticPaths() {
+  const posts = await getAllPosts({ per_page: 100 })
 
-if (!slug) {
-  return Astro.redirect('/blog')
+  return posts.map(post => ({
+    params: { slug: post.slug },
+  }))
 }
 
+const { slug } = Astro.params
 const post = await getPostBySlug(slug)
 
 // Redirect if post not found
