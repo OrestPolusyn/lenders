@@ -1,7 +1,7 @@
 // @ts-check
 import react from '@astrojs/react'
 import sitemap from '@astrojs/sitemap'
-import vercel from '@astrojs/vercel/serverless'
+import vercel from '@astrojs/vercel'
 import compress from 'astro-compress'
 import { defineConfig } from 'astro/config'
 
