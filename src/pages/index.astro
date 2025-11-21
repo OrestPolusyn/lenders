@@ -17,16 +17,8 @@ import Reviews from '../components/Home/Reviews/Reviews.astro'
 import { getPageBySlug } from '@/lib/wordpress'
 
 // Отримати дані Home Page з WordPress
-let homeData: any = {}
-try {
-  const homePage = await getPageBySlug('home')
-  if (homePage && homePage.acf) {
-    homeData = homePage.acf
-    console.log('✅ Loaded Home page data from WordPress')
-  }
-} catch (error) {
-  console.error('❌ Failed to load Home page from WordPress:', error)
-}
+const homePage = await getPageBySlug('home')
+const homeData = homePage?.acf || {}
 ---
 
 <BaseLayout

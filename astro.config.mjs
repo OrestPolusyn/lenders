@@ -1,14 +1,11 @@
 // @ts-check
 import react from '@astrojs/react'
 import sitemap from '@astrojs/sitemap'
-// SSR causes bundling issues on both Vercel and Netlify
-// Using static build + webhook for updates
 import { defineConfig } from 'astro/config'
 
 // https://astro.build/config
 export default defineConfig({
-  output: 'static', // Static build - fast and reliable
-  // No adapter needed for static
+  output: 'static',
   site: 'https://leanders.markupers.com.ua',
   integrations: [
     react(),
